@@ -1,0 +1,17 @@
+{% if settings.enable_freeshipping_indicator %}
+  {% assign amount_for_fs = settings.cart_free_shipping_threshold | times: 100 %}
+  {% assign total_price = cart.total_price %}
+  {% if amount_for_fs > total_price %}
+      {% assign amt_required_ffs = amount_for_fs | minus: total_price %}
+      {% assign percent = 0.00 | plus:total_price | divided_by:amount_for_fs | times:100 %}
+      <div class="spend-shipping-wrap">
+        <div class="spend-shipping" data-amt="{{ amount_for_fs }}">
+          {% unless settings.indicator_type == 'text_only' %}
+          	<div class="free-shipping-indicator"><div style="width:{{ percent }}%"></div></div>
+          {% endunless %}
+          {% assign remaining_amout = amt_required_ffs | money %}
+          <div class="indicator__msg" data-msg="{{ settings.freeshipping_msg }}">{{ settings.freeshipping_msg | replace: '[[rem_amt]]', remaining_amout }}</div>
+        </div>
+      </div>
+  {% endif %}
+{% endif %}

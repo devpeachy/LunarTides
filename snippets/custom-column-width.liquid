@@ -1,0 +1,48 @@
+{% comment %}
+Required values
+value: <number>
+{% endcomment %}
+
+{% assign value = value | plus: 0 %}
+
+{% if value == "1" %}
+  one
+{% elsif value == "2" %}
+  two
+{% elsif value == "3" %}
+  three
+{% elsif value == "4" %}
+  four
+{% elsif value == "5" %}
+  five
+{% elsif value == "6" %}
+  six
+{% elsif value == "7" %}
+  seven
+{% elsif value == "8" %}
+  eight
+{% elsif value == "9" %}
+  nine
+{% elsif value == "10" %}
+  ten
+{% elsif value == "11" %}
+  eleven
+{% elsif value == "12" %}
+  twelve
+{% elsif value == "13" %}
+  thirteen
+{% elsif value == "14" %}
+  fourteen
+{% elsif value == "15" %}
+  fifteen
+{% elsif value == "16" %}
+  sixteen
+{% elsif value == "1/2" %}
+  one-half
+{% elsif value == "1/3" %}
+  one-third
+{% elsif value == "2/3" %}
+  two-thirds
+{% elsif value == "1/4" %}
+  one-fourth
+{% endif %}

@@ -1,0 +1,41 @@
+{% comment %}
+  Snippet can be used in section or block
+  eg. {% include 'include-social-icons' %}
+{% endcomment %}
+{% assign id = block.id %}
+
+{% assign width = block.settings.width %}
+{% assign flex_alignment = block.settings.alignment %}
+{% assign padding_top = block.settings.padding_top %}
+{% assign padding_bottom = block.settings.padding_bottom %}
+{% assign icon_color = block.settings.icon_color %}
+{% assign icon_bg = block.settings.icon_bg %}
+{% assign isIconRound = block.settings.isIconRound %}
+{% assign icon_height = block.settings.icon_height %}
+{% assign icon_width = block.settings.icon_width %}
+{% assign space_icons = block.settings.space_icons %}
+
+{% style %}
+  #shopify-section-{{ id }} {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+  }
+ #shopify-section-{{ id }} .icon{
+	color: {{icon_color}};
+    background: {{icon_bg}};
+    width: {{icon_width}}px;
+    height: {{icon_height}}px;
+    {% if isIconRound %}
+        border-radius: 50%;
+    {% endif %}
+    {% if space_icons %}
+      margin:0px 2.5px;
+    {% endif %}
+    padding:{{icon_width|divided_by:6}}px;
+}
+{% endstyle %}
+
+{% comment %} HTML markup {% endcomment %}
+<section  class="section is-width-{{width}}">
+  {% include 'social-icons' , flex_alignment %}
+</section>

@@ -1,0 +1,54 @@
+{% comment %}
+  Snippet can be used in section or block
+  eg. {% include 'include-faq' %}
+{% endcomment %}
+{% assign id = block.id %}
+{% assign question = block.settings.question %}
+{% assign answer = block.settings.answer %}
+{% assign image = block.settings.image %}
+{% assign padding_top = block.settings.padding_top %}
+{% assign padding_bottom = block.settings.padding_bottom %}
+
+{% assign border_top = block.settings.border_top %}
+{% assign border_bottom = block.settings.border_bottom %}
+
+{% style %}
+  #shopify-section-{{ id }} {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+  }
+  #shopify-section-{{ id }} .faq__item-panel{
+  {% if border_top == true %}
+    border-top: 1px solid;
+  {% endif %}
+  {% if border_bottom == true %}
+    border-bottom: 1px solid;
+  {% endif %}
+  }
+{% endstyle %}
+
+{% comment %} HTML markup {% endcomment %}
+<section  class="section is-width-standard">
+  <div class="faq__item">
+    <div class="faq__item-panel">
+        <h5 class="faq__item-question">{{question}}</h5>
+        <section  class="faq__item-answer">
+            {{answer|strip_html}}
+          	{% if image and image != blank %}
+           	<div class="gallery__item-wrap is-relative">
+            	{% include 'image-element', image: image, alt: image.alt, back_to_basics: true %}
+            </div>   
+            {% endif %}
+        </section>
+    </div>
+  </div>
+</section>
+
+{% comment %} JavaScript {% endcomment %}
+<script
+  type="application/json"
+  data-section-id="{{ object.id }}"
+  data-section-data >
+</script>
+<script data-theme-editor-load-script src="{{ 'z__jsFaqBlock.js' | asset_url }}"></script>
+

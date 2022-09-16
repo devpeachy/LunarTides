@@ -1,0 +1,248 @@
+{% comment %}
+** Age Verfication Popup - dynamic **
+- Draggable section
+{% endcomment %}
+
+{% assign id = section.id %}
+{% assign text_alignment = section.settings.text_alignment %}
+{% assign button_style = section.settings.button_style %}
+{% assign restrict_scroll = section.settings.restrict_scroll %}
+
+{% assign padding_top = section.settings.padding_top %}
+{% assign padding_bottom = section.settings.padding_bottom %}
+{% assign padding_left = section.settings.padding_left %}
+{% assign padding_right = section.settings.padding_right %}
+
+{% comment %} Advanced {% endcomment %}
+
+{% assign css_class = section.settings.css_class %}
+{% assign custom_css = section.settings.custom_css %}
+
+{% comment %} Section specific CSS {% endcomment %}
+
+{% style %}
+  {% if restrict_scroll %}
+	body.has-overlay{
+      overflow:hidden;
+      height:100vh;
+    }
+  {% endif %}
+  #shopify-section-{{ id }} .section {
+    padding-top: {{ padding_top }}px;
+    padding-bottom: {{ padding_bottom }}px;
+    padding-left: {{ padding_left }}px;
+    padding-right: {{ padding_right }}px;
+  }
+  {% include 'css-loop', css: custom_css, id: id %}
+{% endstyle %}
+
+{% comment %} HTML markup {% endcomment %}
+<div class="section
+            {{ css_class }}
+            age-popup"
+     style="display:none" 
+     data-age-popup>
+  <div class="age-popup__content" data-age-content>
+    {% if section.settings.title != blank %}
+      <h2 class="title age-popup__title text-align-{{ text_alignment }}">
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+      <div class="subtitle age-popup__subtitle text-align-{{ text_alignment }}">
+        {{ section.settings.subtitle }}
+      </div>
+    {% endif %}
+    <div class="buttons is-flex">
+      <button class="button {{ button_style }}" data-age-yes>{{section.settings.yes_label}}</button>
+      <button class="button {{ button_style }}" data-age-no>{{section.settings.no_label}}</button>
+    </div>
+  </div>
+  <div class="age-popup__warning" data-age-warning>
+    {% if section.settings.warning_title != blank %}
+      <h2 class="title age-popup__title text-align-{{ text_alignment }}">
+        {{ section.settings.warning_title }}
+      </h2>
+    {% endif %}
+    {% if section.settings.warning_subtitle != blank %}
+      <div class="subtitle age-popup__subtitle text-align-{{ text_alignment }}">
+        {{ section.settings.warning_subtitle }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% comment %}JavaScript{% endcomment %}
+<script
+    type="application/json"
+    data-section-id="{{ section.id }}"
+    data-section-data
+  >
+  {
+    "expire_after": {{ section.settings.expire | json }}
+  }
+</script>
+<script data-theme-editor-load-script src="{{ 'z__jsAgeVerification.js' | asset_url }}"></script>
+
+{% schema %}
+{
+   "name":"Age Verification",
+   "class":"jsAgeVerification",
+   "settings":[
+      {
+         "id":"title",
+         "label":"Title",
+         "type":"text",
+		 "default":"Title"
+      },
+      {
+         "id":"subtitle",
+         "label":"SubTitle",
+         "type":"richtext",
+          "default":"<p>Subtitle</p>"
+      },
+      {
+         "id":"yes_label",
+         "label":"Yes Button Text",
+         "type":"text",
+		 "default":"Yes"
+      },
+      {
+         "id":"no_label",
+         "label":"No Button Text",
+         "type":"text",
+		 "default":"No"
+      },
+      {
+         "id":"warning_title",
+         "label":"Warning title",
+         "type":"text",
+         "default":"Sorry"
+      },
+      {
+         "id":"warning_subtitle",
+         "label":"Warning Subtitle",
+         "type":"richtext",
+          "default":"<p>Subitle</p>"
+      },
+      {
+         "id":"restrict_scroll",
+         "label":"Restrict Scroll?",
+         "type":"checkbox",
+		 "default":false
+      },
+      {
+        "type": "range",
+        "id": "expire",
+        "label": "Expire After",
+        "default": 5,
+        "min": 1,
+        "max": 30
+      },
+      {
+        "type": "select",
+        "id": "button_style",
+        "label": "Style",
+        "options": [
+          {
+            "value": "button--primary",
+            "label": "Primary"
+          },
+          {
+            "value": "button--secondary",
+            "label": "Secondary"
+          },
+          {
+            "value": "button--link-style",
+            "label": "Link style"
+          }
+        ],
+        "default": "button--primary"
+      },
+      {
+        "type": "select",
+        "id": "text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "justify",
+            "label": "Justify"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
+        "type": "range",
+        "id": "padding_top",
+        "label": "Top spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_bottom",
+        "label": "Bottom spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_left",
+        "label": "Left spacing",
+        "min": 0,
+        "max": 80,
+        "default": 20,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "padding_right",
+        "label": "Right spacing",
+        "default": 20,
+        "min": 0,
+        "max": 80,
+        "unit": "px"
+      },
+      {
+        "type": "header",
+        "content": "Advanced"
+      },
+      {
+        "type": "text",
+        "id": "css_class",
+        "label": "CSS Class"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_css",
+        "label": "Custom CSS"
+      }
+   ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
