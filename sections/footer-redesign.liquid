@@ -83,9 +83,11 @@
         <div class="footer-redesign__social">
           {% for block in section.blocks %}
             {% if block.type == 'social' %}
-              <div class="social-item">
-                <a target="_blank" href="{{ block.settings.social_link }}">{{ block.settings.social_icon }}</a>
-              </div>
+              {% if social_icon != blank %}
+                <div class="social-item">
+                  <a target="_blank" href="{{ block.settings.social_link }}">{{ block.settings.social_icon }}</a>
+                </div>
+              {% endif %}
             {% endif %}
           {% endfor %}
         </div>
@@ -95,11 +97,13 @@
         <div class="footer-copyright">
           <p class="copyright-text">{{ copyright }}</p>
         </div>
-        <div class="footer-payment-icons">
-          {% for type in shop.enabled_payment_types %}
-            {{ type | payment_type_svg_tag: class: 'payment-icon' }}
-          {% endfor %}
-        </div>
+        {% if shop.enabled_payment_types != blank %}
+          <div class="footer-payment-icons">
+            {% for type in shop.enabled_payment_types %}
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
