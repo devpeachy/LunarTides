@@ -44,6 +44,7 @@
   <script defer src="{{ 'vendors.js' | asset_url }}"></script>
   <script defer src="{{ 'utilities.js' | asset_url }}"></script>
   <script defer src="{{ 'app.js' | asset_url }}"></script>
+  <script defer src="{{ 'marquee.min.js' | asset_url }}"></script>
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
   {%- if settings.show_multiple_currencies or shop.enabled_currencies.size > 1 -%}
     <script defer src="{{ 'currencyConversion.js' | asset_url }}"></script>
@@ -164,6 +165,9 @@
   {%- elsif settings.header_layout == "search_focus" -%}
     {% section 'header__top-bar' %}
     {% section 'header-search-focus' %}
+  {%- elsif settings.header_layout == "redesigned" -%}
+    {% section 'marquee-announcement-bar' %}
+    {% section 'header-redesigned-2' %}
   {%- endif -%}
 
   {%- if settings.cart_action == 'drawer' -%}

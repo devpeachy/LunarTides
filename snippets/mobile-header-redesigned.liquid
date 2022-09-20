@@ -1,0 +1,92 @@
+{% comment %} Is the color set to transparent? {% endcomment %}
+{%- assign mobile_menu_background_color = settings.mobile_menu_background_color | color_extract: 'alpha' -%}
+{%- assign mobile_menu_link_color = settings.mobile_menu_link_color | color_extract: 'alpha' -%}
+{%- assign mobile_menu_link_hover_color = settings.mobile_menu_link_hover_color | color_extract: 'alpha' -%}
+
+{% comment %} Opacity level {% endcomment %}
+{%- assign mobile_menu_opacity = settings.mobile_menu_opacity | divided_by: 100.00 -%}
+
+{% comment %} Mobile specific CSS {% endcomment %}
+{%- style -%}
+  .mobile-menu {
+    background-color: {% if mobile_menu_background_color != 0.0 %}{{ settings.mobile_menu_background_color | color_modify: 'alpha', mobile_menu_opacity }}{% else %}{{ settings.header_background | color_modify: 'alpha', mobile_menu_opacity }}{% endif %};
+  }
+
+  {%- if mobile_menu_link_color != 0.0 -%}
+    .mobile-menu-link,
+    .mobile-menu__item,
+    .mobile-menu a {
+      color: {{ settings.mobile_menu_link_color }};
+    }
+  {%- endif -%}
+
+  {%- if mobile_menu_link_hover_color != 0.0 -%}
+    .mobile-menu-link:hover,
+    .mobile-menu__item:hover,
+    .mobile-menu a:hover {
+      color: {{ settings.mobile_menu_link_hover_color }};
+    }
+  {%- endif -%}
+{%- endstyle -%}
+
+
+{% comment %} HTML markup {% endcomment %}
+<div id="mobile-header" class="mobile-header {% if template.name != "index" or with_bg %}with-bg{% endif %}">
+  <div class="mobile-header__content
+              mobile-layout--{{ settings.logo_menu_position }}
+              mobile-logo__position--{{ settings.logo_mobile_position }}
+              header__icon-style-{{ settings.icon_style | replace: '_', '-' }}">
+
+    <div class="logo">
+        <a href="{{ shop.url }}" title="{{ shop.name }}">
+            {{ logo }}
+        </a>
+    </div>
+
+      <div class="mobile-right-side">
+          <div class="mobile-icons {% if settings.show_search_icon_mobile == false %}has-one-icon{% endif %}">
+            <a href="#swym-wishlist" class="swym-wishlist">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M7.94668e-08 5.40001C-0.000248434 3.95035 0.582385 2.56146 1.61681 1.54584C2.65124 0.53022 4.05058 -0.026834 5.5 1.1704e-05C7.21732 -0.0091083 8.85599 0.719186 10 2.00001C11.144 0.719186 12.7827 -0.0091083 14.5 1.1704e-05C15.9494 -0.026834 17.3488 0.53022 18.3832 1.54584C19.4176 2.56146 20.0002 3.95035 20 5.40001C20 10.756 13.621 14.8 10 18C6.387 14.773 7.94668e-08 10.76 7.94668e-08 5.40001Z"/>
+                </svg>
+            </a>
+
+              {% comment %} Cart icon {% endcomment %}
+              <div class="header-cart action-area__link {% if cart.item_count != 0 %}has-cart-count{% endif %}" data-ajax-cart-trigger>
+                <a class="header__link" {% if settings.cart_action != 'mini_cart' or settings.cart_action != 'drawer' %}href="{{ routes.cart_url }}"{% endif %} >
+                  <span class="header-cart__icon">
+                    <svg width="17" height="20" viewBox="0 0 17 20" fill="white" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16.008 7H13.2498V4.02963C13.2498 2.9609 12.7494 1.93595 11.8586 1.18025C10.9678 0.424549 9.75972 0 8.5 0C7.24028 0 6.03216 0.424549 5.1414 1.18025C4.25064 1.93595 3.75022 2.9609 3.75022 4.02963V7H0.991962L0 20H17L16.008 7ZM5.56207 4.02963C5.56207 3.36858 5.8716 2.7346 6.42257 2.26717C6.97354 1.79974 7.72081 1.53714 8.5 1.53714C9.27919 1.53714 10.0265 1.79974 10.5774 2.26717C11.1284 2.7346 11.4379 3.36858 11.4379 4.02963V7H5.56207V4.02963Z"/>
+                    </svg>
+
+                    <span class="header-cart__count header-cart__count--badge badge" data-bind="itemCount" style="background-color: #5229B1; top: -9px; left: 12px;">
+                      {{ cart.item_count }}
+                    </span>
+                  </span>
+                </a>
+                {% if settings.cart_action == 'mini_cart' or settings.cart_action == 'drawer' %}
+                  {% include 'ajax-cart', context: 'mobile-header' %}
+                {% endif %}
+              </div>
+          </div>
+
+          <div class="mobile-dropdown">
+              <div class="mobile-menu__toggle-icon">
+                  <div class="mobile-header__open-menu">
+                      <svg width="22" height="16" viewBox="0 0 22 16" fill="white" xmlns="http://www.w3.org/2000/svg">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M0.535206 0.0699064C-0.170344 0.441205 -0.177306 1.36165 0.522742 1.72173C0.67837 1.80176 0.931606 1.80374 11.0007 1.80374C21.0698 1.80374 21.323 1.80176 21.4786 1.72173C22.1738 1.36415 22.1738 0.438197 21.4786 0.0806083C21.323 0.000580697 21.0714 -0.00135321 10.9917 0.000322984C1.66789 0.00187024 0.651594 0.0086608 0.535206 0.0699064ZM0.637712 7.06356C0.378933 7.15601 0.208219 7.30665 0.100856 7.53723C-0.123109 8.01817 0.057963 8.52924 0.530178 8.74912L0.750103 8.8515H11.0007H21.2513L21.4712 8.74912C21.9548 8.52391 22.1305 8.00115 21.8852 7.51699C21.7594 7.2687 21.5806 7.12008 21.3208 7.04791C21.2186 7.0195 17.6762 7.00528 10.9792 7.00635C2.76648 7.00768 0.762997 7.01877 0.637712 7.06356ZM0.535206 14.1344C0.0800973 14.3451 -0.12427 14.8756 0.0781201 15.3211C0.162145 15.5061 0.41409 15.7526 0.58575 15.8179C0.728012 15.872 21.2734 15.872 21.4156 15.8179C21.5873 15.7526 21.8392 15.5061 21.9233 15.3211C22.1229 14.8816 21.9132 14.3359 21.4666 14.133C21.3014 14.058 20.8654 14.0548 11.0007 14.0548C1.07198 14.0548 0.701021 14.0576 0.535206 14.1344Z"/>
+                      </svg>
+                  </div>
+                  <div class="mobile-header__close-menu" style="width: 22px; height: 22px;">
+                      {% include settings.icon, name: 'x' %}
+                  </div>
+              </div>
+              {% include 'mobile-menu-redesigned', nav_blocks: header_blocks %}
+          </div>
+
+          <div data-show-mobile-menu="false" class="mobile-menu__toggle-button mobile-toggle__position--{{ settings.logo_menu_position }}">
+          </div>
+      </div>
+  </div>
+
+</div>

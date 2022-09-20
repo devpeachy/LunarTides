@@ -4,6 +4,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 Shopify.theme.jsAjaxCart = {
   init: function init($section) {
+    console.log('ddddddd')
     // Add settings from schema to current object
     Shopify.theme.jsAjaxCart = $.extend(this, Shopify.theme.getSectionData($section));
 

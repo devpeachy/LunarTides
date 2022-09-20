@@ -1,0 +1,18 @@
+{% comment %}
+Optional values
+prefix: <string>
+{% endcomment %}
+
+<div class="navbar-dropdown navbar-dropdown-redesigned navbar-dropdown--{{ settings.dropdown_position }} is-{{ settings.dropdown_style }} has-{{ settings.dropdown_link_spacing }}-vertical-spacing">
+      {% assign currentIndex = forloop.index %}
+
+    <div class="navbar-dropdown-redesigned__wrapper">
+        <div class="navbar-items">
+            {% for sub_link in link.links %}
+                <a class="navbar-item {% if sub_link.active %}is-active{% endif %}" href="{{ sub_link.url }}">
+                    {{ sub_link.title }}
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
