@@ -1,0 +1,205 @@
+{% liquid
+    assign bg_color                         = section.settings.bg_color
+    assign background_desktop               = section.settings.background_desktop
+    assign background_mobile                = section.settings.background_mobile
+    assign title                            = section.settings.title
+    assign desktop_content_position         = section.settings.desktop_content_position
+    assign mobile_content_position          = section.settings.mobile_content_position
+    assign review_description               = section.settings.review_description
+    assign title_color                      = section.settings.title_color
+    assign description_color                = section.settings.description_color
+    assign button_text                      = section.settings.button_text
+    assign button_url                       = section.settings.button_url
+    assign is_single_image                  = section.settings.is_single_image 
+    assign single_image                     = section.settings.single_image
+%}
+
+<section class='reviews-banner-section' id="reviews-banner-{{ section.id }}" style="background-color: {{ bg_color }};">
+    {%- if background_desktop != 'blank' -%}
+        {%- if desktop_content_position == 'right-side' -%}
+            <img src="{{ background_desktop | img_url: 'master' }}" alt="" class='reviews-desktop-background' style="transform: rotate(180deg);">
+        {% else %}
+            <img src="{{ background_desktop | img_url: 'master' }}" alt="" class='reviews-desktop-background'>
+        {%- endif -%} 
+    {%- endif -%}  
+
+    {%- if background_mobile != 'blank' -%}
+        {%- if mobile_content_position == 'bottom-side' -%}
+            <img src="{{ background_mobile | img_url: 'master' }}" alt="" class='reviews-desktop-mobile' style="transform: rotate(180deg);">
+        {% else %}
+            <img src="{{ background_mobile | img_url: 'master' }}" alt="" class='reviews-desktop-mobile'>
+        {%- endif -%} 
+    {%- endif -%}  
+
+    <div class="reviews-container">
+        <div class="review-wrapper
+            {% if mobile_content_position == 'bottom-side' %}
+                col-rev
+            {% endif %}
+            "
+            {% if desktop_content_position == 'right-side' %}
+                style="flex-direction: row-reverse;"
+            {% endif %}
+        >
+            <div class="reviews-content-wrapper
+                {% if desktop_content_position == 'right-side' %}
+                    content-right
+                {% endif %}
+                ">
+                {%- if title != blank -%}
+                    <h3 class="reviews-title" style="color: {{ title_color }}" >{{ title }}</h3>
+                {%- endif -%}
+                {%- if review_description != blank -%}
+                    <p class="reviews-text" style="color: {{ description_color }}" >{{ review_description }}</p>
+                {%- endif -%}
+                {%- if button_text != blank -%}
+                    <div>
+                        <a link="{{ button_url }}" class="reviews-button">{{ button_text }}</a>
+                        <div class="reviews-button-boxshadow"></div>
+                    </div>
+                {%- endif -%}
+            </div>
+            <div class="reviews-images-wrapper 
+                    {% if is_single_image == true %}
+                        image-center
+                    {% endif %}
+                ">
+                {%- if is_single_image == false -%}
+                    {% for block in section.blocks %}
+                        {% liquid
+                            assign block_img         = block.settings.block_img
+                        %}
+
+                        <div class="reviews-image-wrapper">
+                            <img src="{{ block_img | img_url: 'master' }}" alt="" class="reviews-image">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="reviews-image-wrapper">
+                        <img src="{{ single_image | img_url: 'master' }}" alt="" class="reviews-image">
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Reviews Banner",
+    "class": "html-section",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Background color",
+            "default": "#000000"
+        },
+        {
+            "type": "image_picker",
+            "id": "background_desktop",
+            "label": "Background desktop image"
+        },
+        {
+            "type": "image_picker",
+            "id": "background_mobile",
+            "label": "Background mobile image"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Section title"
+        },
+        {
+            "type": "textarea",
+            "id": "review_description",
+            "label": "Review description"
+        },
+        {
+            "type": "color",
+            "id": "title_color",
+            "label": "Title color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "color",
+            "id": "description_color",
+            "label": "Description color",
+            "default": "#ffffff"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button link"
+        },
+        {
+            "type": "checkbox",
+            "id": "is_single_image",
+            "label": "One image in wrapper",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "desktop_content_position",
+            "label": "Desktop content position",
+            "options": [
+                {
+                    "value": "left-side",
+                    "label": "Left side"
+                },
+                {
+                    "value": "right-side",
+                    "label": "Right side"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "mobile_content_position",
+            "label": "Mobile content position",
+            "options": [
+                {
+                    "value": "top-side",
+                    "label": "Top side"
+                },
+                {
+                    "value": "bottom-side",
+                    "label": "Bottom side"
+                }
+            ]
+        },
+        {
+            "type": "image_picker",
+            "id": "single_image",
+            "label": "Single image"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "image",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "block_img",
+                    "label": "Block image"
+                }
+            ]
+        }
+    ],
+    "presets": [
+      {
+        "name": "Reviews Banner",
+        "category": "Homepage",
+        "settings": {
+
+        }
+      }
+    ]
+  }
+{% endschema %}
