@@ -174,16 +174,24 @@
     const linkWithMenu = $('.navbar-item.header__item.with-dropdown')
     const header = $('.header-redesigned__wrapper')
 
-    linkWithMenu.hover(
-        function () {
-          $(this).addClass("active");
-          header.addClass("with-bg-2");
-        },
-        function () {
-          $(this).removeClass("active");
-          header.removeClass("with-bg-2");
-        }
-    );
+    function megaMenuHover() {
+      linkWithMenu.hover(
+              function () {
+                $(this).addClass("active");
+                header.addClass("with-bg-2");
+              },
+              function () {
+                $(this).removeClass("active");
+                header.removeClass("with-bg-2");
+              }
+      );
+    }
+
+    megaMenuHover()
+
+    $( window ).resize(function() {
+      megaMenuHover()
+    });
   })
 </script>
 
@@ -224,6 +232,72 @@
 "id": "main_linklist_mob",
 "label": "Main menu (mobile)",
 "default": "main-menu"
+},
+{
+"type": "header",
+"content": "Mega menu blocks"
+},
+{
+"type": "checkbox",
+"id": "first_mega_block_show",
+"label": "First mega menu block show?",
+"default": true
+},
+{
+"type": "image_picker",
+"id": "first_mega_block_img",
+"label": "First mega menu block img"
+},
+{
+"type": "text",
+"id": "first_mega_block_title",
+"label": "First mega menu block title"
+},
+{
+"type": "text",
+"id": "first_mega_block_btn",
+"label": "First mega menu block button"
+},
+{
+"type": "url",
+"id": "first_mega_block_link",
+"label": "First mega menu block link"
+},
+{
+"type": "text",
+"id": "first_mega_block_badge",
+"label": "First mega menu block badge"
+},
+{
+"type": "checkbox",
+"id": "second_mega_block_show",
+"label": "Second mega menu block show?",
+"default": true
+},
+{
+"type": "image_picker",
+"id": "second_mega_block_img",
+"label": "Second mega menu block img"
+},
+{
+"type": "text",
+"id": "second_mega_block_title",
+"label": "Second mega menu block title"
+},
+{
+"type": "text",
+"id": "second_mega_block_btn",
+"label": "Second mega menu block button"
+},
+{
+"type": "url",
+"id": "second_mega_block_link",
+"label": "Second mega menu block link"
+},
+{
+"type": "text",
+"id": "second_mega_block_badge",
+"label": "Second mega menu block badge"
 },
 {
 "type": "select",
