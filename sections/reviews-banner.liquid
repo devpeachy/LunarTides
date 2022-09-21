@@ -10,9 +10,39 @@
     assign description_color                = section.settings.description_color
     assign button_text                      = section.settings.button_text
     assign button_url                       = section.settings.button_url
+    assign button_text_color                = section.settings.button_text_color
+    assign button_background_color          = section.settings.button_background_color
+    assign button_boxshadow_color           = section.settings.button_boxshadow_color
+    assign show_button_boxshadow            = section.settings.show_button_boxshadow
     assign is_single_image                  = section.settings.is_single_image 
     assign single_image                     = section.settings.single_image
 %}
+
+<style>
+    {% if button_text_color != blank %}
+        link.reviews-button-text-color {
+            color: {{ button_text_color }}
+        }
+      {% endif %}
+
+      {% if button_background_color != blank %}
+        .link.reviews-button-background-color {
+            background-color: {{ button_background_color }}
+        }
+      {% endif %}
+
+      {% if button_boxshadow_color != blank %}
+        .link-boxshadow.reviews-button-boxshadow-color {
+            background-color: {{ button_boxshadow_color }};
+            transform: translate(0px, 0px)
+        }
+      {% endif %}
+
+    .link.reviews-on-hover-translate:hover {
+        transform: translate(-8px, 8px);
+        transition: all 0.2s linear;
+    }
+</style>
 
 <section class='reviews-banner-section' id="reviews-banner-{{ section.id }}" style="background-color: {{ bg_color }};">
     {%- if background_desktop != 'blank' -%}
@@ -53,9 +83,15 @@
                     <p class="reviews-text" style="color: {{ description_color }}" >{{ review_description }}</p>
                 {%- endif -%}
                 {%- if button_text != blank -%}
-                    <div>
-                        <a link="{{ button_url }}" class="reviews-button">{{ button_text }}</a>
-                        <div class="reviews-button-boxshadow"></div>
+                    <div class="btn">
+                        <a href="{{ button_url }}" class="link reviews-button reviews-button-text-color reviews-button-background-color
+                            {% if show_button_boxshadow == true %}
+                                reviews-on-hover-translate
+                            {% endif %}
+                            ">{{ button_text }}</a>
+                        {% if show_button_boxshadow == true %}
+                            <div class="link-boxshadow reviews-button-boxshadow-color"></div>
+                        {% endif %}
                     </div>
                 {%- endif -%}
             </div>
@@ -136,6 +172,27 @@
             "type": "url",
             "id": "button_url",
             "label": "Button link"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color"
+        },
+        {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button background color"
+        },
+        {
+            "type": "color",
+            "id": "button_boxshadow_color",
+            "label": "Button boxshadow color"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_button_boxshadow",
+            "label": "Show boxshadow",
+            "default": true
         },
         {
             "type": "checkbox",
