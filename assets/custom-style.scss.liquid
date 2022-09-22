@@ -1,9 +1,5 @@
-/* ========================== Featured collection ========================== */
-.product-wrap .image__container.product__imageContainer .image-element__wrap {
-  height: auto !important;
-}
-
-.product-wrap.product-thumbnail-redesign-wrapper {
+/* === Product card === */
+.product-thumbnail-redesign-wrapper {
 
   .product-image__wrapper {
 
@@ -47,6 +43,14 @@
       }
 
       .swym-button.swym-add-to-wishlist-view-product {
+        width: 24px;
+        height: 24px;
+
+        @media (min-width: 1023px) {
+          width: 32px;
+          height: 34px;
+        }
+
         &::after {
           color: #FFFFFF !important;
           font-size: 24px;
@@ -221,6 +225,13 @@
       }
     }
   }
+}
+
+/* === End Product card === */
+
+/* ========================== Featured collection ========================== */
+.product-wrap .image__container.product__imageContainer .image-element__wrap {
+  height: auto !important;
 }
 
 .product-thumbnail-redesign {
@@ -767,3 +778,1052 @@
   }
 }
 /* ========================== New Footer End ========================== */
+
+/* ========================== About Lunar ========================== */
+.about-lunar {
+  padding-top: 40px;
+  border-radius: 40px 40px 0px 0px;
+
+  @media (min-width: 767px) {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  .about-lunar__container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: 1023px) {
+      padding: 0 60px;
+    }
+
+    @media (min-width: 1366px) {
+      padding: 0 80px;
+    }
+  }
+
+  .about-lunar__content {
+
+    .about-lunar__top-content {
+      padding: 0 16px;
+      margin-bottom: 40px;
+
+      @media (min-width: 767px) {
+        padding: 0 20px;
+        margin-bottom: 60px;
+      }
+
+      @media (min-width: 1023px) {
+        padding: 0;
+        margin-bottom: 80px;
+      }
+
+      @media (min-width: 1366px) {
+        margin-bottom: 112px;
+      }
+
+      .about-lunar__top-wrapper {
+
+        @media (min-width: 1023px) {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+        .about-lunar__title {
+          font-weight: 800;
+          font-size: 24px;
+          line-height: 32px;
+          text-align: center;
+          text-transform: uppercase;
+          margin-bottom: 25px;
+
+          @media (min-width: 767px) {
+            font-size: 36px;
+            line-height: 46px;
+            margin-bottom: 30px;
+          }
+
+          @media (min-width: 1023px) {
+            max-width: 278px;
+            margin-right: 40px;
+            text-align: left;
+            margin-bottom: 0;
+          }
+
+          @media (min-width: 1366px) {
+            max-width: 340px;
+            font-size: 48px;
+            line-height: 59px;
+          }
+        }
+  
+        .about-lunar__blocks {
+
+          @media (min-width: 767px) {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+          }
+
+          @media (min-width: 1366px) {
+            gap: 40px;
+          }
+
+          .about-lunar__item {
+            max-width: 240px;
+            margin: 0 auto;
+            margin-bottom: 41px;
+
+            @media (min-width: 767px) {
+              margin-bottom: 0;
+            }
+
+            @media (min-width: 1023px) {
+              max-width: 228px;
+              margin-left: 0;
+            }
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .item-svg {
+              margin: 0 auto;
+              width: 40px;
+              height: 40px;
+              margin-bottom: 25px;
+
+              @media (min-width: 1023px) {
+                margin-left: 0;
+              }
+            }
+
+            .item-text {
+              width: fit-content;
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 24px;
+              text-align: center;
+
+              @media (min-width: 1023px) {
+                text-align: left;
+              }
+            }
+          }
+        }
+      }
+
+      .about-lunar__gif {
+        overflow: hidden;
+        border: 2px solid #000000;
+        border-radius: 40px;
+        margin-top: 24px;
+        width: 100%;
+        height: 32px;
+
+        @media (min-width: 767px) {
+          height: 40px;
+          margin-top: 32px;
+        }
+        
+        @media (min-width: 1023px) {
+          height: 48px;
+          margin-top: 40px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .about-lunar__main-content {
+      overflow: hidden;
+
+      @media (min-width: 767px) {
+        display: flex;
+        border: 2px solid #000000;
+      }
+
+      .about-lunar__block-image {
+        display: flex;
+        position: relative;
+        border-top: 2px solid #000000;
+        border-bottom: 2px solid #000000;
+
+        @media (min-width: 767px) {
+          width: 50%;
+          border: none;
+          border-right: 2px solid #000000;
+        }
+
+        @media (min-width: 1366px) {
+          width: 40%;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .about-lunar__btn {
+          position: absolute;
+          bottom: 32px;
+          left: 50%;
+          transform: translateX(-50%);
+
+          @media (min-width: 1023px) {
+            bottom: 40px;
+          }
+
+          .link {
+            width: 210px;
+            transition: all .2s linear;
+          }
+        }
+      }
+
+      .about-lunar__marquee-bar {
+        height: 70px;
+
+        @media (min-width: 767px) {
+          width: 64px;
+          height: 64px;
+          transform: rotate(90deg);
+        }
+
+        .marquee-bar__wrapper {
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          @media (min-width: 767px) {
+            width: 1000px;
+            overflow: hidden;
+          }
+        }
+
+        .js-marquee {
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+
+          .bar__item {
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            transition: opacity .2s linear;
+            margin-right: 12px;
+            cursor: pointer;
+
+            &:hover {
+              opacity: .8;
+            }
+
+            @media (min-width: 1023px) {
+              letter-spacing: 0.21em;
+              margin-right: 24px;
+            }
+
+            @media (min-width: 1366px) {
+              margin-right: 32px;
+            }
+          }
+        }
+      }
+
+      .about-lunar__block-images-reviews {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        @media (min-width: 767px) {
+          width: 50%;
+        }
+
+        @media (min-width: 1366px) {
+          width: 60%;
+        }
+
+        .block-item {
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .block-image {
+          grid-column-start: 1;
+          grid-column-end: 2;
+          border-width: 0px 2px 2px 0px;
+          border-style: solid;
+          border-color: #000000;
+
+          @media (min-width: 1023px) {
+            border-width: 0px 0px 2px 0px;
+          }
+
+          @media (min-width: 1366px) {
+            grid-column-start: 1;
+            grid-column-end: 3;
+          }
+        }
+
+        .block-image2 {
+          grid-column-start: 2;
+          grid-column-end: 3;
+          border-bottom: 2px solid #000000;
+
+          @media (min-width: 1023px) {
+            border-bottom: none;
+            border-left: 2px solid #000000;
+          }
+        }
+
+        .block-review {
+          grid-column-start: 1;
+          grid-column-end: 3;
+          padding: 0 16px;
+          border-bottom: 2px solid #000000;
+
+          @media (min-width: 767px) {
+            border: none;
+          }
+
+          @media (min-width: 1366px) {
+            grid-column-start: 1;
+            grid-column-end: 2;
+            grid-row-start: 2;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+          }
+
+          .review-title {
+            margin-top: 16px;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+            text-transform: uppercase;
+            color: #000000;
+
+            @media (min-width: 1366px) {
+              margin-top: 24px;
+            }
+          }
+
+          .review-text {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #000000;
+            padding: 24px 0;
+
+            @media (min-width: 1366px) {
+              padding: 8px 0;
+            }
+          }
+
+          .review-initials {
+            margin-bottom: 16px;
+            width: fit-content;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            text-transform: uppercase;
+            color: #000000;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ========================== END About Lunar ========================== */
+
+/* ========================== Insta Feed ========================== */
+
+.insta-feed-redesign {
+  padding: 64px 0;
+
+  @media (min-width: 1023px) {
+    padding: 112px 0;
+  }
+
+  #insta-feed {
+    margin: 0;
+
+    h2 {
+      display: none;
+    }
+
+    .instafeed-container {
+      margin: -2px -2px 0 0;   
+      border: 2px solid #000000;
+
+      @media (min-width: 1023px) {
+        margin: -4px -4px 0 0;   
+        border: 4px solid #000000;
+      }
+    }
+  }
+
+  .insta-feed-redesign__header {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    @media (min-width: 767px) {
+      padding: 0 20px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    @media (min-width: 1023px) {
+      padding: 0 40px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 1366px) {
+      padding: 0 80px;
+    }
+
+
+    .insta-feed-redesign__title {
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 32px;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+
+      @media (min-width: 767px) {
+        margin-bottom: 0;
+        text-align: left;
+        font-size: 28px;
+        max-width: 640px;
+      }
+
+      @media (min-width: 1023px) {
+        font-weight: 700;
+        font-size: 38px;
+        line-height: 49px;
+      }
+
+      @media (min-width: 1366px) {
+        font-size: 48px;
+        line-height: 59px;
+      } 
+    }
+
+    .insta-feed-redesign__subscribe {
+      text-align: center;
+      margin-bottom: 24px;
+
+      @media (min-width: 767px) {
+        margin-bottom: 0;
+        text-align: right;
+      }
+
+      .subscribe-text {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 8px;
+      }
+
+      .insta {
+        font-weight: 800;
+        font-size: 24px;
+        line-height: 32px;
+        text-transform: uppercase;
+
+        @media (min-width: 767px) {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}
+
+/* ========================== END Insta Feed  ========================== */
+
+// BUTTON 
+.btn {
+    position: relative;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    transform: translateX(8px);
+    transition: all .8s linear;
+
+    .link {
+        position: relative;
+        padding: 12px 20px;
+        text-align: center;
+        background-color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        z-index: 10;
+        display: inline-block;
+    }
+    
+    .link-boxshadow {
+        position: absolute;
+        top: 8px;
+        left: -8px;
+        width: 100%;
+        height: 100%;
+        background-color: #7eeb28;
+        z-index: 0;
+    }
+}
+// BUTTON END
+
+
+/* ========================== New Header ========================== */
+
+/* ========================== New Header End ========================== */
+
+/* ========================== Reviews Banner ========================== */
+
+.reviews-banner-section {
+    padding: 8px 0;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; 
+    
+
+    .reviews-desktop-mobile {
+        display: none;
+    }
+
+    .reviews-desktop-background {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -20;
+    }
+
+    .reviews-container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+
+        .review-wrapper {
+            display: flex;
+            justify-content: space-between !important;
+            align-items: center;
+            text-align: right;
+
+            .reviews-content-wrapper {
+                padding: 20px 40px 20px 81px;
+                display: inline-block;
+                text-align: left;
+
+                &.content-right {
+                    padding: 20px 81px 20px 40px;
+                }
+
+                .reviews-title {
+                    font-size: 24px;
+                    font-weight: 700;
+                    line-height: 32px;
+                    max-width: 300px;
+                    margin-bottom: 16px;
+                    text-align: left;
+                }
+
+                .reviews-text {
+                    font-size: 16px;
+                    font-weight: 400;
+                    line-height: 24px;
+                    max-width: 512px;
+                    margin-bottom: 40px;
+                    text-align: left;
+                }
+
+                .reviews-button {
+                    max-width: 210px;
+                }
+            }
+            .reviews-images-wrapper {
+                display: flex;
+                justify-content: space-between;
+                text-align: right;
+                width: 100%;
+                max-width: 785px;
+
+                &.image-center {
+                    justify-content: center;
+                }
+
+                .reviews-image-wrapper {
+                    display: inline-block;
+                    width: 49.5%;
+
+                    .reviews-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .reviews-banner-section {
+        padding: 8px 0;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative; 
+        
+    
+        .reviews-desktop-mobile {
+            display: none;
+        }
+    
+        .reviews-desktop-background {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -20;
+        }
+    
+        .reviews-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+    
+            .review-wrapper {
+                display: flex;
+                justify-content: space-between !important;
+                align-items: center;
+                text-align: right;
+    
+                .reviews-content-wrapper {
+                    padding: 20px 40px;
+                    display: inline-block;
+                    text-align: left;
+    
+                    &.content-right {
+                        padding: 20px 40px;
+                    }
+    
+                    .reviews-title {
+                        font-size: 24px;
+                        font-weight: 700;
+                        line-height: 32px;
+                        max-width: 300px;
+                        margin-bottom: 16px;
+                        text-align: left;
+                    }
+    
+                    .reviews-text {
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 24px;
+                        max-width: 512px;
+                        margin-bottom: 40px;
+                        text-align: left;
+                    }
+                }
+                .reviews-images-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    text-align: right;
+                    width: 100%;
+                    max-width: 785px;
+    
+                    &.image-center {
+                        justify-content: center;
+                    }
+    
+                    .reviews-image-wrapper {
+                        display: inline-block;
+                        width: 49.5%;
+    
+                        .reviews-image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .reviews-banner-section {
+        padding: 8px 0;
+
+        .reviews-desktop-background {
+            display: none;
+        }
+
+        .reviews-desktop-mobile {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -20;
+        }
+
+        .reviews-container {
+            .review-wrapper {
+                display: flex;
+                flex-direction: column !important;
+                text-align: center;
+
+                &.col-rev {
+                    flex-direction: column-reverse !important;
+
+                    .reviews-content-wrapper {
+                        div {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+    
+                .reviews-content-wrapper {
+                    padding: 40px 16px 0;
+                    text-align: center;
+                    width: 100%;
+    
+                    .reviews-title {
+                        text-align: center;
+                        margin: 0 auto 24px;
+                    }
+    
+                    .reviews-text {
+                        text-align: center;
+                        margin: 0 auto 40px;
+                    }
+
+                    .btn {
+                        margin-bottom: 40px;
+
+                        .link {
+                            position: relative;
+                            padding: 12px 106px;
+                            background-color: #fff;
+                            font-size: 16px;
+                            font-weight: 700;
+                            color: #000;
+                            z-index: 10;
+                            display: inline-block;
+                            
+                    
+                            &:hover {
+                                transform: translate(-8px, 8px);
+                            }
+                        }
+                    }
+                }
+                .reviews-images-wrapper {
+                    display: flex;
+                    justify-content: space-between;
+                    text-align: right;
+                    width: 100%;
+    
+                    .reviews-image-wrapper {
+                        display: inline-block;
+                        width: 49.5%;
+    
+                        .reviews-image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ========================== Reviews Banner End ========================== */
+
+/* ========================== Product Banner ========================== */
+
+.product-banner-section {  
+    padding: 56px 0 97px;
+
+    .product-container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+
+        .product-content-wrapper {
+            display: flex;
+            border: 4px solid #000000;
+
+            .product-images-wrapper {
+                display: flex;
+                width: 63%;
+
+                .product-image-wrapper {
+                    width: 64%;
+
+                    .product-image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                .announcement-wrapper {
+                    max-width: 64px;
+                    transform: translateX(-468px);
+
+                    .marquee-announcement-bar {
+                        max-height: 64px;
+                        width: 1000px;
+                        overflow: hidden;
+                        transform: rotate(90deg);
+                    
+                        &.download {
+                        max-height: initial;
+                        }
+                    
+                        .js-marquee {
+                            display: flex;
+                            align-items: center;
+                            border-right: 0;
+                            border-left: 0;
+                            padding: 24px 0;
+                            white-space: nowrap;
+                        }
+    
+                        .announcement-bar__item {
+                            position: relative;
+                            font-family: Montserrat, sans-serif;
+                            font-weight: 700;
+                            font-size: 24px;
+                            line-height: 16px;
+                            margin-right: 16px;
+                            transition: opacity .2s linear;
+                    
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                        }
+                    }
+                }
+                
+                .decoration-image-wrapper {
+                    width: 190px;
+                    .decoration-image-desk {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        display: inline-block;
+                        border-right: 1px solid #000000;
+                    }
+                    .decoration-image-mob {
+                        display: none;
+                    }
+                }
+            }
+
+            .product-title-wrapper {
+                padding: 10px 0;
+                width: 44%;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+                line-height: normal;
+                position: relative;
+                z-index: 1;
+
+                .prodact-title-background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                }
+
+                .product-banner-title {
+                    margin-bottom: 40px;
+                    font-weight: 800;
+                    font-size: 80px;
+                    text-transform: uppercase;
+                    max-width: 400px;
+                    text-align: center;
+                    z-index: 1;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px){
+    .product-banner-section {  
+        .product-container {
+            .product-content-wrapper {
+                .product-title-wrapper {
+                    .product-banner-title {
+                        font-size: 50px;
+                        max-width: 330px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .product-banner-section {  
+        padding: 32px 0 64px;
+
+        .product-container {
+            max-width: 1200px;
+            overflow: visible;
+            max-height: auto !important;
+            width: 100%;
+            margin: 0 auto;
+    
+            .product-content-wrapper {
+                display: flex;
+                flex-direction: column-reverse;
+                border: 0;
+    
+                .product-images-wrapper {
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+
+                    .product-image-wrapper {
+                        width: 100%;
+                        height: 100%;
+                        max-height: 570px;
+    
+                        .product-image {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            max-height: 570px;
+                        }
+                    }
+    
+                    .announcement-wrapper {
+                        max-width: 64px;
+                        transform: translateX(0px);
+    
+                        .marquee-announcement-bar {
+                            max-height: 64px;
+                            width: 1000px;
+                            overflow: hidden;
+                            transform: rotate(0deg);
+                        
+                            &.download {
+                            max-height: initial;
+                            }
+                        
+                            .js-marquee {
+                            display: flex;
+                            align-items: center;
+                            border-right: 0;
+                            border-left: 0;
+                            padding: 24px 0;
+                            white-space: nowrap;
+                            }
+        
+                            .announcement-bar__item {
+                            position: relative;
+                            font-family: Montserrat, sans-serif;
+                            font-weight: 700;
+                            font-size: 24px;
+                            line-height: 16px;
+                            margin-right: 16px;
+                            transition: opacity .2s linear;
+                        
+                            &:hover {
+                                opacity: 0.8;
+                            }
+                            }
+                        }
+                    }
+                    
+                    .decoration-image-wrapper {
+                        width: 100%;
+                        .decoration-image-mob {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            display: inline-block;
+                        }
+                        .decoration-image-desk {
+                            display: none;
+                        }
+                    }
+                }
+    
+                .product-title-wrapper {
+                    padding: 71px 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    align-items: center;
+                    line-height: normal;
+                    position: relative;
+    
+                    .prodact-title-background {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+                        object-fit: cover;
+                        z-index: -20;
+                    }
+    
+                    .product-banner-title {
+                        margin-bottom: 40px;
+                        text-transform: uppercase;
+                        font-weight: 800;
+                        font-size: 64px;
+                        max-width: 400px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ========================== Product Banner End ========================== */
