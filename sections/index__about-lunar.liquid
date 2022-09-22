@@ -1,0 +1,370 @@
+{% liquid
+  assign bg_section     = section.settings.bg_section
+  assign text_color     = section.settings.text_color
+  assign title          = section.settings.title
+  assign title_url      = section.settings.title_url
+  assign gif            = section.settings.gif
+  assign marquee_speed  = section.settings.marquee_speed
+  assign main_image     = section.settings.main_image
+  assign main_image_mob = section.settings.main_image_mob
+  assign button_text    = section.settings.button_text
+  assign button_url     = section.settings.button_url
+  assign button_text_color       = section.settings.button_text_color
+  assign button_background_color = section.settings.button_background_color
+  assign button_boxshadow_color  = section.settings.button_boxshadow_color
+  assign show_button_boxshadow = section.settings.show_button_boxshadow
+  assign show_marquee_bar = section.settings.show_marquee_bar
+  assign bar_bg_color   = section.settings.bar_bg_color
+  assign bar_text_color = section.settings.bar_text_color
+  assign image1         = section.settings.image1
+  assign image1_mob     = section.settings.image1_mob
+  assign image2         = section.settings.image2
+  assign image2_mob     = section.settings.image2_mob
+  assign review_title   = section.settings.review_title
+  assign review_text    = section.settings.review_text
+  assign review_initials = section.settings.review_initials
+  assign review_initials_link = section.settings.review_initials_link
+%}
+
+<style>
+  .about-lunar__marquee-bar .marquee-bar__wrapper {
+    background-color: {{ bar_bg_color }};
+  }
+  .about-lunar__marquee-bar .bar__item {
+    color: {{ bar_text_color }};
+  }
+
+  {% if button_text_color != blank %}
+    .link.about-lunar-button-text-color {
+      color: {{ button_text_color }}
+    }
+  {% endif %}
+
+  {% if button_background_color != blank %}
+    .link.about-lunar-button-background-color {
+      background-color: {{ button_background_color }}
+    }
+  {% endif %}
+
+  {% if button_boxshadow_color != blank %}
+    .link-boxshadow.about-lunar-button-boxshadow-color {
+      background-color: {{ button_boxshadow_color }};
+      transform: translate(0px, 0px)
+    }
+  {% endif %}
+
+  .link.about-lunar-on-hover-translate:hover {
+    transform: translate(-8px, 8px);
+    transition: all 0.2s linear;
+  }
+</style>
+
+<section class="about-lunar" style="background-color: {{ bg_section }}">
+  <div class="about-lunar__container">
+    <div class="about-lunar__content" style="color: {{ text_color }}">
+      <div class="about-lunar__top-content">
+        <div class="about-lunar__top-wrapper">
+          {% if title_url != blank %}
+            <div class="about-lunar__title">
+              <a href="{{ title_url }}">{{ title }}</a>
+            </div>
+          {% else %}
+            <div class="about-lunar__title">{{ title }}</div>
+          {% endif %}
+          <div class="about-lunar__blocks">
+            {% for block in section.blocks %}
+              {% if block.type == 'item' %}
+                {% if block.settings.item_text != blank %}
+                  <div class="about-lunar__item">
+                    <div class="item-svg">{{ block.settings.item_icon }}</div>
+                    <p class="item-text">{{ block.settings.item_text }}</p>
+                  </div>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if gif != blank %}
+          <div class="about-lunar__gif">
+            <img src="{{ gif | img_url: 'master' }}" alt="{{ gif.alt }}">
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="about-lunar__main-content">
+        {% if main_image != blank and main_image_mob != blank %}
+          <div class="about-lunar__block-image">
+            <picture>
+              <source srcset="{{ main_image | img_url: 'master' }}" media="(min-width: 1366px)">
+              <source srcset="{{ main_image_mob | img_url: 'master' }}" media="(max-width: 1366px)">
+              <img src="{{ main_image | img_url: 'master' }}" alt="{{ main_image.alt }}">
+            </picture>
+            {% if button_text != blank %}
+              <div class="btn about-lunar__btn">
+                <a href="{{ button_url }}" class="link about-lunar-button-text-color about-lunar-button-background-color
+                  {% if show_button_boxshadow == true %}
+                    about-lunar-on-hover-translate
+                  {% endif %}">
+                  {{ button_text }}
+                </a>
+                {% if show_button_boxshadow == true %}
+                  <div class="link-boxshadow about-lunar-button-boxshadow-color"></div>
+                {% endif %}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        {% if show_marquee_bar == true %}
+          <div class="about-lunar__marquee-bar">
+            <div class="marquee-bar__wrapper">
+              <div class="marquee-bar" data-marquee>
+                {% for block in section.blocks %}
+                  {% if block.type == 'bar_item' %}
+                    <span class="bar__item">{{ block.settings.bar_text }}</span>
+                  {% endif %}
+                {% endfor %}
+                {% for block in section.blocks %}
+                  {% if block.type == 'bar_item' %}
+                    <span class="bar__item">{{ block.settings.bar_text }}</span>
+                  {% endif %}
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="about-lunar__block-images-reviews">
+          {% if image1 != blank and image1_mob != blank %}
+            <div class="block-item block-image">
+              <picture>
+                <source srcset="{{ image1 | img_url: 'master' }}" media="(min-width: 1366px)">
+                <source srcset="{{ image1_mob | img_url: 'master' }}" media="(max-width: 1366px)">
+                <img src="{{ image1 | img_url: 'master' }}" alt="{{ image1.alt }}">
+              </picture>
+            </div>
+          {% endif %}
+          {% if image2 != blank and image2_mob != blank %}
+            <div class="block-item block-image2">
+              <picture>
+                <source srcset="{{ image2 | img_url: 'master' }}" media="(min-width: 1366px)">
+                <source srcset="{{ image2_mob | img_url: 'master' }}" media="(max-width: 1366px)">
+                <img src="{{ image2 | img_url: 'master' }}" alt="{{ image2.alt }}">
+              </picture>
+            </div>
+          {% endif %}
+          {% if review_title != blank %}
+            <div class="block-item block-review">
+              {% if review_title != blank %}
+                <div class="review-title">{{ review_title }}</div>
+              {% endif %}
+              {% if review_text != blank %}
+                <div class="review-text">{{ review_text }}</div>
+              {% endif %}
+              {% if review_initials != blank %}
+                <div class="review-initials">
+                  <a href="{{ review_initials_link }}">{{ review_initials }}</a>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const marqueeContainer = $('[data-marquee]');
+    marqueeContainer.marquee({
+      duration: {{ marquee_speed }},
+      direction: 'left',
+      duplicated: true,
+      pauseOnHover: true,
+      startVisible: true,
+      gap: 0,
+    });
+  })
+</script>
+
+
+{% schema %}
+
+{
+  "name": "About Lunar section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_section",
+      "label": "Background color for section",
+      "default": "#F4F4F4"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Color text on section",
+      "default": "#000000"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "title_url",
+      "label": "Title url"
+    },
+    {
+      "type": "image_picker",
+      "id": "gif",
+      "label": "Gif"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Block image"
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image_mob",
+      "label": "Block image mob"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_background_color",
+      "label": "Button background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_boxshadow_color",
+      "label": "Button boxshadow color",
+      "default": "#7EEB28"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button_boxshadow",
+      "label": "Show boxshadow",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "marquee_speed",
+      "label": "Marquee speed",
+      "default": 30000
+    },
+    {
+      "type": "checkbox",
+      "id": "show_marquee_bar",
+      "label": "Show marquee bar",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bar_bg_color",
+      "label": "Bar background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "bar_text_color",
+      "label": "Bat text color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "image_picker",
+      "id": "image1",
+      "label": "Image first"
+    },
+    {
+      "type": "image_picker",
+      "id": "image1_mob",
+      "label": "Image first mob"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2",
+      "label": "Image second"
+    },
+    {
+      "type": "image_picker",
+      "id": "image2_mob",
+      "label": "Image second mob"
+    },
+    {
+      "type": "text",
+      "id": "review_title",
+      "label": "Review title"
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review text"
+    },
+    {
+      "type": "text",
+      "id": "review_initials",
+      "label": "Review initials"
+    },
+    {
+      "type": "url",
+      "id": "review_initials_link",
+      "label": "Review initials (link)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "item_icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "item_text",
+          "label": "Text"
+        }
+      ]
+    },
+    {
+      "type": "bar_item",
+      "name": "Bar item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "bar_text",
+          "label": "Bar text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Lunar section",
+      "category": "HP"
+    }
+  ]
+}
+
+{% endschema %}
