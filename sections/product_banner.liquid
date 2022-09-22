@@ -33,7 +33,7 @@
       }
 
       {% if button_text_color != blank %}
-        link.product-button-text-color {
+        .link.product-button-text-color {
             color: {{ button_text_color }}
         }
       {% endif %}
@@ -53,10 +53,6 @@
 
     .link.product-on-hover-translate:hover {
         transform: translate(-8px, 8px);
-    }
-
-    .add-transition-button-wrapper {
-        transition: all 0.2s linear; 
     }
 </style>
 
@@ -100,8 +96,12 @@
                     <h2 class="product-banner-title" style="color: {{ bar_text_color }}" >{{ title }}</h2>
                 {%- endif -%}
                 {%- if button_text != blank -%}
-                    <div class="btn">
-                        <a href="{{ button_url }}" class="link product-button-text-color product-button-background-color
+                    <div class="btn product-button
+                        {% if show_button_boxshadow == true %}
+                            add-transition-button-wrapper
+                        {% endif %}
+                        ">
+                        <a href="{{ button_url }}" class="link product-button-link product-button-text-color product-button-background-color
                             {% if show_button_boxshadow == true %}
                                 product-on-hover-translate
                             {% endif %}
