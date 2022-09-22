@@ -21,7 +21,7 @@
 </style>
 
 <header id="marquee-announcement-bar">
-  <div id="marquee__inner" class="marquee-announcement-bar" data-marquee>
+  <div id="marquee__inner" class="marquee-announcement-bar marquee-announcement-bar-header" data-marquee>
     {% for block in blocks %}
       <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
     {% endfor %}
@@ -42,8 +42,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const marqueeContainer = $('[data-marquee]');
-    marqueeContainer.marquee({
+    const headerBarMarqueeContainer = $('.marquee-announcement-bar-header');
+    headerBarMarqueeContainer.marquee({
       duration: {{ marquee_speed }},
       direction: 'left',
       duplicated: true,

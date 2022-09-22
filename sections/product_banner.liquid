@@ -64,7 +64,7 @@
                     <img src="{{ product_img | img_url: 'master' }}" alt="" class="product-image">
                 </div>
                 <div class="announcement-wrapper">
-                    <div id="marquee__inner" class="marquee-announcement-bar" data-marquee>
+                    <div id="marquee__inner" class="marquee-announcement-bar product-banner-marquee" data-marquee>
                         {% for block in blocks %}
                           <span class="announcement-bar__item">{{ block.settings.text }}</span>
                         {% endfor %}
@@ -119,8 +119,8 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const marqueeContainer = $('[data-marquee]');
-      marqueeContainer.marquee({
+      const productBannerMarqueeContainer = $('.product-banner-marquee');
+      productBannerMarqueeContainer.marquee({
         duration: {{ marquee_speed }},
         direction: 'left',
         duplicated: true,

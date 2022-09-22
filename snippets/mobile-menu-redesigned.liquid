@@ -42,12 +42,12 @@
           <div class="mobile-menu-bottom-link">
               {% if customer %}
                   {% comment %} Logout {% endcomment %}
-                  <a class="btn" href="{{ routes.account_url }}" >
+                  <a class="mobile-menu-bottom-link-btn" href="{{ routes.account_url }}" >
                       {{ 'layout.customer.my_account' | t | escape }}
                   </a>
               {% else %}
                   {% comment %} Login {% endcomment %}
-                  <a class="btn" href="{{ routes.account_login_url }}" >
+                  <a class="mobile-menu-bottom-link-btn" href="{{ routes.account_login_url }}" >
                       {{ 'layout.customer.log_in' | t | escape }}
                   </a>
               {% endif %}
