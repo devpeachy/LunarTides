@@ -54,6 +54,10 @@
           {
             "value": "vertical",
             "label": "Vertical"
+          },
+          {
+              "value": "redesigned",
+              "label": "Redesigned"
           }
         ],
         "default": "classic"

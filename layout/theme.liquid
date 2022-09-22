@@ -165,6 +165,9 @@
   {%- elsif settings.header_layout == "search_focus" -%}
     {% section 'header__top-bar' %}
     {% section 'header-search-focus' %}
+  {%- elsif settings.header_layout == "redesigned" -%}
+    {% section 'marquee-announcement-bar' %}
+    {% section 'header-redesigned-2' %}
   {%- endif -%}
 
   {%- if settings.cart_action == 'drawer' -%}

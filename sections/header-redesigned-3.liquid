@@ -1,0 +1,59 @@
+{% liquid
+  assign main_linklist = section.settings.main_linklist
+  assign with_bg = section.settings.with_bg
+  assign logo = section.settings.logo
+%}
+
+<header id="header-redesigned" class="{% if template.name != "index" or with_bg %}with-bg{% endif %}">
+  <div class="header-redesigned__container">
+    <div class="header-redesigned__wrapper">
+      <nav class="nav-list__desk">
+        {% assign main_menu = linklists[main_linklist] %}
+
+        {% for link in main_menu.links %}
+            <div class="nav-list__item {% if link.active or link.child_active %}is-active{% endif %}" data-navlink-handle="{{ link.title | handleize }}">
+              <a href="{{ link.url }}" class="nav-list__link {% if link.active %}is-active{% endif %}">
+                {{ link.title }}
+              </a>
+            </div>
+        {% endfor %}
+      </nav>
+
+      <div class="logo">
+        <a href="{{ shop.url }}" title="{{ shop.name }}">
+          {{ logo }}
+        </a>
+      </div>
+
+      {% include 'header-redesigned__action-icons' %}
+    </div>
+  </div>
+</header>
+
+<script src="{{ 'z__jsNewHeader.js' | asset_url }}"></script>
+{% comment %}<script src="{{ 'z__jsHeader.js' | asset_url }}"></script>{% endcomment %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "with_bg",
+      "label": "With Background?",
+      "default": false
+    },
+    {
+      "type": "link_list",
+      "id": "main_linklist",
+      "label": "Main menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "textarea",
+      "id": "logo",
+      "label": "Logo SVG"
+    }
+  ]
+}
+{% endschema %}

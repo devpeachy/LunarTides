@@ -1,0 +1,107 @@
+{% assign hide_section  = section.settings.hide_section %}
+{% assign marquee_speed = section.settings.marquee_speed %}
+{% assign bg_color      = section.settings.bg_color %}
+{% assign text_color    = section.settings.text_color %}
+{% assign blocks        = section.blocks %}
+
+<style>
+  {% if hide_section == true %}
+    #marquee-announcement-bar {
+      display: none;
+    }
+  {% endif %}
+
+  #marquee-announcement-bar {
+    background-color: {{ bg_color }};
+  }
+
+  #marquee-announcement-bar #marquee__inner .announcement-bar__item {
+    color: {{ text_color }};
+  }
+</style>
+
+<header id="marquee-announcement-bar">
+  <div id="marquee__inner" class="marquee-announcement-bar" data-marquee>
+    {% for block in blocks %}
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+    {% endfor %}
+    {% for block in blocks %}
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+    {% endfor %}
+    {% for block in blocks %}
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+    {% endfor %}
+    {% for block in blocks %}
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+    {% endfor %}
+    {% for block in blocks %}
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+    {% endfor %}
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const marqueeContainer = $('[data-marquee]');
+    marqueeContainer.marquee({
+      duration: {{ marquee_speed }},
+      direction: 'left',
+      duplicated: true,
+      pauseOnHover: true,
+      startVisible: true,
+      gap: 0,
+    });
+
+    $('.marquee-announcement-bar').addClass('download');
+  })
+</script>
+
+{% schema %}
+{
+  "name": "Marquee announcement bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide section?",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "marquee_speed",
+      "label": "Marquee speed",
+      "default": 40000
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "link"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

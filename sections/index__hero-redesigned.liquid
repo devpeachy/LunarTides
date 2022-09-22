@@ -1,0 +1,209 @@
+{% liquid
+    assign hide_section                    = section.settings.hide_section
+    assign bg_color                        = section.settings.bg_color
+    assign bg_img                          = section.settings.bg_img
+    assign bg_img_mob                      = section.settings.bg_img_mob
+    assign button_text                     = section.settings.button_text
+    assign button_url                      = section.settings.button_url
+    assign button_text_color               = section.settings.button_text_color
+    assign button_background_color         = section.settings.button_background_color
+    assign button_boxshadow_color          = section.settings.button_boxshadow_color
+    assign show_button_boxshadow           = section.settings.show_button_boxshadow
+    assign btn_vertical_pos                = section.settings.btn_vertical_pos
+    assign btn_horizontal_pos              = section.settings.btn_horizontal_pos
+    assign btn_vertical_pos_mob            = section.settings.btn_vertical_pos_mob
+    assign btn_horizontal_pos_mob          = section.settings.btn_horizontal_pos_mob
+%}
+
+<style>
+    {% if hide_section == true %}
+        #hp-hero-redesigned {
+            display: none;
+        }
+    {% endif %}
+
+    {% if bg_img != blank and bg_img_mob != blank %}
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper {
+            background-image: url("{{ bg_img_mob | img_url: 'master' }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (min-width: 600px) {
+            #hp-hero-redesigned .hp-hero-redesigned__wrapper {
+                background-image: url("{{ bg_img | img_url: 'master' }}");
+            }
+        }
+    {% else %}
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper {
+            background-color: {{ bg_color }};
+        }
+    {% endif %}
+
+    {% if button_text_color != blank %}
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn .link.hp-hero__text-color {
+            color: {{ button_text_color }}
+        }
+    {% endif %}
+
+    {% if button_background_color != blank %}
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn .link.hp-hero__background-color {
+            background-color: {{ button_background_color }}
+        }
+    {% endif %}
+
+    {% if button_boxshadow_color != blank %}
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn .link-boxshadow.hp-hero__boxshadow-color {
+            background-color: {{ button_boxshadow_color }};
+            transform: translate(0px, 0px)
+        }
+    {% endif %}
+
+    #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn .link.hp-hero__on-hover-translate:hover {
+        transform: translate(-8px, 8px);
+    }
+
+    #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn {
+        top: {{ btn_vertical_pos_mob }}%;
+        left: {{ btn_horizontal_pos_mob }}%;
+        transform: translate(-{{ btn_horizontal_pos_mob }}%, -{{ btn_vertical_pos_mob }}%);
+    }
+
+    @media (min-width: 600px) {
+        #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link .btn {
+            top: {{ btn_vertical_pos }}%;
+            left: {{ btn_horizontal_pos }}%;
+            transform: translate(-{{ btn_horizontal_pos }}%, -{{ btn_vertical_pos }}%);
+        }
+    }
+
+    #hp-hero-redesigned .hp-hero-redesigned__wrapper .hp-hero__overlay-link {
+        border: none !important
+    }
+</style>
+
+<section id="hp-hero-redesigned">
+    <div class="hp-hero-redesigned__wrapper">
+        <a href="{{ button_url }}" class="hp-hero__overlay-link" style="border: none !important;">
+            {%- if button_text != blank -%}
+                <div class="btn">
+                    <div class="link hp-hero__text-color hp-hero__background-color
+                            {% if show_button_boxshadow == true %}
+                                hp-hero__on-hover-translate
+                            {% endif %}
+                            ">{{ button_text }}</div>
+                    {% if show_button_boxshadow == true %}
+                        <div class="link-boxshadow hp-hero__boxshadow-color"></div>
+                    {% endif %}
+                </div>
+            {%- endif -%}
+        </a>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Hero",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "hide_section",
+            "label": "Hide section?",
+            "default": false
+        },
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Section background color"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_img",
+            "label": "Background image"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_img_mob",
+            "label": "Background image (mobile)"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Section link"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color"
+        },
+        {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button background color"
+        },
+        {
+            "type": "color",
+            "id": "button_boxshadow_color",
+            "label": "Button boxshadow color"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_button_boxshadow",
+            "label": "Show boxshadow",
+            "default": true
+        },
+        {
+            "type": "range",
+            "id": "btn_vertical_pos",
+            "min":  1,
+            "max":  100,
+            "step":  1,
+            "unit": "%",
+            "label": "Button vertical position",
+            "default":  50
+        },
+        {
+            "type": "range",
+            "id": "btn_horizontal_pos",
+            "min":  1,
+            "max":  100,
+            "step":  1,
+            "unit": "%",
+            "label": "Button horizontal position",
+            "default":  50
+        },
+        {
+            "type": "range",
+            "id": "btn_vertical_pos_mob",
+            "min":  1,
+            "max":  100,
+            "step":  1,
+            "unit": "%",
+            "label": "Mob button vertical position",
+            "default":  50
+        },
+        {
+            "type": "range",
+            "id": "btn_horizontal_pos_mob",
+            "min":  1,
+            "max":  100,
+            "step":  1,
+            "unit": "%",
+            "label": "Mob button horizontal position",
+            "default":  50
+        }
+    ],
+    "presets": [
+        {
+            "name": "New HP Hero",
+            "category": "Homepage"
+        }
+    ]
+}
+{% endschema %}

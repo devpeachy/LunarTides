@@ -1,0 +1,90 @@
+{% comment %}
+Optional values
+prefix: <string>
+{% endcomment %}
+
+<div class="navbar-dropdown navbar-dropdown-redesigned navbar-dropdown--{{ settings.dropdown_position }} is-{{ settings.dropdown_style }} has-{{ settings.dropdown_link_spacing }}-vertical-spacing">
+      {% assign currentIndex = forloop.index %}
+
+    <div class="navbar-dropdown-redesigned__wrapper">
+        <div class="navbar-items">
+            {% for sub_link in link.links %}
+                <a class="navbar-item {% if sub_link.active %}is-active{% endif %}" href="{{ sub_link.url }}">
+                    {{ sub_link.title }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="navbar-blocks">
+            {% if section.settings.first_mega_block_show %}
+            <div class="navbar-block">
+                <div class="navbar-block__img">
+                    {% if section.settings.first_mega_block_img != blank %}
+                        <a href="{{ section.settings.first_mega_block_link }}">
+                            <img src="{{ section.settings.first_mega_block_img | img_url: 'master' }}" alt="{{ section.settings.first_mega_block_img.alt | escape }}">
+                        </a>
+                    {% endif %}
+                    {% if section.settings.first_mega_block_badge != blank %}
+                        <div class="badge">{{ section.settings.first_mega_block_badge }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="navbar-block__content">
+                    {% if section.settings.first_mega_block_title != blank %}
+                        <a href="{{ section.settings.first_mega_block_link }}" class="title">
+                            {{ section.settings.first_mega_block_title }}
+                        </a>
+                    {% endif %}
+
+                    {% if section.settings.first_mega_block_btn != blank %}
+                        <a href="{{ section.settings.first_mega_block_link }}" class="btn">
+                            {{ section.settings.first_mega_block_btn }}
+
+                            <span class="arrow">
+                                <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.0999 5H0.899902M20.0999 5L14.8354 0.799999M20.0999 5L14.8354 9.2" stroke="#532AB1" stroke-width="2"/>
+                                </svg>
+                            </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if section.settings.second_mega_block_show %}
+                <div class="navbar-block">
+                    <div class="navbar-block__img">
+                        {% if section.settings.second_mega_block_img != blank %}
+                            <a href="{{ section.settings.second_mega_block_link }}">
+                                <img src="{{ section.settings.second_mega_block_img | img_url: 'master' }}" alt="{{ section.settings.second_mega_block_img.alt | escape }}">
+                            </a>
+                        {% endif %}
+                        {% if section.settings.second_mega_block_badge != blank %}
+                            <div class="badge">{{ section.settings.second_mega_block_badge }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="navbar-block__content">
+                        {% if section.settings.second_mega_block_title != blank %}
+                            <a href="{{ section.settings.second_mega_block_link }}" class="title">
+                                {{ section.settings.second_mega_block_title }}
+                            </a>
+                        {% endif %}
+
+                        {% if section.settings.second_mega_block_btn != blank %}
+                            <a href="{{ section.settings.second_mega_block_link }}" class="btn">
+                                {{ section.settings.second_mega_block_btn }}
+
+                                <span class="arrow">
+                                    <svg width="22" height="10" viewBox="0 0 22 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20.0999 5H0.899902M20.0999 5L14.8354 0.799999M20.0999 5L14.8354 9.2" stroke="#532AB1" stroke-width="2"/>
+                                    </svg>
+                                </span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
