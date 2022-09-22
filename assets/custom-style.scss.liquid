@@ -5,11 +5,11 @@
     width: auto;
     height: auto;
     transform: translateX(8px);
-    transition: all 0.8 linear;
 
     .link {
         position: relative;
         padding: 12px 20px;
+        width: 100%;
         text-align: center;
         background-color: #fff;
         font-size: 16px;
@@ -17,7 +17,7 @@
         color: #000;
         z-index: 10;
         display: inline-block;
-
+        transition: all 0.2s linear;
     }
     
     .link-boxshadow {
@@ -62,7 +62,7 @@
     }
 
     .reviews-container {
-        max-width: 1200px;
+        max-width: 1440px;
         width: 100%;
         margin: 0 auto;
 
@@ -101,6 +101,7 @@
 
                 .reviews-button {
                     max-width: 210px;
+                    width: 100%;
                 }
             }
             .reviews-images-wrapper {
@@ -245,6 +246,7 @@
                     flex-direction: column-reverse !important;
 
                     .reviews-content-wrapper {
+                        padding-bottom: 16px;
                         div {
                             margin-bottom: 0;
                         }
@@ -266,24 +268,10 @@
                         margin: 0 auto 40px;
                     }
 
-                    .btn {
+                    .reviews-button {
+                        max-width: 340px;
+                        width: 100%;
                         margin-bottom: 40px;
-
-                        .link {
-                            position: relative;
-                            padding: 12px 106px;
-                            background-color: #fff;
-                            font-size: 16px;
-                            font-weight: 700;
-                            color: #000;
-                            z-index: 10;
-                            display: inline-block;
-                            
-                    
-                            &:hover {
-                                transform: translate(-8px, 8px);
-                            }
-                        }
                     }
                 }
                 .reviews-images-wrapper {
@@ -423,6 +411,11 @@
                     text-align: center;
                     z-index: 1;
                 }
+
+                .product-button {
+                    max-width: 210px;
+                    width: 100%;
+                }
             }
         }
     }
@@ -468,6 +461,7 @@
                         width: 100%;
                         height: 100%;
                         max-height: 570px;
+                        margin-bottom: -7px;
     
                         .product-image {
                             width: 100%;
@@ -565,3 +559,160 @@
 }
 
 /* ========================== Product Banner End ========================== */
+
+/* ========================== FAQ ========================== */
+
+.faq-redesign {
+    .faq-container {
+        max-width: 1062px;
+        width: 100%;
+        margin: 0 auto;
+
+        .faq-redesign-title {
+            padding-top: 81px;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .accordion-section-redesign {
+            margin-bottom: 142px;
+
+            .accordion-title-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 0;
+                margin-bottom: 58px;
+
+                .accordion-img {
+                    width: 32px;
+                    height: 32px;
+                    margin-right: 8px;
+                }
+
+                .accordion-title {
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+            }
+
+            .question-content-wrapper {
+                border-bottom: 1px solid #000000;
+
+                .accordion-redesign {
+                    position: relative;
+                    transition: all 0.4s linear;
+
+                    .accordion-question {
+                        padding: 16px 24px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        cursor: pointer;
+                    }
+                  }
+
+                  .accordion-panel {
+                    padding: 0 18px 16px;
+                    background-color: white;
+                    // display: none;
+                    height: 0;
+                    overflow: hidden;
+                  }
+
+                  .accordion-redesign:after {
+                    content: '\02795';
+                    font-size: 24px;
+                    color: #000000;
+                    position: absolute;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                    right: 24px;
+                  }
+                  
+                  .active:after {
+                    content: "\2796"; 
+                  }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-redesign {
+        .faq-container {
+            max-width: 1062px;
+            width: 100%;
+            margin: 0 auto;
+    
+            .faq-redesign-title {
+                padding-top: 64px;
+                font-size: 24px;
+                font-weight: 800;
+                margin-bottom: 24px;
+            }
+    
+            .accordion-section-redesign {
+                margin-bottom: 64px;
+    
+                .accordion-title-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 8px 0;
+                    margin-bottom: 24px;
+    
+                    .accordion-img {
+                        width: 24px;
+                        height: 24px;
+                        margin-right: 8px;
+                    }
+    
+                    .accordion-title {
+                        font-size: 16px;
+                        font-weight: 700;
+                    }
+                }
+    
+                .question-content-wrapper {
+                    border-bottom: 1px solid #000000;
+    
+                    .accordion-redesign {
+                        position: relative;
+    
+                        .accordion-question {
+                            padding: 8px 0px;
+                            font-size: 16px;
+                            max-width: 269px;
+                            font-weight: 700;
+                            cursor: pointer;
+                        }
+                      }
+                      
+                      .accordion-panel {
+                        padding: 0 0 16px;
+                        background-color: white;
+                        display: none;
+                        overflow: hidden;
+                      }
+    
+                      .accordion-redesign:after {
+                        content: '\02795';
+                        font-size: 24px;
+                        color: #000000;
+                        position: absolute;
+                        top: 50%;
+                        transform: translate(0, -50%);
+                        right: 8px;
+                      }
+                      
+                      .active:after {
+                        content: "\2796"; 
+                      }
+                }
+            }
+        }
+    }
+}
+
+/* ========================== FAQ End ========================== */

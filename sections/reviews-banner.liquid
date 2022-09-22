@@ -20,7 +20,7 @@
 
 <style>
     {% if button_text_color != blank %}
-        link.reviews-button-text-color {
+        .link.reviews-button-text-color {
             color: {{ button_text_color }}
         }
       {% endif %}
@@ -40,7 +40,6 @@
 
     .link.reviews-on-hover-translate:hover {
         transform: translate(-8px, 8px);
-        transition: all 0.2s linear;
     }
 </style>
 
@@ -83,8 +82,8 @@
                     <p class="reviews-text" style="color: {{ description_color }}" >{{ review_description }}</p>
                 {%- endif -%}
                 {%- if button_text != blank -%}
-                    <div class="btn">
-                        <a href="{{ button_url }}" class="link reviews-button reviews-button-text-color reviews-button-background-color
+                    <div class="btn reviews-button ">
+                        <a href="{{ button_url }}" class="link reviews-button-link reviews-button-text-color reviews-button-background-color
                             {% if show_button_boxshadow == true %}
                                 reviews-on-hover-translate
                             {% endif %}
