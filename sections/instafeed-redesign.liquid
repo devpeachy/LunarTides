@@ -1,0 +1,119 @@
+{% liquid  
+  assign bg_color    = section.settings.bg_color
+  assign bg_image    = section.settings.bg_image
+  assign text_color  = section.settings.text_color
+  assign title       = section.settings.title
+  assign title_url   = section.settings.title_url
+  assign header_text = section.settings.header_text
+  assign insta_text  = section.settings.insta_text
+  assign insta_link  = section.settings.insta_link
+%}
+
+<style>
+  #insta-feed {
+    width:{{section.settings.feed_width}}%;
+  }
+  #insta-feed h2 {
+    font-size: {{section.settings.heading_size}}px;
+  }
+</style>
+
+<div class="insta-feed-redesign" 
+  style="
+    {% if bg_image != blank %}
+      background-image: url('{{ bg_image | img_url: 'master' }}');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    {% endif %}
+    background-color: {{ bg_color }};
+    color: {{ text_color }};"
+  >
+
+  <div class="insta-feed-redesign__header">
+    {% if title_url != blank %}
+      <div class="insta-feed-redesign__title">
+        <a href="{{ title_url }}">{{ title }}</a>
+      </div>
+      </div>
+    {% else %}
+      <div class="insta-feed-redesign__title">{{ title }}</div>
+    {% endif %}
+    <div class="insta-feed-redesign__subscribe">
+      {% if header_text != blank %}
+        <p class="subscribe-text">{{ header_text }}</p>
+      {% endif %}
+      <a class="insta" href="{{ insta_link }}">{{ insta_text }}</a>
+    </div>
+  </div>
+
+
+  {{ section.settings.html_area }}
+
+  {% unless section.settings.html_area contains "feed-" %}
+    <div id="insta-feed">
+    </div>
+  {% endunless  %}
+</div>
+
+{% schema %}
+  {
+    "name": "Instafeed App Redesign",
+    "settings":
+    [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color for section",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image for section"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Color text on section",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "url",
+        "id": "title_url",
+        "label": "Title url"
+      },
+      {
+        "type": "text",
+        "id": "header_text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "insta_text",
+        "label": "Insta name"
+      },
+      {
+        "type": "url",
+        "id": "insta_link",
+        "label": "Insta url"
+      },
+      {
+        "type": "textarea",
+        "id": "html_area",
+        "label": "Custom Code (optional)"
+      }
+    ],
+    "presets": [
+      {
+        "name":"Instafeed App Redesign",
+        "category":"Instagram Feed"
+      }
+    ]
+  }
+{% endschema %}

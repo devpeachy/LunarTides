@@ -1,0 +1,186 @@
+{% liquid
+  assign footer_bg         = section.settings.footer_bg
+  assign footer_bg_mb      = section.settings.footer_bg_mb
+  assign title             = section.settings.title
+  assign subtitle          = section.settings.subtitle
+  assign input_placeholder = section.settings.input_placeholder
+  assign footer_logo       = section.settings.footer_logo
+  assign copyright          = section.settings.copyright
+%}
+
+<style>
+  .footer-redesign {
+    background-image: url("{{ footer_bg_mb | img_url: 'master' }}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  @media (min-width: 767px) {
+    .footer-redesign {
+      background-image: url("{{ footer_bg | img_url: 'master' }}");
+    }
+  }
+</style>
+
+<footer class="footer-redesign">
+  <div class="footer-redesign__container">
+    <div class="footer-redesign__content">
+      <div class="footer-redesign__top-side">
+        {% if title != blank %}
+          <h2 class="footer-main-title">{{ title }}</h2>
+        {% endif %}
+        {% if subtitle != blank %}
+          <div class="footer-main-subtitle">{{ subtitle }}</div>
+        {% endif %}
+  
+        {% form 'customer', id: 'newsletter_form' %}
+          {% if form.posted_successfully? %}
+            <p class="success_text">{{ 'general.newsletter_form.success_text' | t }}</p>
+          {% elsif form.errors %}
+            <div>
+              {% for field in form.errors %}
+                <p class="form__error">{{ field | capitalize }} - {{ form.errors.messages[field] }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+  
+          <input type="hidden" name="contact[tags]" value="prospect,newsletter"/>
+
+          <div class="input-wrapper">
+            <input class="input input-email" type="email" name="contact[email]" placeholder="{{ input_placeholder }}" required>
+  
+            <button type="submit" class="button-submit">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M36 20H4M36 20L27.2258 13M36 20L27.2258 27" stroke="white" stroke-width="2"/>
+              </svg>
+            </button>
+          </div>
+        {% endform %}
+
+      </div>
+
+      <div class="footer-redesign__bottom-side">
+        <div class="footer-redesign__logo">
+          <div class="footer-logo">
+            <img src="{{ footer_logo | img_url: 'master' }}" alt="logo">
+          </div>
+        </div>
+        <div class="footer-redesign__menus">
+          {% for block in section.blocks %}
+            {% if block.type == 'menu' %}
+              <div class="footer-menu menu-{{ forloop.index }}">
+                {% assign menu = linklists[block.settings.menu_list] %}
+                <div class="footer-menu-title">{{ menu.title }}</div>
+                <div class="footer-menu-list">
+                  {% for link in menu.links %}
+                    <a class="link-item" href="{{ link.url }}">{{ link.title }}</a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="footer-redesign__social">
+          {% for block in section.blocks %}
+            {% if block.type == 'social' %}
+              {% if social_icon != blank %}
+                <div class="social-item">
+                  <a target="_blank" href="{{ block.settings.social_link }}">{{ block.settings.social_icon }}</a>
+                </div>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer-redesign__small">
+        <div class="footer-copyright">
+          <p class="copyright-text">{{ copyright }}</p>
+        </div>
+        {% if shop.enabled_payment_types != blank %}
+          <div class="footer-payment-icons">
+            {% for type in shop.enabled_payment_types %}
+              {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+
+{
+  "name": "Footer redesign",
+  "class": "footer footer--redesign",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "footer_bg_mb",
+      "label": "Footer background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_bg",
+      "label": "Footer background image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Placeholder for email input",
+      "default": "Email"
+    },
+    {
+      "type": "image_picker",
+      "id": "footer_logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Footer copyright text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu item",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu_list",
+          "label": "Footer menu"
+        }
+      ]
+    },
+    {
+      "type": "social",
+      "name": "Social item",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "social_icon",
+          "label": "Social icon"
+        },
+        {
+          "type": "url",
+          "id": "social_link",
+          "label": "Social link"
+        }
+      ]
+    }
+  ]
+}
+
+{% endschema %}

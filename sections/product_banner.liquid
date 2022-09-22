@@ -1,0 +1,248 @@
+{% liquid
+    assign bg_color                         = section.settings.bg_color
+    assign hide_section                    = section.settings.hide_section
+    assign product_img                     = section.settings.product_img
+    assign backgroung_img                  = section.settings.backgroung_img
+    assign desktop_decoration_img          = section.settings.desktop_decoration_img
+    assign mobile_decoration_img           = section.settings.mobile_decoration_img
+    assign button_text                     = section.settings.button_text
+    assign button_url                      = section.settings.button_url
+    assign button_text_color               = section.settings.button_text_color
+    assign button_background_color         = section.settings.button_background_color
+    assign button_boxshadow_color          = section.settings.button_boxshadow_color
+    assign show_button_boxshadow           = section.settings.show_button_boxshadow
+    assign title                           = section.settings.title
+    assign blocks                          = section.blocks
+    assign marquee_speed                   = section.settings.marquee_speed
+    assign bar_bg_color                    = section.settings.bar_bg_color
+    assign bar_text_color                  = section.settings.bar_text_color
+%}
+
+<style>
+    {% if hide_section == true %}
+        #marquee-announcement-bar {
+          display: none;
+        }
+      {% endif %}
+      .marquee-announcement-bar {
+        background-color: {{ bar_bg_color }};
+        overflow: hidden;
+      }
+      .marquee-announcement-bar .announcement-bar__item {
+        color: {{ bar_text_color }};
+      }
+
+      {% if button_text_color != blank %}
+        link.product-button-text-color {
+            color: {{ button_text_color }}
+        }
+      {% endif %}
+
+      {% if button_background_color != blank %}
+        .link.product-button-background-color {
+            background-color: {{ button_background_color }}
+        }
+      {% endif %}
+
+      {% if button_boxshadow_color != blank %}
+        .link-boxshadow.product-button-boxshadow-color {
+            background-color: {{ button_boxshadow_color }};
+            transform: translate(0px, 0px)
+        }
+      {% endif %}
+
+    .link.product-on-hover-translate:hover {
+        transform: translate(-8px, 8px);
+    }
+
+    .add-transition-button-wrapper {
+        transition: all 0.2s linear; 
+    }
+</style>
+
+<section class='product-banner-section' id="product-banner-{{ section.id }}" style="background-color: {{ bg_color }}">
+    <div class="product-container">
+        <div class="product-content-wrapper">
+            <div class="product-images-wrapper">
+                <div class="product-image-wrapper">
+                    <img src="{{ product_img | img_url: 'master' }}" alt="" class="product-image">
+                </div>
+                <div class="announcement-wrapper">
+                    <div id="marquee__inner" class="marquee-announcement-bar" data-marquee>
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                        {% for block in blocks %}
+                          <span class="announcement-bar__item">{{ block.settings.text }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="decoration-image-wrapper">
+                    <img src="{{ desktop_decoration_img | img_url: 'master' }}" alt="" class="decoration-image-desk">
+                    <img src="{{ mobile_decoration_img | img_url: 'master' }}" alt="" class="decoration-image-mob">
+                </div>
+            </div>
+            <div class="product-title-wrapper">
+                <img src="{{ backgroung_img | img_url: 'master' }}" alt="" class='prodact-title-background'>
+                {%- if title != blank -%}
+                    <h2 class="product-banner-title" style="color: {{ bar_text_color }}" >{{ title }}</h2>
+                {%- endif -%}
+                {%- if button_text != blank -%}
+                    <div class="btn">
+                        <a href="{{ button_url }}" class="link product-button-text-color product-button-background-color
+                            {% if show_button_boxshadow == true %}
+                                product-on-hover-translate
+                            {% endif %}
+                            ">{{ button_text }}</a>
+                        {% if show_button_boxshadow == true %}
+                            <div class="link-boxshadow product-button-boxshadow-color"></div>
+                        {% endif %}
+                    </div>
+                {%- endif -%}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const marqueeContainer = $('[data-marquee]');
+      marqueeContainer.marquee({
+        duration: {{ marquee_speed }},
+        direction: 'left',
+        duplicated: true,
+        pauseOnHover: true,
+        startVisible: true,
+        gap: 0,
+      });
+    })
+</script>
+
+{% schema %}
+  {
+    "name": "Product Banner",
+    "class": "html-section",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_color",
+            "label": "Section background color"
+        },
+        {
+            "type": "image_picker",
+            "id": "product_img",
+            "label": "Product image"
+        },
+        {
+            "type": "image_picker",
+            "id": "desktop_decoration_img",
+            "label": "Desktop decoration image"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_decoration_img",
+            "label": "Mobile decoration image"
+        },
+        {
+            "type": "image_picker",
+            "id": "backgroung_img",
+            "label": "Background image"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "button_url",
+            "label": "Button link"
+        },
+        {
+            "type": "color",
+            "id": "button_text_color",
+            "label": "Button text color"
+        },
+        {
+            "type": "color",
+            "id": "button_background_color",
+            "label": "Button background color"
+        },
+        {
+            "type": "color",
+            "id": "button_boxshadow_color",
+            "label": "Button boxshadow color"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_button_boxshadow",
+            "label": "Show boxshadow",
+            "default": true
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Section title"
+        },
+        {
+            "type": "number",
+            "id": "marquee_speed",
+            "label": "Marquee speed",
+            "default": 30000
+        },
+        {
+            "type": "color",
+            "id": "bar_bg_color",
+            "label": "Bar background color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "bar_text_color",
+            "label": "Bat text color",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "checkbox",
+            "id": "hide_section",
+            "label": "Hide section?",
+            "default": false
+        }
+    ],
+    "blocks": [
+        {
+            "type": "block",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "text",
+                    "label": "Text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+          "name": "Product Banner",
+          "category": "Homepage",
+          "settings": {
+    
+          }
+        }
+      ]
+  }
+{% endschema %}
