@@ -118,7 +118,7 @@
         {% if show_marquee_bar == true %}
           <div class="about-lunar__marquee-bar">
             <div class="marquee-bar__wrapper">
-              <div class="marquee-bar" data-marquee>
+              <div class="marquee-bar about-lunar-marquee-bar" data-marquee>
                 {% for block in section.blocks %}
                   {% if block.type == 'bar_item' %}
                     <span class="bar__item">{{ block.settings.bar_text }}</span>
@@ -176,8 +176,8 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const marqueeContainer = $('[data-marquee]');
-    marqueeContainer.marquee({
+    const aboutLunarMarqueeContainer = $('.about-lunar-marquee-bar');
+    aboutLunarMarqueeContainer.marquee({
       duration: {{ marquee_speed }},
       direction: 'left',
       duplicated: true,
