@@ -171,27 +171,20 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const linkWithMenu = $('.navbar-item.header__item.with-dropdown')
-    const header = $('.header-redesigned__wrapper')
+    const linkWithMenu = document.querySelectorAll('.navbar-item.header__item.with-dropdown');
+    const header = document.querySelector('.header-redesigned__wrapper');
 
-    function megaMenuHover() {
-      linkWithMenu.hover(
-              function () {
-                $(this).addClass("active");
-                header.addClass("with-bg-2");
-              },
-              function () {
-                $(this).removeClass("active");
-                header.removeClass("with-bg-2");
-              }
-      );
-    }
+    linkWithMenu.forEach(item => {
+      item.onmouseover = function(event) {
+        this.classList.add('active');
+        header.classList.add("with-bg-2");
+      };
 
-    megaMenuHover()
-
-    $( window ).resize(function() {
-      megaMenuHover()
-    });
+      item.onmouseout = function(event) {
+        this.classList.remove('active');
+        header.classList.remove("with-bg-2");
+      };
+    })
   })
 </script>
 

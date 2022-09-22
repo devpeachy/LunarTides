@@ -187,7 +187,6 @@
     }
   }
 }
-/* ========================== Header Redesigned End ========================== */
 
 .header-redesigned--classic #header {
   border-bottom: 1px solid #FFFFFF !important;
@@ -985,3 +984,77 @@ body.mobile-menu--opened {
     }
   }
 }
+/* ========================== Header Redesigned End ========================== */
+
+/* ========================== New HP Hero ========================== */
+#hp-hero-redesigned {
+  .hp-hero-redesigned__wrapper {
+    position: relative;
+    padding-bottom: 187%;
+
+    @media (min-width: 600px) {
+      padding-bottom: 66%;
+    }
+
+    @media (min-width: 1050px) {
+      padding-bottom: 52%;
+    }
+
+    .hp-hero__overlay-link {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none !important;
+
+      .btn {
+        position: absolute;
+        display: inline-block;
+        width: auto;
+        height: auto;
+        transform: translateX(8px);
+        transition: all 0.2s linear;
+        cursor: pointer;
+
+        .link {
+          position: relative;
+          padding: 12px 20px;
+          text-align: center;
+          background-color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          color: #000;
+          z-index: 10;
+          display: inline-block;
+          transition: all 0.2s linear;
+          min-width: 211px;
+
+          @media (min-width: 1800px) {
+            padding: 15px 25px;
+            font-size: 20px;
+            min-width: 240px;
+          }
+
+          @media (min-width: 2000px) {
+            padding: 21px 35px;
+            font-size: 28px;
+            min-width: 310px;
+          }
+        }
+
+        .link-boxshadow {
+          position: absolute;
+          top: 8px;
+          left: -8px;
+          width: 100%;
+          height: 100%;
+          background-color: #7eeb28;
+          z-index: 0;
+        }
+      }
+    }
+  }
+}
+/* ========================== New HP Hero End ========================== */
