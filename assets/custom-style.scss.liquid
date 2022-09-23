@@ -1325,8 +1325,8 @@ body.mobile-menu--opened {
 /* === End Product card === */
 
 /* ========================== Featured collection ========================== */
-.product-wrap .image__container.product__imageContainer .image-element__wrap {
-  height: auto !important;
+.product-thumbnail-redesign .product-wrap .image__container.product__imageContainer .image-element__wrap {
+  height: auto;
 }
 
 .product-thumbnail-redesign {
@@ -3027,3 +3027,262 @@ body.mobile-menu--opened {
 }
 
 /* ========================== FAQ End ========================== */
+
+
+/* ========================== Page COLLECTION ========================== */
+
+.collection-page__redesign {
+
+  .collection__main-redesign {
+
+    .collection__container {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+
+      padding: 0 16px;
+
+      @media (min-width: 767px) {
+        padding: 0 20px;
+      }
+
+      @media (min-width: 1023px) {
+        padding: 0 40px;
+      }
+
+      @media (min-width: 1366px) {
+        padding: 0 80px;
+      }
+    }
+
+    .collection__header {
+      background: #000000;
+
+      .collection__header-top {
+
+        @media (min-width: 767px) {
+          border-bottom: 1px solid #ffffff;
+        }
+      }
+
+      .collection__header-title {
+        max-width: 1440px;
+        margin: 0 auto;
+
+        @media (min-width: 767px) {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        .collection-title {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 800;
+          font-size: 24px;
+          line-height: 32px;
+          text-transform: uppercase;
+          color: #FFFFFF;
+          border-bottom: 1px solid #ffffff;
+          padding: 40px 16px 16px;
+
+          @media (min-width: 767px) {
+            width: 50%;
+            font-size: 32px;
+            line-height: 36px;
+            padding: 32px 0 32px 20px;
+            border-bottom: none;
+            border-right: 1px solid #ffffff;
+          }
+    
+          @media (min-width: 1023px) {
+            font-size: 42px;
+            line-height: 48px;
+            padding: 32px 0 32px 40px;
+          }
+    
+          @media (min-width: 1366px) {
+            font-size: 64px;
+            line-height: 88px;
+            padding: 32px 0 32px 80px;
+          }
+        }
+
+        .collection-image {
+          padding: 16px 0;
+          border-bottom: 1px solid #ffffff;
+
+          @media (min-width: 767px) {
+            width: 44%;
+            padding: 32px 0;
+            border-bottom: none;
+          }
+
+          .image__block-wrapper {
+
+            @media (min-width: 767px) {
+              border-radius: 100px 0px 0px 100px;
+              overflow: hidden;
+            }
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+
+      .collection__header-description {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 16px 16px 40px;
+
+        @media (min-width: 767px) {
+          padding: 16px 20px 24px;
+        }
+
+        @media (min-width: 1023px) {
+          padding: 24px 40px 24px;
+        }
+
+        @media (min-width: 1366px) {
+          padding: 24px 80px 24px;
+        }
+
+        .collection-description {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #FFFFFF;
+          max-width: 578px;
+        }
+      }
+    }
+
+    .collection__wrapper {
+      margin-top: 64px;
+      margin-bottom: 64px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+
+      @media (min-width: 767px) {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      @media (min-width: 1023px) {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px 32px;
+        margin-top: 80px;
+        margin-bottom: 80px;
+      }
+
+      .collection__featured-product {
+        grid-row-start: 1;
+        grid-row-end: 3;
+        grid-column-start: 1;
+        grid-column-end: 3;
+
+        &.reverse {
+          grid-row-start: 3;
+
+          @media (min-width: 767px) {
+            grid-row-start: 1;
+            grid-column-start: 2;
+            grid-column-end: 4;
+          }
+
+          @media (min-width: 1023px) {
+            grid-column-start: 3;
+            grid-column-end: 5;
+          }
+        }
+
+        .product-thumbnail-redesign .product-wrap .image__container.product__imageContainer .image-element__wrap {
+          height: 696px;
+
+          @media (max-width: 767px) {
+            height: 343px !important;
+          }
+        }
+
+        .thumbnail-overlay__container .quick-shop__buttons {
+          width: 256px;
+        }
+      }
+
+      .product-thumbnail-redesign {
+        &.medium-down--one-half {
+          width: 100%;
+        }
+      }
+
+      .product-thumbnail-redesign .product-wrap .image__container.product__imageContainer .image-element__wrap {
+        height: 296px;
+
+        @media (max-width: 767px) {
+          height: 164px !important;
+        }
+      }
+    }
+
+    .pagination-redesigned {
+      margin-bottom: 64px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media (min-width: 1023px) {
+        margin-bottom: 112px;
+      }
+
+      .pagination-previous, .pagination-next {
+        width: 24px;
+        height: 24px; 
+        margin: 0;
+        padding: 0;
+        order: unset;
+
+        &.disabled {
+          opacity: .4;
+          pointer-events: none;
+        }
+
+      }
+
+      .pagination-previous {
+        margin-right: 12px;
+      }
+
+      .pagination-next {
+        margin-left: 12px;
+      }
+
+      .pagination-list {
+
+        .pagination-link {
+          font-family: 'Montserrat';
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          text-align: center;
+          text-transform: uppercase;
+          color: #000000;
+
+          &.is-current {
+            border: 2px solid #000000;
+            border-radius: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ========================== END Page COLLECTION ========================== */

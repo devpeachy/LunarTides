@@ -1,0 +1,45 @@
+{% if paginate.pages > 1 %}
+  <div class="paginate-redesign" data-current-page="{{ paginate.current_page }}" data-paginate-pages="{{ paginate.pages }}">
+    <nav class="pagination {% if paginate.previous and paginate.next %}paginate--both{% endif %}" role="navigation" aria-label="pagination">
+      <a href="{{ paginate.previous.url }}" class="pagination-previous 
+        {% if paginate.previous == null %}
+          disabled
+        {% endif %}
+      ">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.535 3.51562L7.05005 12.0006L15.535 20.4856L16.95 19.0716L9.87805 12.0006L16.95 4.92963L15.535 3.51562Z" fill="black"/>
+        </svg>
+      </a>
+
+      <ul class="pagination-list">
+        {%- for part in paginate.parts -%}
+          {% if part.is_link %}
+            <li>
+              <a class="pagination-link" href="{{ part.url }}">{{ part.title }}</a>
+            </li>
+          {% elsif part.title == '&hellip;' %}
+            <li>
+              <a class="pagination-ellipsis">&hellip;</a>
+            </li>
+          {% else %}
+            <li>
+              <a class="pagination-link is-current">{{ part.title }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      
+      <a href="{{ paginate.next.url }}" class="pagination-next 
+        {% if paginate.next == null %}
+          disabled
+        {% endif %}
+      ">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.46495 20.4844L16.95 11.9994L8.46495 3.51437L7.04995 4.92837L14.122 11.9994L7.04995 19.0704L8.46495 20.4844Z" fill="black"/>
+        </svg>
+      </a>
+      
+    </nav>
+  </div>
+{% endif %}
+
