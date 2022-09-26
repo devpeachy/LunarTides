@@ -1,0 +1,111 @@
+{% liquid 
+  assign featured_product         = collection.metafields.products.product
+  assign reverse_featured_product = collection.metafields.products.reverse_featured_product.value
+  assign description              = collection.metafields.collection.description.value
+  assign image                    = collection.metafields.collection.image.value
+  assign image_mob                = collection.metafields.collection.image_mob.value
+%}
+
+{% paginate collection.products by section.settings.pagination_limit %}
+
+<div class="collection__main-redesign">
+
+  <div class="collection__header">
+    <div class="collection__header-top">
+      <div class="collection__header-title">
+        <div class="collection-title">{{ collection.title }}</div>
+        {% if image != blank and image_mob != blank %}
+          <div class="collection-image">
+            <div class="image__block-wrapper">
+              <picture>
+                <source srcset="{{ image | img_url: 'master' }}" media="(min-width: 767px)">
+                <source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 767px)">
+                <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+              </picture>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="collection__header-description">
+      <div class="collection-description">
+        {% if collection.description != blank %}
+          {{ collection.description }}
+        {% elsif description != blank %}
+          {{ description }}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="collection__container">
+
+    {% if collection.products.size == 0 %}
+      <div class="collection__no-matches">
+        <p>{{ 'collections.general.no_matches' | t }}</p>
+      </div>
+    {% else %}
+      <div class="collection__wrapper">
+
+        {% if paginate.current_page == 1 and featured_product %}
+          <div class="collection__featured-product 
+            {% if reverse_featured_product == true %}
+              reverse
+            {% endif %} 
+          ">
+            {% assign product = all_products[featured_product] %}
+            {% include 'product-thumbnail-redesign' %}
+          </div>
+        {% endif %}
+
+        {% for product in collection.products %}
+          {% unless product == featured_product.value %}
+            {% include 'product-thumbnail-redesign' %}
+          {% endunless %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    
+  
+    <div class="container container--pagination pagination-redesigned">
+      {% include 'pagination-redesign' %}
+    </div>
+  </div>
+  
+</div>
+
+{% comment %} JavaScript {% endcomment %}
+<script
+  type="application/json"
+  data-section-id="{{ object.id }}"
+  data-section-data
+>
+  {
+    "enable_filter": {{ object.settings.collection_tags | json }},
+    "enable_sorting": {{ object.settings.collection_sort | json }},
+    "enable_breadcrumb": {{ object.settings.collection_breadcrumb | json}},
+    "pagination_type": {{ object.settings.pagination_type | json }},
+    "number_of_pages": {{ paginate.pages | json }}
+  }
+</script>
+
+{% endpaginate %}
+
+
+{% schema %}
+{
+  "name": "Collection redesign",
+  "settings": [
+    {
+      "type": "range",
+      "id": "pagination_limit",
+      "label": "Products per page",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 21
+    }
+  ]
+}
+
+{% endschema %}

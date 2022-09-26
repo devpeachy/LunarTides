@@ -47,13 +47,8 @@
     </div>
   </div>
 
-
-  {{ section.settings.html_area }}
-
-  {% unless section.settings.html_area contains "feed-" %}
-    <div id="insta-feed">
-    </div>
-  {% endunless  %}
+  <div id="insta-feed">
+  </div>
 </div>
 
 {% schema %}
@@ -102,11 +97,6 @@
         "type": "url",
         "id": "insta_link",
         "label": "Insta url"
-      },
-      {
-        "type": "textarea",
-        "id": "html_area",
-        "label": "Custom Code (optional)"
       }
     ],
     "presets": [

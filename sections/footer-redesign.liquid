@@ -83,7 +83,7 @@
         <div class="footer-redesign__social">
           {% for block in section.blocks %}
             {% if block.type == 'social' %}
-              {% if social_icon != blank %}
+              {% if block.settings.social_icon != blank %}
                 <div class="social-item">
                   <a target="_blank" href="{{ block.settings.social_link }}">{{ block.settings.social_icon }}</a>
                 </div>
