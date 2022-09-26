@@ -1,0 +1,80 @@
+{% liquid
+    assign title                      = section.settings.title 
+    assign subtitle                   = section.settings.subtitle 
+    assign subtitle_img               = section.settings.subtitle_img 
+    assign product_img                = section.settings.product_img 
+    assign bg_section                 = section.settings.bg_section 
+%}
+  
+<section class="about-us-hero" style="background-color: {{ bg_section }}">
+    <div class="container">
+        <div class="about-hero-content">
+            <div class="about-title-wrapper">
+                {% if title != blank %}
+                    <div class="about-hero-title">{{ title }}</div>
+                {% endif %}
+                <div class="about-subtitle-wrapper">
+                    <div class="about-subtitle-image-wrapper">
+                        <img src="{{ subtitle_img | img_url: 'master' }}" alt="" class="about-subtitle-image">
+                    </div>
+                    {% if subtitle != blank %}
+                        <span class="about-subtitle-text">{{ subtitle }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="about-image-wrapper">
+                <img src="{{ product_img | img_url: 'master' }}" alt="" class="about-product-image">
+            </div>
+        </div>
+    </div>
+</section>
+  
+<script>
+</script>
+  
+{% schema %}
+{
+    "name": "About us hero",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_section",
+            "label": "Background color for section",
+            "default": "#fff"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "textarea",
+            "id": "subtitle",
+            "label": "Subtitle"
+        },
+        {
+            "type": "image_picker",
+            "id": "subtitle_img",
+            "label": "Subtitle image"
+        },
+        {
+            "type": "image_picker",
+            "id": "product_img",
+            "label": "Product image"
+        }
+    ],
+    "presets": [
+    {
+        "name": "About us hero",
+        "category": "Pages",
+        "settings": {
+
+        }
+    }
+    ]
+}
+{% endschema %}
+  
+  
+  
+  

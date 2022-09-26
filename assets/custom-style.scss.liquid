@@ -2358,6 +2358,7 @@ body.mobile-menu--opened {
 /* ========================== Reviews Banner ========================== */
 
 .reviews-banner-section {
+    font-family: 'Montserrat', sans-serif;
     padding: 8px 0;
     background-position: 0 0;
     background-repeat: no-repeat;
@@ -2618,7 +2619,8 @@ body.mobile-menu--opened {
 
 /* ========================== Product Banner ========================== */
 
-.product-banner-section {  
+.product-banner-section {
+    font-family: 'Montserrat', sans-serif;
     padding: 56px 0 97px;
 
     .product-container {
@@ -2888,164 +2890,6 @@ body.mobile-menu--opened {
 
 /* ========================== Product Banner End ========================== */
 
-/* ========================== FAQ ========================== */
-
-.faq-redesign {
-    .faq-container {
-        max-width: 1062px;
-        width: 100%;
-        margin: 0 auto;
-
-        .faq-redesign-title {
-            padding-top: 81px;
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 40px;
-        }
-
-        .accordion-section-redesign {
-            margin-bottom: 142px;
-
-            .accordion-title-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 8px 0;
-                margin-bottom: 58px;
-
-                .accordion-img {
-                    width: 32px;
-                    height: 32px;
-                    margin-right: 8px;
-                }
-
-                .accordion-title {
-                    font-size: 24px;
-                    font-weight: 700;
-                }
-            }
-
-            .question-content-wrapper {
-                border-bottom: 1px solid #000000;
-
-                .accordion-redesign {
-                    position: relative;
-                    transition: all 0.4s linear;
-
-                    .accordion-question {
-                        padding: 16px 24px;
-                        font-size: 16px;
-                        font-weight: 700;
-                        cursor: pointer;
-                    }
-                  }
-
-                  .accordion-panel {
-                    padding: 0 18px 16px;
-                    background-color: white;
-                    // display: none;
-                    height: 0;
-                    overflow: hidden;
-                  }
-
-                  .accordion-redesign:after {
-                    content: '\02795';
-                    font-size: 24px;
-                    color: #000000;
-                    position: absolute;
-                    top: 50%;
-                    transform: translate(0, -50%);
-                    right: 24px;
-                  }
-                  
-                  .active:after {
-                    content: "\2796"; 
-                  }
-            }
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .faq-redesign {
-        .faq-container {
-            max-width: 1062px;
-            width: 100%;
-            margin: 0 auto;
-    
-            .faq-redesign-title {
-                padding-top: 64px;
-                font-size: 24px;
-                font-weight: 800;
-                margin-bottom: 24px;
-            }
-    
-            .accordion-section-redesign {
-                margin-bottom: 64px;
-    
-                .accordion-title-wrapper {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    padding: 8px 0;
-                    margin-bottom: 24px;
-    
-                    .accordion-img {
-                        width: 24px;
-                        height: 24px;
-                        margin-right: 8px;
-                    }
-    
-                    .accordion-title {
-                        font-size: 16px;
-                        font-weight: 700;
-                    }
-                }
-    
-                .question-content-wrapper {
-                    border-bottom: 1px solid #000000;
-    
-                    .accordion-redesign {
-                        position: relative;
-    
-                        .accordion-question {
-                            padding: 8px 0px;
-                            font-size: 16px;
-                            max-width: 269px;
-                            font-weight: 700;
-                            cursor: pointer;
-                        }
-                      }
-                      
-                      .accordion-panel {
-                        padding: 0 0 16px;
-                        background-color: white;
-                        display: none;
-                        overflow: hidden;
-                      }
-    
-                      .accordion-redesign:after {
-                        content: '\02795';
-                        font-size: 24px;
-                        color: #000000;
-                        position: absolute;
-                        top: 50%;
-                        transform: translate(0, -50%);
-                        right: 8px;
-                      }
-                      
-                      .active:after {
-                        content: "\2796"; 
-                      }
-                }
-            }
-        }
-    }
-}
-
-/* ========================== FAQ End ========================== */
-
-
 /* ========================== Page COLLECTION ========================== */
 
 .collection-page__redesign {
@@ -3309,10 +3153,10 @@ body.mobile-menu--opened {
 /* ========================== Page ABOUT-US ========================== */
 
 .favorite-section {
-  padding: 32px 0;
+  padding: 64px 0 32px;
 
   @media (min-width: 1023px) {
-    padding: 64px 0;
+    padding: 112px 0 64px;
   }
 
   .favorite__container {
@@ -3507,4 +3351,833 @@ body.mobile-menu--opened {
   }
 }
 
+/* ========================== About Us Hero ========================== */
+
+.about-us-hero {
+  padding: 80px 0 56px;
+
+  .container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+
+    .about-hero-content {
+      padding: 0 72px 0 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .about-title-wrapper {
+        .about-hero-title {
+          font-size: 72px;
+          font-weight: 800;
+          line-height: 98px;
+          width: 640px;
+          margin: 0 0 24px;
+
+          div {
+            .transparent-title {
+              -webkit-text-fill-color: transparent;
+              -webkit-text-stroke: 2px #000000;
+            }
+          }
+        }
+        .about-subtitle-wrapper {
+          display: flex;
+          align-items: center;
+
+          .about-subtitle-image-wrapper {
+            width: 52px;
+            height: 52px;
+            margin-right: 24px;
+            display: inline-block;
+
+            .about-subtitle-image {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .about-subtitle-text {
+            display: inline-block;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            max-width: 576px;
+            width: 87%;
+          }
+        }
+      }
+
+      .about-image-wrapper {
+        width: 40%;
+
+        .about-product-image {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .about-us-hero {
+    .container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+
+      .about-hero-content {
+        padding: 0 16px 0 40px;
+        display: flex;
+        justify-content: center;
+
+        .about-title-wrapper {
+          .about-hero-title {
+            font-size: 60px;
+            line-height: 64px;
+            width: 560px;
+            margin: 0 auto;
+            margin: 0 0 24px;
+
+            div {
+              .transparent-title {
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: 1px #000000;
+              }
+            }
+          }
+          .about-subtitle-wrapper {
+            margin-bottom: 24px;
+
+            .about-subtitle-image-wrapper {
+              width: 52px;
+              height: 52px;
+              margin-right: 24px;
+              display: inline-block;
+
+              .about-subtitle-image {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .about-subtitle-text {
+              display: inline-block;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 24px;
+              max-width: 576px;
+              width: 53%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .about-us-hero {
+    padding: 40px 0 32px;
+
+    .container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+
+      .about-hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .about-title-wrapper {
+          .about-hero-title {
+            font-size: 32px;
+            line-height: 39px;
+            width: 100%;
+            max-width: 288px;
+            margin: 0 auto;
+            margin-bottom: 24px;
+
+            div {
+              .transparent-title {
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: 1px #000000;
+              }
+            }
+          }
+          .about-subtitle-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+
+            .about-subtitle-image-wrapper {
+              width: 52px;
+              height: 52px;
+              margin-right: 24px;
+              display: inline-block;
+
+              .about-subtitle-image {
+                width: 100%;
+                height: 100%;
+              }
+            }
+            .about-subtitle-text {
+              display: inline-block;
+              font-weight: 400;
+              font-size: 16px;
+              line-height: 24px;
+              max-width: 576px;
+              width: 78%;
+            }
+          }
+        }
+
+        .about-image-wrapper {
+          width: 100%;
+          max-height: 500px;
+        }
+      }
+    }
+  }
+}
+
+/* ========================== About Us Hero End ========================== */
+
+/* ========================== Who We Are ========================== */
+
+.who-we-are {
+  padding: 56px 0 112px;
+  // padding: 56px 70px 56px 80px;
+
+  .container {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+
+    .who-we-content {
+      width: 100%;
+      padding: 0 70px 0 80px;
+
+      .who-we-title-wrapper {
+        font-size: 48px;
+        font-weight: 800;
+        text-transform: uppercase;
+        // max-width: 1280px;
+        max-width: 1410px;
+        line-height: 56px;
+        width: 100%;
+        // margin: 0 auto 40px;
+        margin-bottom: 40px;
+
+        .title-small {
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: 700;
+          display: inline-block;
+          margin-right: 48px;
+          vertical-align: middle;
+        }
+
+        .title-transparent {
+          -webkit-text-fill-color: transparent;
+          -webkit-text-stroke: 2px #000000;
+        }
+
+      }
+      .who-we-image-wrapper {
+        position: relative;
+
+        .who-desktop-image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+        .who-mobile-image {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .who-we-are {
+    padding: 56px 0 112px;
+
+    .container {
+      .who-we-content {
+        width: 100%;
+        padding: 0 40px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .who-we-are {
+    .container {
+      .who-we-content {
+        .who-we-title-wrapper {
+          font-size: 36px;
+          font-weight: 800;
+          text-transform: uppercase;
+          max-width: 1280px;
+          width: 100%;
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .who-we-are {
+    padding: 32px 0px 64px;
+
+    .container {
+      max-width: 1440px;
+      width: 100%;
+      margin: 0 auto;
+
+      .who-we-content {
+        width: 100%;
+        padding: 0 16px;
+
+        .who-we-title-wrapper {
+          font-size: 24px;
+          font-weight: 800;
+          text-transform: uppercase;
+          max-width: 1280px;
+          width: 100%;
+          line-height: 32px;
+          margin: 0 auto 24px;
+
+          .title-small {
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-right: 48px;
+            vertical-align: middle;
+          }
+
+          .title-transparent {
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 1px #000000;
+          }
+
+        }
+        .who-we-image-wrapper {
+          width: 100%;
+          max-height: 500px;
+
+          .who-desktop-image {
+            display: none;
+          }
+
+          .who-mobile-image {
+            display: block;
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .who-we-are {
+    padding: 32px 0px;
+
+    .container {
+      .who-we-content {
+        width: 100%;
+
+        .who-we-title-wrapper {
+          font-size: 24px;
+          font-weight: 800;
+          text-transform: uppercase;
+          width: 100%;
+          margin: 0 0 24px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .who-we-are {
+    .container {
+      .who-we-content {
+        .who-we-title-wrapper {
+          max-width: 305px;
+        }
+      }
+    }
+  }
+}
+
+/* ========================== Who We Are End ========================== */
+
 /* ========================== END Page ABOUT-US ========================== */
+
+
+/* ========================== FAQ ========================== */
+.section__wrapper {
+  .container {
+    .shopify-section {
+      .faq-redesign {
+        font-family: 'Montserrat', sans-serif;
+
+        .faq-container {
+          max-width: 1062px;
+          width: 100%;
+          margin: 0 auto;
+
+          .faq-redesign-title {
+            padding-top: 81px;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 40px;
+          }
+
+          .accordion-section-redesign {
+            margin-bottom: 142px;
+
+            .accordion-title-wrapper {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 8px 0;
+              margin-bottom: 48px;
+
+              .accordion-img {
+                width: 32px;
+                height: 32px;
+                margin-right: 8px;
+              }
+
+              .accordion-title {
+                font-size: 24px;
+                font-weight: 700;
+              }
+            }
+
+            .question-content-wrapper {
+              border-bottom: 1px solid #000000;
+
+              .accordion-redesign {
+                position: relative;
+                transition: 0.4s;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .accordion-question {
+                  padding: 16px 24px 0;
+                  font-size: 16px;
+                  font-weight: 700;
+                  margin-bottom: 16px;
+                  width: 96%;
+                  text-transform: uppercase;
+                  cursor: pointer;
+                }
+              }
+
+              .accordion-panel {
+                padding: 0 24px 0;
+                margin-bottom: 0px;
+                background-color: white;
+                overflow: hidden;
+                max-height: 0;
+                transition: max-height 0.2s ease-out;
+              }
+
+
+              .accordion-redesign:before {
+                content: '';
+                transform: rotate(90deg);
+                width: 20px;
+                height: 3px;
+                position: absolute;
+                top: 50%;
+                transform: translate(0, -50%);
+                background-color: #2E3A59;
+                right: 24px;
+              }
+
+              .accordion-redesign:after {
+                content: '';
+                width: 20px;
+                height: 3px;
+                position: absolute;
+                transform: rotate(90deg);
+                background-color: #2E3A59;
+                right: 24px;
+              }
+
+              .active:after {
+                content: " ";
+                content: '';
+                width: 0px;
+                height: 0px;
+                position: absolute;
+                transform: rotate(90deg);
+                background-color: #2E3A59;
+                right: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .section__wrapper {
+    width: 100% !important;
+    margin: 0;
+
+    .faqpage {
+      display: block;
+      margin: 0 16px;
+
+      .shopify-section {
+        width: auto;
+
+        .faq-redesign {
+          .faq-container {
+            max-width: 1062px;
+            width: 100%;
+            margin: 0 auto;
+
+            .faq-redesign-title {
+              padding-top: 64px;
+              font-size: 24px;
+              font-weight: 800;
+              margin-bottom: 24px;
+            }
+
+            .accordion-section-redesign {
+              margin-bottom: 64px;
+
+              .accordion-title-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 0;
+                margin-bottom: 24px;
+
+                .accordion-img {
+                  width: 24px;
+                  height: 24px;
+                  margin-right: 8px;
+                }
+
+                .accordion-title {
+                  font-size: 16px;
+                  font-weight: 700;
+                }
+              }
+
+              .question-content-wrapper {
+                border-bottom: 1px solid #000000;
+
+                .accordion-redesign {
+                  position: relative;
+
+                  .accordion-question {
+                    padding: 8px 0px;
+                    font-size: 16px;
+                    width: 80%;
+                    line-height: 24px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    margin-bottom: 0px;
+                  }
+                }
+
+                .accordion-panel {
+                  padding-left: 0;
+                  padding-right: 0;
+                  background-color: white;
+                  overflow: hidden;
+                }
+
+                .accordion-redesign:before {
+                  content: '';
+                  transform: rotate(90deg);
+                  width: 20px;
+                  height: 3px;
+                  position: absolute;
+                  top: 50%;
+                  transform: translate(0, -50%);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+
+                .accordion-redesign:after {
+                  content: '';
+                  width: 20px;
+                  height: 3px;
+                  position: absolute;
+                  transform: rotate(90deg);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+
+                .active:after {
+                  content: '';
+                  width: 0px;
+                  height: 0px;
+                  position: absolute;
+                  transform: rotate(90deg);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .section__wrapper {
+    width: 100% !important;
+    margin: 0;
+    .faqpage {
+      display: block;
+      margin: 0 16px;
+
+      .shopify-section {
+        width: auto;
+
+        .faq-redesign {
+          .faq-container {
+            max-width: 1062px;
+            width: 100%;
+            margin: 0 auto;
+
+            .faq-redesign-title {
+              padding-top: 64px;
+              font-size: 24px;
+              font-weight: 800;
+              margin-bottom: 24px;
+            }
+
+            .accordion-section-redesign {
+              margin-bottom: 64px;
+
+              .accordion-title-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 8px 0;
+                margin-bottom: 24px;
+
+                .accordion-img {
+                  width: 24px;
+                  height: 24px;
+                  margin-right: 8px;
+                }
+
+                .accordion-title {
+                  font-size: 16px;
+                  font-weight: 700;
+                }
+              }
+
+              .question-content-wrapper {
+                border-bottom: 1px solid #000000;
+
+                .accordion-redesign {
+                  position: relative;
+
+                  .accordion-question {
+                    padding: 8px 0px;
+                    font-size: 16px;
+                    width: 80%;
+                    line-height: 24px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    margin-bottom: 0px;
+                  }
+                }
+
+                .accordion-panel {
+                  padding-left: 0;
+                  padding-right: 0;
+                  background-color: white;
+                  overflow: hidden;
+                }
+
+                .accordion-redesign:before {
+                  content: '';
+                  transform: rotate(90deg);
+                  width: 20px;
+                  height: 3px;
+                  position: absolute;
+                  top: 50%;
+                  transform: translate(0, -50%);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+
+                .accordion-redesign:after {
+                  content: '';
+                  width: 20px;
+                  height: 3px;
+                  position: absolute;
+                  transform: rotate(90deg);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+
+                .active:after {
+                  content: " ";
+                  content: '';
+                  width: 0px;
+                  height: 0px;
+                  position: absolute;
+                  transform: rotate(90deg);
+                  background-color: #2E3A59;
+                  right: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ========================== FAQ End ========================== */
+
+/* ========================== Contact Form ========================== */
+
+#shopify-section-page-contact__main {
+  margin: 0 !important;
+  padding: 80px 0 112px !important;
+
+  .contact-form-redesign {
+    .container {
+      .heading-wrapper--contact-page {
+        .contact-page__title {
+          font-size: 48px;
+          font-weight: 800;
+          margin-bottom: 16px;
+        }
+      }
+      .contact-subheading {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        margin-bottom: 40px;
+        max-width: 512px;
+      }
+    }
+    .container {
+      .one-half {
+        .contact-form__form {
+          max-width: 532px ;
+          width: 100% ;
+          margin: 0 auto ;
+
+          .contact-form {
+            .container {
+              .one-whole {
+                button {
+                  &:hover {
+                    opacity: 0.7 !important;
+                    background: #000000 !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .one-whole {
+        .contact-form__block--textarea {
+          margin-bottom: 40px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  #shopify-section-page-contact__main {
+    margin: 0 !important;
+    padding: 40px 0 64px !important;
+
+    .contact-form-redesign {
+      .container {
+        .heading-wrapper--contact-page {
+          margin-bottom: 0;
+
+          .contact-page__title {
+            font-size: 24px;
+          }
+        }
+        .contact-subheading {
+          max-width: 343px;
+        }
+      }
+      .container {
+        .one-half {
+          .contact-form__form {
+            max-width: 532px ;
+            width: 100% ;
+            margin: 0 auto ;
+          }
+        }
+
+        .one-whole {
+          .contact-form__block--textarea {
+            margin-bottom: 40px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 374px) {
+  #shopify-section-page-contact__main {
+    margin: 0 !important;
+    padding: 40px 0 64px !important;
+
+    .contact-form-redesign {
+      .container {
+        .heading-wrapper--contact-page {
+          margin-bottom: 0;
+
+          .contact-page__title {
+            font-size: 24px;
+            max-width: 170px;
+            width: 100%;
+          }
+        }
+        .contact-subheading {
+          max-width: 343px;
+        }
+      }
+    }
+  }
+}
+
+/* ========================== Contact Form End ========================== */
