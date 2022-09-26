@@ -1,0 +1,65 @@
+{% liquid
+    assign title                      = section.settings.title 
+    assign desktop_img               = section.settings.desktop_img 
+    assign mobile_img                = section.settings.mobile_img 
+    assign bg_section                 = section.settings.bg_section 
+%}
+
+<section class="who-we-are" style="background-color: {{ bg_section }}">
+    <div class="container">
+        <div class="who-we-content">
+            <div class="who-we-title-wrapper">
+                {{ title }}
+            </div>
+            <div class="who-we-image-wrapper">
+                <img src="{{ desktop_img | img_url: 'master' }}" alt="" class="who-desktop-image">
+                <img src="{{ mobile_img | img_url: 'master' }}" alt="" class="who-mobile-image">
+            </div>
+        </div>
+    </div>
+</section>
+  
+<script>
+</script>
+  
+{% schema %}
+{
+    "name": "Who we are",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_section",
+            "label": "Background color for section",
+            "default": "#fff"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "image_picker",
+            "id": "desktop_img",
+            "label": "Desktop image"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile_img",
+            "label": "Mobile image"
+        }
+    ],
+    "presets": [
+    {
+        "name": "Who we are",
+        "category": "Pages",
+        "settings": {
+
+        }
+    }
+    ]
+}
+{% endschema %}
+  
+  
+  
+  
