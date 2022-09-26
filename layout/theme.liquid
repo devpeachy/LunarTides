@@ -31,6 +31,7 @@
   <!-- Stylesheets for Custom "2.0.1" -->
   {{ 'styles.scss.css' | asset_url | stylesheet_tag }}
   {{ 'custom-style.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 
   {% if settings.show_multiple_currencies or shop.enabled_currencies.size > 1 %}
@@ -40,6 +41,7 @@
     {% include 'js-variables' %}
   </script>
 
+  <script defer src="{{ 'swiper-bundle.min.js' | asset_url }}"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script defer src="{{ 'vendors.js' | asset_url }}"></script>
   <script defer src="{{ 'utilities.js' | asset_url }}"></script>

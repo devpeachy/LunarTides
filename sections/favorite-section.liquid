@@ -1,0 +1,198 @@
+{% liquid
+  assign bg_color               = section.settings.bg_color
+  assign title                  = section.settings.title
+  assign text                   = section.settings.text
+  assign subtitle               = section.settings.subtitle
+  assign btn_text               = section.settings.btn_text
+  assign btn_link               = section.settings.btn_link
+  assign btn_text_color         = section.settings.btn_text_color
+  assign btn_background_color   = section.settings.btn_background_color
+  assign button_boxshadow_color = section.settings.button_boxshadow_color
+  assign show_button_boxshadow  = section.settings.show_button_boxshadow
+%}
+
+<style>
+  {% if btn_text_color != blank %}
+    .link.favorite-button-text-color {
+      color: {{ btn_text_color }}
+    }
+  {% endif %}
+
+  {% if btn_background_color != blank %}
+    .link.favorite-button-background-color {
+      background-color: {{ btn_background_color }}
+    }
+  {% endif %}
+  {% if button_boxshadow_color != blank %}
+    .link-boxshadow.favorite-button-boxshadow-color {
+      background-color: {{ button_boxshadow_color }};
+      transform: translate(0px, 0px)
+    }
+  {% endif %}
+
+  {% if show_button_boxshadow == false %}
+    .btn {
+      transform: translate(0);
+    }
+  {% endif %}
+  .link.favorite-on-hover-translate:hover {
+    transform: translate(-8px, 8px);
+  }
+</style>
+
+<section id="facorite-{{section.id}}" class="favorite-section" style="background-color: {{bg_color}};">
+  <div class="favorite__container">
+    <div class="favorite__content">
+      <div class="favorite__content-text">
+        <div class="favorite-title">{{ title }}</div>
+        <div class="favorite-description">{{ text }}</div>
+        <div class="favorite-subtitle">{{ subtitle }}</div>
+        <div class="favorite__button btn-desctop">
+          {% if btn_text != blank %}
+            <div class="btn product-button
+              {% if show_button_boxshadow == true %}
+                add-transition-button-wrapper
+              {% endif %}
+              ">
+              <a href="{{ btn_link }}" class="link favorite-button-link favorite-button-text-color favorite-button-background-color
+                {% if show_button_boxshadow == true %}
+                  favorite-on-hover-translate
+                {% endif %}
+                  ">{{ btn_text }}</a>
+              {% if show_button_boxshadow == true %}
+                  <div class="link-boxshadow favorite-button-boxshadow-color"></div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="favorite__products">
+        <div class="swiper favorite-swiper">
+          <div class="swiper-wrapper">
+            {% for block in section.blocks %}
+              {% assign product = block.settings.product %}
+              <div class="swiper-slide">
+                {% include 'product-thumbnail-redesign' %}
+              </div>
+            {% endfor %}
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <div class="favorite__button btn-mobile">
+        {% if btn_text != blank %}
+          <div class="btn product-button
+            {% if show_button_boxshadow == true %}
+              add-transition-button-wrapper
+            {% endif %}
+            ">
+            <a href="{{ btn_link }}" class="link favorite-button-link favorite-button-text-color favorite-button-background-color
+              {% if show_button_boxshadow == true %}
+                favorite-on-hover-translate
+              {% endif %}
+                ">{{ btn_text }}</a>
+            {% if show_button_boxshadow == true %}
+                <div class="link-boxshadow favorite-button-boxshadow-color"></div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth < 767) {
+      var swiper = new Swiper(".favorite-swiper", {
+        spaceBetween: 20,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    }
+  })
+</script>
+
+{% schema %}
+  {
+    "name": "Favorite section",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Section background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button text"
+      },
+      {
+        "type": "url",
+        "id": "btn_link",
+        "label": "Button link"
+      },
+      {
+        "type": "color",
+        "id": "btn_text_color",
+        "label": "Button text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "btn_background_color",
+        "label": "Button background color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "button_boxshadow_color",
+        "label": "Button boxshadow color"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_button_boxshadow",
+        "label": "Show boxshadow",
+        "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Prodcut",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Favorite section",
+        "category": "About us",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

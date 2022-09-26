@@ -185,6 +185,19 @@
         header.classList.remove("with-bg-2");
       };
     })
+
+    let swym_buttons = document.querySelectorAll('.swym-button');
+    if (swym_buttons) {
+      swym_buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('swym-added')) {
+            setTimeout(() => {
+              btn.classList.remove('swym-added', 'disabled');
+            }, 300)
+          }
+        })
+      });
+    }
   })
 </script>
 
