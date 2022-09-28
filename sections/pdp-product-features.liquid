@@ -1,0 +1,103 @@
+{% liquid
+    assign title                    = section.settings.title 
+    assign bg_section               = section.settings.bg_section 
+    assign background_img           = section.settings.background_img 
+%}
+
+<style>
+.pdp-product-features {
+    background-image: url("{{ background_img | img_url: 'master' }}");
+    background-position: 0 0; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+</style>
+
+<section class="pdp-product-features" style="background-color: {{ bg_section }}">
+    <div class="container">
+        <div class="pdp-features-content">
+            <div class="pdp-features-title-wrapper">
+                <h2 class="pdp-features-title">{{ title }}</h2>
+                
+                
+            </div>
+            <ul class="pdp-features-list">
+                {% for block in section.blocks %}
+                    {% liquid
+                        assign item_img = block.settings.item_img 
+                        assign item_title = block.settings.item_title 
+                        assign item_text = block.settings.item_text 
+                    %}
+
+                    <li class="pdp-features-item">
+                        <div class="pdp-features-img-wrapper">
+                            <img src="{{ item_img | img_url: 'master' }}" alt="" class="pdp-features-img">
+                        </div>
+                        <h3 class="pdp-features-item-title">{{ item_title }}</h3>
+                        <span class="pdp-features-item-text">{{ item_text }}</span>
+                    </li>
+                  {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+  
+<script>
+</script>
+  
+{% schema %}
+{
+    "name": "pdp product features",
+    "settings": [
+        {
+            "type": "color",
+            "id": "bg_section",
+            "label": "Background color for section",
+            "default": "#fff"
+        },
+        {
+            "type": "textarea",
+            "id": "title",
+            "label": "Section title"
+        },
+        {
+            "type": "image_picker",
+            "id": "background_img",
+            "label": "Background image for section"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "feature",
+            "name": "Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "item_img",
+                    "label": "Item image"
+                },
+                {
+                    "type": "text",
+                    "id": "item_title",
+                    "label": "Item title"
+                },
+                {
+                    "type": "textarea",
+                    "id": "item_text",
+                    "label": "Item text"
+                }
+            ]
+        }
+    ],
+    "presets": [
+    {
+        "name": "pdp product features",
+        "category": "Pages"
+    }
+    ]
+}
+{% endschema %}
+  
+  
+  
+  

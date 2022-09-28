@@ -77,6 +77,24 @@
   }
   {% include 'css-loop', css: section_css, id: id %}
   {% include 'css-loop', css: custom_css, id: id %}
+
+  .contact-submit-button {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 40px;
+    max-width: 512px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    width: calc(100% - 20px);
+  }
+
+  @media (max-width: 768px) {
+    .contact-submit-button {
+      margin-left: 10px;
+    }
+  }
+
 {% endstyle %}
 
 <section class="section
@@ -312,12 +330,13 @@
               </div>
             </div>
             <input type="hidden" name="challenge" value="false" />
-            <div class="container">
+            {% comment %} <div class="container">
               <div class="one-whole column">
                 {% assign submit_label = 'contact.form.send' | t %}
                 {% include 'button', label: submit_label, style: settings.form_button_style, class: 'is-within-form' %}
               </div>
-            </div>
+            </div> {% endcomment %}
+            <button type="submit" class="contact-submit-button">{{ section.settings.submit_button_text }}</button>
           {% endform %}
         </div>
       </div>
@@ -399,7 +418,7 @@
                 <div class="one-whole column">
                   {% assign submit_label = 'contact.form.send' | t %}
                   {% include 'button', label: submit_label, style: settings.form_button_style, class: 'is-within-form' %}
-                </div>
+                </div> 
               </div>
             {% endform %}
           </div>

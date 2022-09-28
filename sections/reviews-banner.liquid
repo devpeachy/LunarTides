@@ -14,7 +14,9 @@
     assign button_background_color          = section.settings.button_background_color
     assign button_boxshadow_color           = section.settings.button_boxshadow_color
     assign show_button_boxshadow            = section.settings.show_button_boxshadow
+    assign space_betweeen_images            = section.settings.space_betweeen_images
     assign is_single_image                  = section.settings.is_single_image 
+    assign text_align-left                  = section.settings.text_align-left 
     assign single_image                     = section.settings.single_image
 %}
 
@@ -41,6 +43,25 @@
     .link.reviews-on-hover-translate:hover {
         transform: translate(-8px, 8px);
     }
+
+    {%- if mobile_content_position == 'bottom-side' -%}
+        .reviews-content-wrapper {
+            padding-bottom: 32px !important;
+        }
+    {%- endif -%} 
+
+    @media (max-width: 768px) {
+        .text-align-left {
+            text-align: left !important;
+        }
+
+        .space_betweeen_images {
+            width: 50% !important;
+        }
+    }
+
+
+
 </style>
 
 <section class='reviews-banner-section' id="reviews-banner-{{ section.id }}" style="background-color: {{ bg_color }};">
@@ -76,10 +97,18 @@
                 {% endif %}
                 ">
                 {%- if title != blank -%}
-                    <h3 class="reviews-title" style="color: {{ title_color }}" >{{ title }}</h3>
+                    <h3 class="reviews-title
+                        {% if text_align-left == true %}
+                            text-align-left
+                        {% endif %}
+                        " style="color: {{ title_color }}" >{{ title }}</h3>
                 {%- endif -%}
                 {%- if review_description != blank -%}
-                    <p class="reviews-text" style="color: {{ description_color }}" >{{ review_description }}</p>
+                    <p class="reviews-text
+                        {% if text_align-left == true %}
+                            text-align-left
+                        {% endif %}
+                        " style="color: {{ description_color }}" >{{ review_description }}</p>
                 {%- endif -%}
                 {%- if button_text != blank -%}
                     <div class="btn reviews-button ">
@@ -105,7 +134,11 @@
                             assign block_img         = block.settings.block_img
                         %}
 
-                        <div class="reviews-image-wrapper">
+                        <div class="reviews-image-wrapper
+                            {% if space_betweeen_images == false %}
+                                space_betweeen_images
+                            {% endif %}
+                            ">
                             <img src="{{ block_img | img_url: 'master' }}" alt="" class="reviews-image">
                         </div>
                     {% endfor %}
@@ -192,6 +225,18 @@
             "id": "show_button_boxshadow",
             "label": "Show boxshadow",
             "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "space_betweeen_images",
+            "label": "Space between two images",
+            "default": true
+        },
+        {
+            "type": "checkbox",
+            "id": "text_align-left",
+            "label": "Mobile content text align left",
+            "default": false
         },
         {
             "type": "checkbox",
