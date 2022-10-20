@@ -39,6 +39,7 @@
 /* ========================== Marquee announcement bar ========================== */
 #marquee-announcement-bar {
   transition: all 1.1s;
+
   .marquee-announcement-bar {
     max-height: 0;
     overflow: hidden;
@@ -52,28 +53,37 @@
       align-items: center;
       border-right: 0;
       border-left: 0;
-      padding: 16px 0;
+      padding: 8px 0;
       white-space: nowrap;
     }
   }
 
   .announcement-bar__item {
     position: relative;
-    font-family: Montserrat, sans-serif;
+    font-family: 'Druk Wide', sans-serif;
     font-weight: 700;
     font-size: 14px;
-    line-height: 16px;
-    margin-right: 16px;
+    line-height: 24px;
+    margin-right: 76px;
     transition: opacity .2s linear;
 
     @media (min-width: 1024px) {
-      font-size: 16px;
-      line-height: 24px;
-      margin-right: 55px;
+      margin-right: 56px;
     }
 
     &:hover {
       opacity: 0.8;
+    }
+
+    .decor-arrow {
+      position: absolute;
+      top: 50%;
+      right: -47px;
+      transform: translate(0, -43%);
+
+      @media (min-width: 1024px) {
+        right: -36px;
+      }
     }
   }
 }
