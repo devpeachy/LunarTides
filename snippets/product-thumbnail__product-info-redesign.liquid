@@ -13,9 +13,11 @@
     <span class="product-thumbnail__price price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
       {% if product.available %}
         {% if product.price_varies and product.price_min > 0 %}
-          <small><em>{{ 'products.general.from' | t }}</em></small>
+          {% comment %} <small>from</small> {% endcomment %}
+          {% comment %} <small>{{ 'products.general.from' | t }}</small> {% endcomment %}
         {% endif %}
         {% if product.price_min > 0 %}
+          <p class="product-thumbnail__price-from">from</p>
           <span class="money">{{ product.price_min | money }}</span>
         {% else %}
           {{ settings.free_price_text }}
