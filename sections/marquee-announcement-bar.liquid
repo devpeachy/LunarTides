@@ -23,19 +23,49 @@
 <header id="marquee-announcement-bar">
   <div id="marquee__inner" class="marquee-announcement-bar marquee-announcement-bar-header" data-marquee>
     {% for block in blocks %}
-      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">
+        {{ block.settings.text }}
+
+        <span class="decor-arrow">
+          {% render 'custom-arrow' %}
+        </span>
+      </a>
     {% endfor %}
     {% for block in blocks %}
-      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">
+        {{ block.settings.text }}
+
+        <span class="decor-arrow">
+          {% render 'custom-arrow' %}
+        </span>
+      </a>
     {% endfor %}
     {% for block in blocks %}
-      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">
+        {{ block.settings.text }}
+
+        <span class="decor-arrow">
+          {% render 'custom-arrow' %}
+        </span>
+      </a>
     {% endfor %}
     {% for block in blocks %}
-      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">
+        {{ block.settings.text }}
+
+        <span class="decor-arrow">
+          {% render 'custom-arrow' %}
+        </span>
+      </a>
     {% endfor %}
     {% for block in blocks %}
-      <a href="{{ block.settings.link }}" class="announcement-bar__item">{{ block.settings.text }}</a>
+      <a href="{{ block.settings.link }}" class="announcement-bar__item">
+        {{ block.settings.text }}
+
+        <span class="decor-arrow">
+          {% render 'custom-arrow' %}
+        </span>
+      </a>
     {% endfor %}
   </div>
 </header>
@@ -76,13 +106,13 @@
       "type": "color",
       "id": "bg_color",
       "label": "Background color",
-      "default": "#000000"
+      "default": "#E5B0E0"
     },
     {
       "type": "color",
       "id": "text_color",
       "label": "Text color",
-      "default": "#FFFFFF"
+      "default": "#000000"
     }
   ],
   "blocks": [

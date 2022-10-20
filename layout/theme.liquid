@@ -27,6 +27,8 @@
     <link rel="preconnect dns-prefetch" href="https://productreviews.shopifycdn.com" />
   {% endif %}
 
+  {% render 'fonts' %}
+
   {{ 'fancybox.css' | asset_url | stylesheet_tag }}
   <!-- Stylesheets for Custom "2.0.1" -->
   {{ 'styles.scss.css' | asset_url | stylesheet_tag }}
