@@ -49,6 +49,13 @@
 
   <div id="insta-feed">
   </div>
+
+  <div class="insta-feed-redesign-mobile__subscribe">
+    {% if header_text != blank %}
+      <p class="subscribe-text">{{ header_text }}</p>
+    {% endif %}
+    <a class="insta" href="{{ insta_link }}">{{ insta_text }}</a>
+  </div>
 </div>
 
 {% schema %}

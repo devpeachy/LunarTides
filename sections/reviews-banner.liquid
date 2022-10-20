@@ -60,7 +60,23 @@
         }
     }
 
+    .image__block-wrapper-desktop {
+        display: block;
+    }
 
+    .image__block-wrapper-mobile {
+        display: none;
+    }
+
+    @media (max-width: 768px) {
+        .image__block-wrapper-desktop {
+            display: none;
+        }
+    
+        .image__block-wrapper-mobile {
+            display: block;
+        }
+    }
 
 </style>
 
@@ -131,7 +147,8 @@
                 {%- if is_single_image == false -%}
                     {% for block in section.blocks %}
                         {% liquid
-                            assign block_img         = block.settings.block_img
+                            assign block_img_desktop         = block.settings.block_img_desktop
+                            assign block_img_mobile          = block.settings.block_img_mobile
                         %}
 
                         <div class="reviews-image-wrapper
@@ -139,7 +156,24 @@
                                 space_betweeen_images
                             {% endif %}
                             ">
-                            <img src="{{ block_img | img_url: 'master' }}" alt="" class="reviews-image">
+                            {% comment %} <img src="{{ block_img_desktop | img_url: 'master' }}" alt="" class="reviews-image"> {% endcomment %}
+                            {% comment %} {% if block_img_desktop != blank and block_img_mobile != blank %}
+                                <div class="image__block-wrapper">
+                                   <picture>
+                                      <source srcset="{{ block_img_desktop | img_url: 'master' }}" media="(min-width: 769px)">
+                                      <source srcset="{{ block_img_mobile | img_url: 'master' }}" media="(max-width: 768px)">
+                                      <img src="{{ block_img_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
+                                   </picture>
+                                </div>
+                             {% endif %} {% endcomment %}
+                            {% if block_img_desktop != blank and block_img_mobile != blank %}
+                                <div class="image__block-wrapper-desktop">
+                                    <img src="{{ block_img_desktop | img_url: 'master' }}" alt="">
+                                </div>
+                                <div class="image__block-wrapper-mobile">
+                                    <img src="{{ block_img_mobile | img_url: 'master' }}" alt="">
+                                </div>
+                             {% endif %}
                         </div>
                     {% endfor %}
                 {% else %}
@@ -287,8 +321,13 @@
             "settings": [
                 {
                     "type": "image_picker",
-                    "id": "block_img",
-                    "label": "Block image"
+                    "id": "block_img_desktop",
+                    "label": "Block desktop image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "block_img_mobile",
+                    "label": "Block mobile image"
                 }
             ]
         }

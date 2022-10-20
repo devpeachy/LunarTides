@@ -38,6 +38,7 @@
 
 /* ========================== Marquee announcement bar ========================== */
 #marquee-announcement-bar {
+  transition: all 1.1s;
   .marquee-announcement-bar {
     max-height: 0;
     overflow: hidden;
@@ -948,12 +949,13 @@ body.mobile-menu--opened {
         .navbar-block__content {
           display: flex;
           justify-content: space-between;
+          align-items: baseline;
+          padding-right: 10px;
 
           .title {
             display: block;
             max-width: 200px;
             width: 100%;
-            margin: 0 10px 0 0;
 
             font-family: 'Montserrat', sans-serif;
             font-style: normal;
@@ -1005,7 +1007,7 @@ body.mobile-menu--opened {
             }
 
             .arrow {
-              display: none;
+              // display: none;
               margin: 0 0 0 10px;
 
               @media (min-width: 1100px) {
@@ -1307,9 +1309,19 @@ body.mobile-menu--opened {
           text-transform: uppercase;
           color: #000000;
         }
+
+        p {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: #8F8F8F;
+          margin-right: 8px;
+          display: inline-block;
+        }
       }
 
       .product-thumbnail__was-price {
+        
         span {
           font-weight: 400;
           font-size: 16px;
@@ -1589,12 +1601,17 @@ body.mobile-menu--opened {
 
       .footer-main-title {
         font-weight: 800;
-        font-size: 24px;
+        font-size: 22px;
         line-height: 32px;
         text-align: center;
         text-transform: uppercase;
         color: #FFFFFF;
         margin-bottom: 16px;
+
+        @media (min-width: 374px) {
+          font-size: 24px;
+          line-height: 32px;
+        }
 
         @media (min-width: 1023px) {
           font-size: 47px;
@@ -1760,11 +1777,15 @@ body.mobile-menu--opened {
               display: block;
               width: fit-content;
               font-weight: 400;
-              font-size: 16px;
+              font-size: 15px;
               line-height: 24px;
               margin-bottom: 8px;
               color: #FFFFFF;
               transition: opacity .2s linear;
+
+              @media (min-width: 374px) {
+                font-size: 16px;
+              }
 
               &:hover {
                 opacity: .6;
@@ -1861,8 +1882,8 @@ body.mobile-menu--opened {
         }
 
         .payment-icon {
-          width: 22px;
-          height: 14px;
+          width: 33px;
+          height: 21px;
           margin: 9px 6px;
 
           @media (min-width: 767px) {
@@ -1950,7 +1971,7 @@ body.mobile-menu--opened {
           }
 
           @media (min-width: 1366px) {
-            max-width: 340px;
+            max-width: 350px;
             font-size: 48px;
             line-height: 59px;
           }
@@ -2250,11 +2271,15 @@ body.mobile-menu--opened {
   padding: 64px 0;
 
   @media (min-width: 1023px) {
-    padding: 112px 0;
+    padding: 56px 0;
   }
 
   #insta-feed {
-    margin: 0;
+    margin: 0 0 24px 0;
+
+    @media (min-width: 767px) {
+      margin: 0 0 0 0;
+    }
 
     h2 {
       display: none;
@@ -2325,10 +2350,12 @@ body.mobile-menu--opened {
     .insta-feed-redesign__subscribe {
       text-align: center;
       margin-bottom: 24px;
+      display: none;
 
       @media (min-width: 767px) {
         margin-bottom: 0;
         text-align: right;
+        display: block;
       }
 
       .subscribe-text {
@@ -2350,6 +2377,34 @@ body.mobile-menu--opened {
       }
     }
   }
+  .insta-feed-redesign-mobile__subscribe {
+    text-align: center;
+    display: block;
+
+    @media (min-width: 767px) {
+      margin-bottom: 0;
+      text-align: right;
+      display: none;
+    }
+
+    .subscribe-text {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 24px;
+      margin-bottom: 8px;
+    }
+
+    .insta {
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 32px;
+      text-transform: uppercase;
+
+      @media (min-width: 767px) {
+        font-weight: 700;
+      }
+    }
+  }
 }
 
 /* ========================== END Insta Feed  ========================== */
@@ -2359,7 +2414,7 @@ body.mobile-menu--opened {
 
 .reviews-banner-section {
     font-family: 'Montserrat', sans-serif;
-    padding: 8px 0;
+    padding: 8px 0 0;
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2452,7 +2507,7 @@ body.mobile-menu--opened {
 
 @media (max-width: 1200px) {
     .reviews-banner-section {
-        padding: 8px 0;
+        padding: 8px 0 0;
         background-position: 0 0;
         background-repeat: no-repeat;
         background-size: cover;
@@ -2540,7 +2595,7 @@ body.mobile-menu--opened {
 
 @media (max-width: 768px) {
     .reviews-banner-section {
-        padding: 8px 0;
+        padding: 8px 0 0;
         margin: 32px 0;
 
         .reviews-desktop-background {
@@ -2597,36 +2652,19 @@ body.mobile-menu--opened {
                     }
                 }
                 .reviews-images-wrapper {
-                    display: flex;
-                    justify-content: space-between;
-                    text-align: right;
-                    width: 100%;
-                    max-height: 380px;
-
-                    @media (max-width: 640px) {
-                      max-height: 315px;
-                    }
-                    @media (max-width: 520px) {
-                      max-height: 257px;
-                    }
-                    @media (max-width: 375px) {
-                      max-height: 185px;
-                    }
-                    @media (max-width: 320px) {
-                      max-height: 158px;
-                    }
-    
-                    .reviews-image-wrapper {
-                        display: inline-block;
-                        position: relative;
-                        width: 49.5%;
-    
-                        .reviews-image {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
+                  .reviews-image-wrapper {
+                    .image__block-wrapper {
+                      picture {
+                          width: 100%;
+                          height: 100%;
+                        img {
+                          width: 100%;
+                          height: 100%;
+                          object-fit: cover;
                         }
+                      }
                     }
+                  }
                 }
             }
         }
@@ -3173,10 +3211,10 @@ body.mobile-menu--opened {
 /* ========================== Page ABOUT-US ========================== */
 
 .favorite-section {
-  padding: 64px 0 32px;
+  padding: 32px 0 32px;
 
-  @media (min-width: 1023px) {
-    padding: 112px 0 64px;
+  @media (min-width: 1200px) {
+    padding: 56px 0 64px;
   }
 
   .favorite__container {
@@ -3210,6 +3248,9 @@ body.mobile-menu--opened {
       @media (min-width: 1023px) {
         width: 43%;
         max-width: 515px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
 
       .favorite-title {
@@ -3226,6 +3267,11 @@ body.mobile-menu--opened {
           font-weight: 700;
           font-size: 48px;
           line-height: 59px;
+          margin-bottom: 0;
+        }
+
+        @media (min-width: 1023px) {
+          margin-bottom: 0;
         }
 
       }
@@ -3238,6 +3284,15 @@ body.mobile-menu--opened {
         line-height: 24px;
         color: #000000;
         margin-bottom: 24px;
+
+        @media (min-width: 1023px) {
+          margin-bottom: 0;
+          line-height: 22px;
+        }
+
+        @media (min-width: 1110px) {
+          line-height: 24px;
+        }
       }
 
       .favorite-subtitle {
@@ -3349,6 +3404,7 @@ body.mobile-menu--opened {
 
       @media (min-width: 1023px) {
         text-align: left;
+        margin-top: 0;
 
         &.btn-mobile {
           display: none;

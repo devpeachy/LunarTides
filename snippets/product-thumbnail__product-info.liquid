@@ -10,6 +10,7 @@
       {{ 'collections.general.coming_soon' | t }}
     {% endif %}
   {% else %}
+  <small>from</small>
     <span class="product-thumbnail__price price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
       {% if product.available %}
         {% if product.price_varies and product.price_min > 0 %}

@@ -120,7 +120,7 @@
         {% if hover_enabled or settings.enable_quickshop %}
           <div class="thumbnail-overlay__container">
             <a class="hidden-product-link" href="{{ product.url | within: collection }}">{{ product.title }}</a>
-
+            
             {% if hover_enabled %}
               <div class="quick-shop__info animated fadeInDown">
                 <div class="thumbnail-overlay">
@@ -134,6 +134,7 @@
                     {% if collection_handles contains 'coming-soon' %}
                       <span>{{ 'collections.general.coming_soon' | t }}</span>
                     {% else %}
+                      <small><em>{{ 'products.general.from' | t }}</em></small>
                       <span class="product-thumbnail__price price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
                         {% if product.available %}
                           {% if product.price_varies and product.price_min > 0 %}
