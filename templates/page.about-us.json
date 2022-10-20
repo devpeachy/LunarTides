@@ -4,10 +4,127 @@
       "type": "page-details__main",
       "disabled": true,
       "settings": {
+        "css_class": "",
+        "custom_css": ""
+      }
+    },
+    "16642066398d28ab38": {
+      "type": "about-us-hero",
+      "settings": {
+        "bg_section": "#ffffff",
+        "title": "<div>\nCRUELTY - \n<span class=\"transparent-title\"> FREE.<\/span>\n<\/div>\n<div>\n DAMAGE - \n<span class=\"transparent-title\"> \nFREE.<\/span>\n<\/div>\n<div>\nHASSLE - \n<span class=\"transparent-title\"> FREE.<\/span>\n<\/div>",
+        "subtitle": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.",
+        "subtitle_img": "shopify:\/\/shop_images\/Ellipse_3-min.png",
+        "product_img": "shopify:\/\/shop_images\/Frame_314-min.png"
+      }
+    },
+    "1664206658e903cdac": {
+      "type": "about-us-who-we-are",
+      "settings": {
+        "bg_section": "#ffffff",
+        "title": "<span class=\"title-small\">WHO WE ARE<\/span>Lunar Tides is a <span class=\"title-transparent\">true indie brand , <\/span>\nfemale owned and operated since 2013. We strive to make the best quality hair colors in every unique shade imaginable!",
+        "desktop_img": "shopify:\/\/shop_images\/Frame_318-min.png",
+        "mobile_img": "shopify:\/\/shop_images\/image-min.png"
+      }
+    },
+    "1664206690d655e3f2": {
+      "type": "reviews-banner",
+      "blocks": {
+        "94d711e0-95d6-4c14-9203-02587078b95b": {
+          "type": "block",
+          "settings": {
+            "block_img": "shopify:\/\/shop_images\/Frame_55.png"
+          }
+        },
+        "c78d6031-edd6-4f04-974c-8aa681c91467": {
+          "type": "block",
+          "settings": {
+            "block_img": "shopify:\/\/shop_images\/Frame_54.png"
+          }
+        }
+      },
+      "block_order": [
+        "94d711e0-95d6-4c14-9203-02587078b95b",
+        "c78d6031-edd6-4f04-974c-8aa681c91467"
+      ],
+      "settings": {
+        "bg_color": "#f4f4f4",
+        "title": "“I want to be with this fiery color all my life”",
+        "review_description": "I would never have imagined that you can look so cool with this color. It looks even better in real life than in the photo. My girlfriend wanted to buy this dye as soon as they saw me with a new hair color. It's not just paint, it's some kind of magic!",
+        "title_color": "#000000",
+        "description_color": "#000000",
+        "button_text": "CLICK TO SHOP",
+        "button_url": "shopify:\/\/products\/cerulean-sea",
+        "button_text_color": "#ffffff",
+        "button_background_color": "#000000",
+        "button_boxshadow_color": "",
+        "show_button_boxshadow": false,
+        "space_betweeen_images": false,
+        "text_align-left": true,
+        "is_single_image": false,
+        "desktop_content_position": "left-side",
+        "mobile_content_position": "top-side"
+      }
+    },
+    "166419254965111210": {
+      "type": "favorite-section",
+      "blocks": {
+        "9a198b19-61b6-44f8-b9e7-dc3109a6274d": {
+          "type": "product",
+          "settings": {
+            "product": "blue-velvet"
+          }
+        },
+        "9e63a911-0bd1-426e-ab12-c0a6ad96f9a1": {
+          "type": "product",
+          "settings": {
+            "product": "red-hair-dye-cruelty-free-semi-permanent"
+          }
+        },
+        "692c25e0-1aae-4922-81e8-bcc14d186e90": {
+          "type": "product",
+          "settings": {
+            "product": "blue-sky-nail-set"
+          }
+        }
+      },
+      "block_order": [
+        "9a198b19-61b6-44f8-b9e7-dc3109a6274d",
+        "9e63a911-0bd1-426e-ab12-c0a6ad96f9a1",
+        "692c25e0-1aae-4922-81e8-bcc14d186e90"
+      ],
+      "settings": {
+        "bg_color": "#ffffff",
+        "title": "A favorite of authors",
+        "text": "We've carefully formulated over 40 shades to give you the exact color you're after without any need for blending or diluting. Just pick the color you want, and it's ready to go right out of the jar! No need for harsh developers, pastelizers, or other add-ons.\n<br><br>\nWe are hair color enthusiasts and animal lovers - all of our products are ALWAYS 100% vegan and cruelty-free!",
+        "subtitle": "TURN UP THE BRIGHTNESS!",
+        "btn_text": "click to shop",
+        "btn_link": "shopify:\/\/collections\/best-sellers",
+        "btn_text_color": "#ffffff",
+        "btn_background_color": "#000000",
+        "button_boxshadow_color": "rgba(0,0,0,0)",
+        "show_button_boxshadow": false
+      }
+    },
+    "16642066103907d30c": {
+      "type": "instafeed-redesign",
+      "settings": {
+        "bg_color": "#ffffff",
+        "text_color": "#000000",
+        "title": "Show Us Your<br> Colors on Instagram!",
+        "title_url": "",
+        "header_text": "Subscribe",
+        "insta_text": "@lunartideshair",
+        "insta_link": "https:\/\/www.instagram.com\/lunartideshair\/"
       }
     }
   },
   "order": [
-    "main"
+    "main",
+    "16642066398d28ab38",
+    "1664206658e903cdac",
+    "1664206690d655e3f2",
+    "166419254965111210",
+    "16642066103907d30c"
   ]
 }
