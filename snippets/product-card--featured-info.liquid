@@ -1,0 +1,16 @@
+<div class="product-thumbnail">
+
+  <a href="{{ product.url | within: collection }}" class="product-thumbnail__title">{{ product.title }}</a>
+
+  <a href="{{ product.url | within: collection }}" class="product-thumbnail__btn">
+    <span>Shop now</span>
+    {% render 'icon-right-arrow' %}
+  </a>
+
+  <span class="icons-star">
+    {% for i in (1..5) %}
+      {% render 'icon-star' %}
+    {% endfor %}
+  </span>
+  
+</div>

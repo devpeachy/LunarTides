@@ -1,0 +1,110 @@
+<div class="image-wrapper product-image__wrapper">
+
+  {% if product.tags[0] %}
+    {% unless product.compare_at_price_max > product.price %}
+      <div class="product-image__badges">
+        {% for tag in product.tags %}
+          {% render 'badges', tag: tag %}
+        {% endfor %}
+      </div>
+    {% endunless %}
+  {% endif %}
+
+  <div class="image-container">
+    <a href="{{ product.url | within: collection }}">
+      {% if settings.stickers_enabled %}
+        {% include 'product-thumbnail__sticker-redesign' %}
+      {% endif %}
+
+      {% comment %} Primary image {% endcomment %}
+      {% include 'image-element', image: product.featured_media.preview_image, alt: alt_text, object_fit: align_height, max_height: height %}
+
+      {% comment %} Secondary image {% endcomment %}
+      {% if product.media[1] != blank and settings.show_secondary_image == true %}
+        {% if product.media[1].media_type == 'external_video' %}
+          <div class="product-thumbnail__video secondary swap--visible video-on-hover">
+            <div data-youtube-video>
+              {{ product.media[1] | external_video_tag }}
+            </div>
+          </div>
+        {% elsif product.media[1].media_type == 'video' %}
+          <div class="product-thumbnail__video secondary swap--visible video-on-hover" data-html5-video>
+            {{ product.media[1] | video_tag: controls: false }}
+          </div>
+        {% else %}
+          {% include 'image-element', image: product.media[1], alt: alt_text, object_fit: align_height, max_height: height, additional_classes: 'lazypreload secondary swap--visible' %}
+        {% endif %}
+      {% endif %}
+    </a>
+  </div>
+
+  {% if hover_enabled or settings.enable_quickshop %}
+    <div class="thumbnail-overlay__container">
+      <a class="hidden-product-link" href="{{ product.url | within: collection }}">{{ product.title }}</a>
+      
+      {% if hover_enabled %}
+        <div class="quick-shop__info animated fadeInDown">
+          <div class="thumbnail-overlay">
+            <div class="info text-align-center">
+              {% if settings.display_vendor %}
+                <span class="product-thumbnail__vendor">{{ product.vendor }}</span>
+              {% endif %}
+
+              <p class="product-thumbnail__title">{{ product.title }}</p>
+
+              {% if collection_handles contains 'coming-soon' %}
+                <span>{{ 'collections.general.coming_soon' | t }}</span>
+              {% else %}
+                <small><em>{{ 'products.general.from' | t }}</em></small>
+                <span class="product-thumbnail__price price {% if product.compare_at_price_max > product.price %}sale{% endif %}">
+                  {% if product.available %}
+                    {% if product.price_varies and product.price_min > 0 %}
+                      <small><em>{{ 'products.general.from' | t }}</em></small>
+                    {% endif %}
+                    {% if product.price_min > 0 %}
+                      <span class="money">{{ product.price_min | money }}</span>
+                    {% else %}
+                      {{ settings.free_price_text }}
+                    {% endif %}
+                    {% if product.compare_at_price_max > product.price %}
+                      <span class="product-thumbnail__was-price was-price">
+                        <span class="money">{{ product.compare_at_price_max | money }}</span>
+                      </span>
+                    {% endif %}
+                  {% else %}
+                    <span class="product-thumbnail__sold-out sold-out">{{ 'products.product.sold_out' | t }}</span>
+                  {% endif %}
+                </span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if settings.enable_quickshop %}
+        {% include 'product-thumbnail__quick-shop-button' %}
+      {% endif %}
+
+      {% if hover_enabled %}
+        {% if settings.enable_shopify_collection_badges and settings.enable_shopify_review_comments %}
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        {% endif %}
+      {% endif %}
+
+    </div>
+  {% endif %}
+</div>
+<div class="product-info">
+  <a href="{{ product.url | within: collection }}" class="product-info__title">{{ product.title }}</a>
+
+  <span class="icons-star">
+    {% for i in (1..5) %}
+      {% render 'icon-star' %}
+    {% endfor %}
+  </span>
+
+  <a href="{{ product.url | within: collection }}" class="product-info__btn">
+    <span>Shop now</span>
+    {% render 'icon-right-arrow' %}
+  </a>
+</div>

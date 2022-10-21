@@ -1,0 +1,111 @@
+{% liquid
+  assign content_position                 = section.settings.content_position
+  assign title                            = section.settings.title
+  assign subtitle                         = section.settings.subtitle
+  assign text                             = section.settings.text
+  assign button_text                      = section.settings.button_text
+  assign button_url                       = section.settings.button_url
+%}
+
+<section class='content-with-products' id="content-with-products-{{ section.id }}">
+  <div class="content-with-products__container">
+    <div class="content-with-products__inner 
+      {% if content_position == 'left-side' %}
+        reverse
+      {% endif %}"
+    >
+      <div class="content-with-products__content">
+        <h3 class="content-title">{{ title }}</h3>
+        <div class="content-text">{{ text }}</div>
+        {% if subtitle != blank %}
+          <h4 class="content-subtitle">{{ subtitle }}</h4>
+        {% endif %}
+        <a href="{{ button_url }}" class="content-btn">
+          <span class="btn-text">{{ button_text }}</span>
+          <span class="btn-icon">
+            {% render 'icon-right-arrow' %}
+          </span>
+        </a>
+      </div>
+
+      <div class="content-with-products__products">
+        {% for block in section.blocks %}
+          {% assign product = block.settings.product %}
+            <div class="product-item">
+              {% include 'favorite-product-card' %}
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Content with products",
+  "class": "html-section",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Content position",
+      "options": [
+        {
+          "value": "left-side",
+          "label": "Left side"
+        },
+        {
+          "value": "right-side",
+          "label": "Right side"
+        }
+      ],
+      "default": "right-side"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_url",
+      "label": "Button url"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Prodcut",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content with products",
+      "category": "About us"
+    }
+  ]
+}
+{% endschema %}
