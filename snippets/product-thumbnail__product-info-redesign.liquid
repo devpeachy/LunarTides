@@ -3,7 +3,15 @@
     <span class="product-thumbnail__vendor">{{ product.vendor }}</span>
   {% endif %}
 
-  <a href="{{ product.url | within: collection }}" class="product-thumbnail__title">{{ product.title }}</a>
+  <div class="product-thumbnail__top">
+    <a href="{{ product.url | within: collection }}" class="product-thumbnail__title">{{ product.title }}</a>
+  
+    <span class="icons-star">
+      {% for i in (1..5) %}
+        {% render 'icon-star' %}
+      {% endfor %}
+    </span>
+  </div>
 
   {% if collection_handles contains 'coming-soon' %}
     {% if settings.stickers_enabled == false %}
@@ -16,16 +24,18 @@
           {% comment %} <small>from</small> {% endcomment %}
           {% comment %} <small>{{ 'products.general.from' | t }}</small> {% endcomment %}
         {% endif %}
+        {% if product.compare_at_price_max > product.price %}
+          <span class="product-thumbnail__was-price was-price">
+            <span class="money-was money">{{ product.compare_at_price_max | money }}</span>
+          </span>
+        {% endif %}
         {% if product.price_min > 0 %}
-          <p class="product-thumbnail__price-from">from</p>
+          {% unless product.compare_at_price_max > product.price %}
+            <p class="product-thumbnail__price-from">from</p>
+          {% endunless %}
           <span class="money">{{ product.price_min | money }}</span>
         {% else %}
           {{ settings.free_price_text }}
-        {% endif %}
-        {% if product.compare_at_price_max > product.price %}
-          <span class="product-thumbnail__was-price was-price">
-            <span class="money">{{ product.compare_at_price_max | money }}</span>
-          </span>
         {% endif %}
       {% else %}
         <span class="product-thumbnail__sold-out sold-out">{{ 'products.product.sold_out' | t }}</span>
