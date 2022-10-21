@@ -2696,5 +2696,70 @@
         "default": false
       }
     ]
-  }
+  },
+    {
+      "name": "Background of Pages",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Home page"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "bg_img_mob",
+          "label": "Background image (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Product page"
+        },
+        {
+          "type": "image_picker",
+          "id": "prd_bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "prd_bg_img_mob",
+          "label": "Background image (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "prd_bg_color",
+          "label": "Background color",
+          "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Collection page"
+        },
+        {
+          "type": "image_picker",
+          "id": "coll_bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "coll_bg_img_mob",
+          "label": "Background image (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "coll_bg_color",
+          "label": "Background color",
+          "default": "#000000"
+        }
+      ]
+    }
 ]

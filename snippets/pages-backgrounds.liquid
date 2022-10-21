@@ -1,0 +1,91 @@
+<style>
+    body {
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+
+    {% if template contains 'index' %}
+        body {
+            background-position: center !important;
+        }
+
+        {% if settings.bg_img != blank or settings.bg_img_mob != blank or settings.bg_color != blank %}
+            {% if settings.bg_img != blank %}
+                body {
+                    background-image: url("{{ settings.bg_img_mob | img_url: 'master' }}");
+                }
+                @media (min-width: 600px) {
+                    body {
+                        background-image: url("{{ settings.bg_img | img_url: 'master' }}");
+                    }
+                }
+            {% else %}
+                body {
+                    background-color: {{ settings.bg_color }};
+                }
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if template contains 'page' %}
+        {% if page.metafields.custom.bg_image != blank or page.metafields.custom.bg_image_mob != blank or page.metafields.custom.bg_color != blank %}
+            {% if page.metafields.custom.bg_image != blank or page.metafields.custom.bg_image_mob != blank %}
+                body {
+                    background-image: url("{{ page.metafields.custom.bg_image_mob | img_url: 'master' }}");
+                }
+                @media (min-width: 600px) {
+                    body {
+                        background-image: url("{{ page.metafields.custom.bg_image | img_url: 'master' }}");
+                    }
+                }
+            {% else %}
+                body {
+                    background-color: {{ page.metafields.custom.bg_color }};
+                }
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if template contains 'product' %}
+        body {
+            background-position: center !important;
+        }
+
+        {% if settings.prd_bg_img != blank and settings.prd_bg_img_mob != blank %}
+            body {
+                background-image: url("{{ settings.prd_bg_img_mob | img_url: 'master' }}");
+            }
+            @media (min-width: 600px) {
+                body {
+                    background-image: url("{{ settings.prd_bg_img | img_url: 'master' }}");
+                }
+            }
+        {% elsif settings.prd_bg_color != blank %}
+            body {
+                background-color: {{ settings.prd_bg_color }};
+            }
+        {% endif %}
+    {% endif %}
+
+    {% if template contains 'collection' %}
+        body {
+            background-position: top center !important;
+        }
+
+        {% if settings.coll_bg_img != blank and settings.coll_bg_img_mob != blank %}
+            body {
+                background-image: url("{{ settings.coll_bg_img_mob | img_url: 'master' }}");
+            }
+            @media (min-width: 600px) {
+                body {
+                    background-image: url("{{ settings.coll_bg_img | img_url: 'master' }}");
+                }
+            }
+        {% elsif settings.coll_bg_color != blank %}
+            body {
+                background-color: {{ settings.coll_bg_color }};
+            }
+        {% endif %}
+    {% endif %}
+</style>
