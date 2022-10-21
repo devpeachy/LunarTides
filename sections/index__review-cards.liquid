@@ -1,0 +1,100 @@
+{% liquid
+    assign title_first_line = section.settings.title_first_line
+    assign title_second_line = section.settings.title_second_line
+    assign benefits    = section.blocks | where: 'type', 'benefit'
+    assign cards    = section.blocks | where: 'type', 'card'
+%}
+
+<section id="hp-review-cards">
+    <div class="hp-review-cards__container">
+        <div class="top-block">
+            <div class="title-block">
+                {% if title_first_line != blank %}
+                    <div class="first-line">{{ title_first_line }}</div>
+                {% endif %}
+
+                {% if title_second_line != blank %}
+                    <div class="second-line">{{ title_second_line }}</div>
+                {% endif %}
+            </div>
+
+            <div class="items-block">
+                {% for block in benefits %}
+                    <div class="item">
+                        <div class="icon">
+                            {% render 'decor-star-icon' %}
+                        </div>
+                        <div class="capture">{{ block.settings.capture }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="cards-block">
+            <div class="cards-block__inner-desk">
+                {% for block in cards %}
+                    {% liquid
+                        assign img = block.settings.img
+                    %}
+                    <div class="card-item">
+                        <img src="{{ img | img_url: 'master' }}" alt="{{ img.alt | escape }}">
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Review Cards",
+    "settings": [
+        {
+            "type": "header",
+            "content": "TITLE"
+        },
+        {
+            "type": "text",
+            "id": "title_first_line",
+            "label": "The first line of title"
+        },
+        {
+            "type": "text",
+            "id": "title_second_line",
+            "label": "The second line of title"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "benefit",
+            "name": "Benefit",
+            "limit": 3,
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "capture",
+                    "label": "Capture"
+                }
+            ]
+        },
+        {
+            "type": "card",
+            "name": "Card",
+            "limit": 8,
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "img",
+                    "label": "Image"
+                }
+            ]
+        }
+    ],
+    "presets": [
+        {
+            "name": "New HP Review Cards",
+            "category": "Homepage"
+        }
+    ]
+}
+{% endschema %}
