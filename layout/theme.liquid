@@ -151,7 +151,9 @@
               has-vertical-header
             {%- endif -%}"
       data-money-format="{{ shop.money_format }}"
-      data-shop-url="{{ shop.url }}">
+      data-shop-url="{{ shop.url }}"
+      style="background-color: #000;"
+      >
 
   {%- if settings.show_announcement_bar -%}
     {% section 'announcement-bar' %}

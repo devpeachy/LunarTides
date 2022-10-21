@@ -9,7 +9,7 @@
 %}
 
 <style>
-  {% if footer_bg != blank and footer_bg_mb != blank %}
+  {% if footer_bg_mb != blank and footer_bg != blank %}
     .footer-redesign {
       background-image: url("{{ footer_bg_mb | img_url: 'master' }}");
       background-position: center;
@@ -53,8 +53,8 @@
   
             <button type="submit" class="button-submit">
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M36 20H4M36 20L27.2258 13M36 20L27.2258 27" stroke="white" stroke-width="2"/>
-              </svg>
+                <path d="M21.0746 13.019C21.0793 13.3542 21.3369 18.0376 32 19.6269C21.7911 21.1256 21.0746 26.2537 21.0746 26.2537V20.1642L8 19.6269L21.0746 19.0896V13.019C21.0745 13.0065 21.0746 13 21.0746 13V13.019Z" fill="white"/>
+              </svg>                 
             </button>
           </div>
         {% endform %}

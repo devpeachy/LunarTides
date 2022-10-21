@@ -1,5 +1,4 @@
 {% liquid  
-  assign bg_color    = section.settings.bg_color
   assign bg_image    = section.settings.bg_image
   assign text_color  = section.settings.text_color
   assign title       = section.settings.title
@@ -26,7 +25,6 @@
       background-size: cover;
       background-position: center;
     {% endif %}
-    background-color: {{ bg_color }};
     color: {{ text_color }};"
   >
 
@@ -49,13 +47,6 @@
 
   <div id="insta-feed">
   </div>
-
-  <div class="insta-feed-redesign-mobile__subscribe">
-    {% if header_text != blank %}
-      <p class="subscribe-text">{{ header_text }}</p>
-    {% endif %}
-    <a class="insta" href="{{ insta_link }}">{{ insta_text }}</a>
-  </div>
 </div>
 
 {% schema %}
@@ -63,12 +54,6 @@
     "name": "Instafeed App Redesign",
     "settings":
     [
-      {
-        "type": "color",
-        "id": "bg_color",
-        "label": "Background color for section",
-        "default": "#FFFFFF"
-      },
       {
         "type": "image_picker",
         "id": "bg_image",
