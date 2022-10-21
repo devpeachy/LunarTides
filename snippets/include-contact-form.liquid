@@ -66,6 +66,10 @@
 {%- endcapture -%}
 
 {% style %}
+  #shopify-section-page-contact__main {
+    background-color: {{ section.settings.bg_color }};
+  }
+
   #shopify-section-{{ id }} {
     padding-top: {{ padding_top }}px;
     padding-bottom: {{ padding_bottom }}px;
@@ -79,14 +83,18 @@
   {% include 'css-loop', css: custom_css, id: id %}
 
   .contact-submit-button {
-    background-color: #000;
-    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFFFFF;
+    border: 0;
+    color: #000000;
     padding: 20px 40px;
     max-width: 512px;
     width: 100%;
     font-size: 16px;
     font-weight: 700;
     width: calc(100% - 20px);
+    border-bottom-left-radius: 24px;
+    border-top-right-radius: 24px;
   }
 
   @media (max-width: 768px) {

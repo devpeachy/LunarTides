@@ -1,5 +1,7 @@
 {% liquid
+  assign bg_color                           = section.settings.bg_color
   assign section_title                      = section.settings.section_title
+  assign section_title_color                = section.settings.section_title_color
   assign accordion_title_first              = section.settings.accordion_title_first
   assign first_accordion_img                = section.settings.first_accordion_img
   assign accordion_title_second             = section.settings.accordion_title_second
@@ -10,9 +12,24 @@
   assign accordion_tilte_color              = section.settings.accordion_tilte_color
 %}
 
+<style>
+
+#template-page-faqnew-redesign {
+  background-color: {{ bg_color }};
+  padding: 80px 0 56px;
+}
+
+@media (max-width: 768px) {
+  #template-page-faqnew-redesign {
+    padding: 32px 0 20px;
+  }
+}
+
+</style>
+
 <section class="faq-redesign">
   <div class="faq-container">
-    <h1 class="faq-redesign-title">{{ section_title }}</h1>
+    <h1 class="faq-redesign-title" style="color: {{ section_title_color }}">{{ section_title }}</h1>
     <div class="hair accordion-section-redesign">
       <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
         {% if accordion_title_first != blank %}
@@ -118,116 +135,126 @@
 
 {% schema %}
 {
-"name": "FAQ redesign",
-"class": "page-main has-sidebar-option",
-"settings": [
-{
-"type": "text",
-"id": "section_title",
-"label": "Section title"
-},
-{
-"type": "color",
-"id": "accordion_bg_color",
-"label": "Accordion background color",
-"default": "#000000"
-},
-{
-"type": "color",
-"id": "accordion_tilte_color",
-"label": "Accordion title color",
-"default": "#ffffff"
-},
-{
-"type": "text",
-"id": "accordion_title_first",
-"label": "First accordion title"
-},
-{
-"type": "image_picker",
-"id": "first_accordion_img",
-"label": "First accordion image"
-},
-{
-"type": "text",
-"id": "accordion_title_second",
-"label": "Second accordion title"
-},
-{
-"type": "image_picker",
-"id": "second_accordion_img",
-"label": "Second accordion image"
-},
-{
-"type": "text",
-"id": "accordion_title_third",
-"label": "Third accordion title"
-},
-{
-"type": "image_picker",
-"id": "third_accordion_img",
-"label": "Third accordion image"
-}
-],
-"blocks": [
-{
-"type": "hair",
-"name": "hair item",
-"settings": [
-{
-"type": "text",
-"id": "hair_question",
-"label": "Question"
-},
-{
-"type": "textarea",
-"id": "hair_description",
-"label": "Description"
-}
-]
-},
-{
-"type": "nails",
-"name": "Nails item",
-"settings": [
-{
-"type": "text",
-"id": "nails_question",
-"label": "Question"
-},
-{
-"type": "textarea",
-"id": "nails_description",
-"label": "Description"
-}
-]
-},
-{
-"type": "order",
-"name": "Order item",
-"settings": [
-{
-"type": "text",
-"id": "order_question",
-"label": "Question"
-},
-{
-"type": "textarea",
-"id": "order_description",
-"label": "Description"
-}
-]
-}
-],
-"presets": [
-{
-"name": "FAQ redesign",
-"category": "Pages",
-"settings": {
-
-}
-}
-]
+  "name":"FAQ redesign",
+  "class":"page-main has-sidebar-option",
+  "settings":[
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Section background color"
+      },
+      {
+        "type": "color",
+        "id": "section_title_color",
+        "label": "Section title color"
+      },
+     {
+        "type":"text",
+        "id":"section_title",
+        "label":"Section title"
+     },
+     {
+        "type":"color",
+        "id":"accordion_bg_color",
+        "label":"Accordion background color",
+        "default":"#000000"
+     },
+     {
+        "type":"color",
+        "id":"accordion_tilte_color",
+        "label":"Accordion title color",
+        "default":"#ffffff"
+     },
+     {
+        "type":"text",
+        "id":"accordion_title_first",
+        "label":"First accordion title"
+     },
+     {
+        "type":"image_picker",
+        "id":"first_accordion_img",
+        "label":"First accordion image"
+     },
+     {
+        "type":"text",
+        "id":"accordion_title_second",
+        "label":"Second accordion title"
+     },
+     {
+        "type":"image_picker",
+        "id":"second_accordion_img",
+        "label":"Second accordion image"
+     },
+     {
+        "type":"text",
+        "id":"accordion_title_third",
+        "label":"Third accordion title"
+     },
+     {
+        "type":"image_picker",
+        "id":"third_accordion_img",
+        "label":"Third accordion image"
+     }
+  ],
+  "blocks":[
+     {
+        "type":"hair",
+        "name":"hair item",
+        "settings":[
+           {
+              "type":"text",
+              "id":"hair_question",
+              "label":"Question"
+           },
+           {
+              "type":"textarea",
+              "id":"hair_description",
+              "label":"Description"
+           }
+        ]
+     },
+     {
+        "type":"nails",
+        "name":"Nails item",
+        "settings":[
+           {
+              "type":"text",
+              "id":"nails_question",
+              "label":"Question"
+           },
+           {
+              "type":"textarea",
+              "id":"nails_description",
+              "label":"Description"
+           }
+        ]
+     },
+     {
+        "type":"order",
+        "name":"Order item",
+        "settings":[
+           {
+              "type":"text",
+              "id":"order_question",
+              "label":"Question"
+           },
+           {
+              "type":"textarea",
+              "id":"order_description",
+              "label":"Description"
+           }
+        ]
+     }
+  ],
+  "presets":[
+     {
+        "name":"FAQ redesign",
+        "category":"Pages",
+        "settings":{
+           
+        }
+     }
+  ]
 }
 {% endschema %}
 

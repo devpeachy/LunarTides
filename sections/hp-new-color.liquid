@@ -1,0 +1,175 @@
+{% liquid
+    assign bg_color                           = section.settings.bg_color
+    assign bg_image_desktop                   = section.settings.bg_image_desktop
+    assign bg_image_mobile                    = section.settings.bg_image_mobile
+    assign content_image_mobile               = section.settings.content_image_mobile
+    assign content_image_desktop              = section.settings.content_image_desktop
+    assign title                              = section.settings.title
+    assign text                               = section.settings.text
+    assign button_text                        = section.settings.button_text
+    assign button_link                        = section.settings.button_link
+    assign alignment_desktop_text_content     = section.settings.alignment_desktop_text_content
+    assign alignment_mobile_text_content      = section.settings.alignment_mobile_text_content
+%}
+
+<style>
+
+@media (max-width: 767px) {
+    .new-color-content {
+        background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+@media (min-width: 767px) {
+    .new-color-content {
+        background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+</style>
+  
+<section class="hp-new-color" style="background-color: {{ bg_color }}">
+    <div class="container">
+        <div class="new-color-content">
+            <div class="new-color-image__wrapper">
+                <picture>
+                    <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
+                    <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
+                    <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
+                </picture>
+            </div>
+            <div class="new-color-content__wrapper">
+                <div class="new-color-content__title-wrapper">
+                    <div class="new-color-content__title">
+                        <svg width="88" height="56" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M47.8609 14.0401C47.8779 14.7482 48.8031 24.6426 87.1113 28C50.4349 31.1663
+                            47.8609 42 47.8609 42V29.1351L0.889107 28L47.8609 26.8649V14.0401C47.8603 14.0136 
+                            47.8609 14 47.8609 14V14.0401Z" fill="white"
+                            />
+                        </svg>
+                        {{ title }}
+                    </div>
+                    <ul class="new-color_stars-list">
+                        <li class="new-color_stars-item">
+                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                <defs>
+                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                <stop stop-color="white"/>
+                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                </radialGradient>
+                                </defs>
+                            </svg>
+                        </li>
+                        <li class="new-color_stars-item">
+                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                <defs>
+                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                <stop stop-color="white"/>
+                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                </radialGradient>
+                                </defs>
+                            </svg>
+                        </li>
+                        <li class="new-color_stars-item">
+                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                <defs>
+                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                <stop stop-color="white"/>
+                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                </radialGradient>
+                                </defs>
+                            </svg>
+                        </li>
+                    </ul>
+                </div>
+                <p class="new-color-content__text">{{ text }}</p>
+                <div class="new-color-content__button-wrapper">
+                    <a href='{{ button_link }}' class="new-color-content__button">
+                        <span class="new-color-content__button-text">{{ button_text }}</span>
+                        <span class="new-color-content__button-icon">
+                            <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.0746 0.39202C13.0793 0.727218 13.3369 5.41068 24 6.99991C13.7911 8.49867 
+                                    13.0746 13.6268 13.0746 13.6268V7.53723L0 6.99991L13.0746 6.4626V0.39202C13.0745 
+                                    0.379501 13.0746 0.373047 13.0746 0.373047V0.39202Z" fill="black"
+                                />
+                            </svg>
+                        </span>
+                    </a> 
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+    "name":"HP New Color",
+    "class":"page-main has-sidebar-option",
+    "settings":[
+       {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Section background color"
+       },
+       {
+          "type":"image_picker",
+          "id":"bg_image_desktop",
+          "label":"Desktop background image"
+       },
+       {
+          "type":"image_picker",
+          "id":"bg_image_mobile",
+          "label":"Mobile background image"
+       },
+       {
+          "type":"image_picker",
+          "id":"content_image_mobile",
+          "label":"Image mobile"
+       },
+       {
+          "type":"image_picker",
+          "id":"content_image_desktop",
+          "label":"Image desktop"
+       },
+       {
+          "type":"textarea",
+          "id":"title",
+          "label":"Section title"
+       },
+       {
+          "type":"textarea",
+          "id":"text",
+          "label":"Section text"
+       },
+       {
+          "type":"text",
+          "id":"button_text",
+          "label":"Button text"
+       },
+       {
+          "type":"text",
+          "id":"button_link",
+          "label":"Button link"
+       }
+    ],
+    "presets":[
+       {
+          "name":"HP New Color",
+          "category":"Pages"
+       }
+    ]
+ }
+{% endschema %}
+  
+  
+  
+  
