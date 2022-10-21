@@ -9,17 +9,19 @@
 %}
 
 <style>
-  .footer-redesign {
-    background-image: url("{{ footer_bg_mb | img_url: 'master' }}");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  @media (min-width: 767px) {
+  {% if footer_bg != blank and footer_bg_mb != blank %}
     .footer-redesign {
-      background-image: url("{{ footer_bg | img_url: 'master' }}");
+      background-image: url("{{ footer_bg_mb | img_url: 'master' }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
-  }
+    @media (min-width: 767px) {
+      .footer-redesign {
+        background-image: url("{{ footer_bg | img_url: 'master' }}");
+      }
+    }
+  {% endif %}
 </style>
 
 <footer class="footer-redesign">

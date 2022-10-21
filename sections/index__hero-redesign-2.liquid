@@ -1,0 +1,147 @@
+{% liquid
+    assign title            = section.settings.title
+    assign subtitle         = section.settings.subtitle
+    assign btn_url          = section.settings.btn_url
+    assign btn_text         = section.settings.btn_text
+    assign img              = section.settings.img
+    assign img_mob          = section.settings.img_mob
+    assign bg_decor         = section.settings.bg_decor
+    assign font_size_desk   = section.settings.font_size_desk
+    assign font_size_tablet = section.settings.font_size_tablet
+    assign font_size_mob    = section.settings.font_size_mob
+%}
+
+{% if bg_decor != blank %}
+<style>
+    #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block {
+        background-image: url("{{ bg_decor | img_url: 'master' }}");
+        background-repeat: no-repeat;
+        background-position: initial;
+        background-size: cover;
+    }
+</style>
+{% endif %}
+
+<style>
+    #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .title {
+        font-size: {{ font_size_mob }}px;
+    }
+
+    @media (min-width: 1023px) {
+        #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .title {
+            font-size: {{ font_size_tablet }}px;
+        }
+    }
+
+    @media (min-width: 1300px) {
+        #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .title {
+            font-size: {{ font_size_desk }}px;
+        }
+    }
+</style>
+
+<section id="hp-hero-2">
+    <div class="hp-hero-2__container">
+        <div class="hp-hero-2__inner">
+            <div class="content-block">
+                <div class="content-block__inner">
+                    {% if title != blank %}
+                        <h2 class="title">{{ title }}</h2>
+                    {% endif %}
+
+                    {% if subtitle != blank %}
+                        <div class="subtitle">{{ subtitle }}</div>
+                    {% endif %}
+
+                    {% if btn_url != blank or btn_text != blank %}
+                        <a href="{{ btn_url }}" class="btn-d-2 content-block__btn">
+                            <span class="btn-text">{{ btn_text }}</span>
+
+                            <span class="decor-arr">
+                            {% render 'custom-arrow' %}
+                        </span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="img-block">
+                {% if img_mob != blank and img_mob != blank %}
+                    <picture>
+                        <source srcset="{{ img | img_url: 'master' }}" media="(min-width: 850px)">
+                        <source srcset="{{ img_mob | img_url: 'master' }}" media="(max-width: 850px)">
+                        <img src="{{ img | img_url: 'master' }}" alt="{{ img.alt }}">
+                    </picture>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Hero",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "number",
+            "id": "font_size_desk",
+            "label": "Title font-size for desktop",
+            "default": 104
+        },
+        {
+            "type": "number",
+            "id": "font_size_tablet",
+            "label": "Title font-size for tablet",
+            "default": 80
+        },
+        {
+            "type": "number",
+            "id": "font_size_mob",
+            "label": "Title font-size for mobile",
+            "default": 63
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": "Subtitle"
+        },
+        {
+            "type": "url",
+            "id": "btn_url",
+            "label": "Button link"
+        },
+        {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button text"
+        },
+        {
+            "type": "image_picker",
+            "id": "img",
+            "label": "Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "img_mob",
+            "label": "Image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "bg_decor",
+            "label": "BG image for content block"
+        }
+    ],
+    "presets": [
+        {
+            "name": "New HP Hero 2",
+            "category": "Homepage"
+        }
+    ]
+}
+{% endschema %}
+
