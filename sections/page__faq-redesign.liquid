@@ -1,6 +1,7 @@
 {% liquid
   assign bg_color                           = section.settings.bg_color
   assign section_title                      = section.settings.section_title
+  assign section_title_color                = section.settings.section_title_color
   assign accordion_title_first              = section.settings.accordion_title_first
   assign first_accordion_img                = section.settings.first_accordion_img
   assign accordion_title_second             = section.settings.accordion_title_second
@@ -13,15 +14,22 @@
 
 <style>
 
-.faq-redesign {
+#template-page-faqnew-redesign {
   background-color: {{ bg_color }};
+  padding: 80px 0 56px;
+}
+
+@media (max-width: 768px) {
+  #template-page-faqnew-redesign {
+    padding: 32px 0 20px;
+  }
 }
 
 </style>
 
 <section class="faq-redesign">
   <div class="faq-container">
-    <h1 class="faq-redesign-title">{{ section_title }}</h1>
+    <h1 class="faq-redesign-title" style="color: {{ section_title_color }}">{{ section_title }}</h1>
     <div class="hair accordion-section-redesign">
       <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
         {% if accordion_title_first != blank %}
@@ -134,6 +142,11 @@
         "type": "color",
         "id": "bg_color",
         "label": "Section background color"
+      },
+      {
+        "type": "color",
+        "id": "section_title_color",
+        "label": "Section title color"
       },
      {
         "type":"text",

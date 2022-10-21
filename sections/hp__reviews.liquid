@@ -1,0 +1,174 @@
+{% liquid
+    assign bg_color                           = section.settings.bg_color
+    assign content_image_mobile               = section.settings.content_image_mobile
+    assign content_image_desktop              = section.settings.content_image_desktop
+    assign title                              = section.settings.title
+    assign text                               = section.settings.text
+    assign button_text                        = section.settings.button_text
+    assign button_link                        = section.settings.button_link
+    assign alignment_desktop_text_content     = section.settings.alignment_desktop_text_content
+    assign alignment_mobile_text_content      = section.settings.alignment_mobile_text_content
+%}
+
+<style>
+
+.hp-reviews-content {
+    {%- if alignment_mobile_text_content == "top" -%}
+        flex-direction: column-reverse !important;
+    {%- else -%}
+        flex-direction: column !important;
+    {%- endif -%}
+}
+
+.hp-reviews-content__button-wrapper {
+    {%- if alignment_mobile_text_content == "top" -%}
+        margin-bottom: 32px;
+    {%- else -%}
+        margin-bottom: 0;
+    {%- endif -%}
+}
+
+.hp-reviews-image__wrapper {
+    {%- if alignment_mobile_text_content == "top" -%}
+        margin-bottom: 0;
+    {%- else -%}
+        margin-bottom: 32px;
+    {%- endif -%}
+}
+
+@media (min-width: 767px) {
+    .hp-reviews-image__wrapper {
+        margin-bottom: 0;
+    }
+    
+    .hp-reviews-content__button-wrapper {
+        margin-bottom: 0;
+    }
+
+    .hp-reviews-content {
+        {%- if alignment_desktop_text_content == "start" -%}
+            flex-direction: row-reverse !important;
+        {%- else -%}
+            flex-direction: row !important;
+        {%- endif -%}
+    }
+}
+
+</style>
+  
+<section class="hp-reviews" style="background-color: {{ bg_color }}">
+    <div class="container">
+        <div class="hp-reviews-content">
+            <div class="hp-reviews-image__wrapper">
+                <picture>
+                    <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
+                    <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
+                    <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
+                </picture>
+            </div>
+            <div class="hp-reviews-content__wrapper">
+                <h2 class="hp-reviews-content__title">{{ title }}</h2>
+                <p class="hp-reviews-content__text">{{ text }}</p>
+                <div class="hp-reviews-content__button-wrapper">
+                    <a href='{{ button_link }}' class="hp-reviews-content__button">
+                        <span class="hp-reviews-content__button-text">{{ button_text }}</span>
+                        <span class="hp-reviews-content__button-icon">
+                            <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.0746 0.39202C13.0793 0.727218 13.3369 5.41068 24 6.99991C13.7911 8.49867 
+                                    13.0746 13.6268 13.0746 13.6268V7.53723L0 6.99991L13.0746 6.4626V0.39202C13.0745 
+                                    0.379501 13.0746 0.373047 13.0746 0.373047V0.39202Z" fill="black"
+                                />
+                            </svg>
+                        </span>
+                    </a> 
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+    "name":"HP Reviews",
+    "class":"page-main has-sidebar-option",
+    "settings":[
+       {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Section background color"
+       },
+       {
+          "type":"image_picker",
+          "id":"content_image_mobile",
+          "label":"Image mobile"
+       },
+       {
+          "type":"image_picker",
+          "id":"content_image_desktop",
+          "label":"Image desktop"
+       },
+       {
+          "type":"text",
+          "id":"title",
+          "label":"Section title"
+       },
+       {
+          "type":"textarea",
+          "id":"text",
+          "label":"Section text"
+       },
+       {
+          "type":"text",
+          "id":"button_text",
+          "label":"Button text"
+       },
+       {
+          "type":"text",
+          "id":"button_link",
+          "label":"Button link"
+       },
+       {
+        "type": "select",
+        "id": "alignment_desktop_text_content",
+        "label": "Alignment Desktop Text Content",
+        "options": [
+          {
+            "value": "start",
+            "label": "Left"
+          },
+          {
+            "value": "end",
+            "label": "Right"
+          }
+        ],
+        "default": "end"
+      },
+       {
+        "type": "select",
+        "id": "alignment_mobile_text_content",
+        "label": "Alignment Mobile Text Content",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ],
+        "default": "top"
+      }
+    ],
+    "presets":[
+       {
+          "name":"HP Reviews",
+          "category":"Pages"
+       }
+    ]
+ }
+{% endschema %}
+  
+  
+  
+  

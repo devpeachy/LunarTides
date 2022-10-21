@@ -1,0 +1,48 @@
+{% liquid
+    assign bg_color                = section.settings.bg_color
+    assign image                   = section.settings.image
+    assign text                    = section.settings.text
+%}
+  
+<section class="goal-section" style="background-color: {{ bg_color }}">
+    <div class="container">
+        <div class="goal-content">
+            <div class="goal-image__wrapper">
+                <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+            </div>
+            <div class="goal-content__wrapper">
+                <p class="goal-content__text">{{ text }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+    "name":"Our Goal",
+    "class":"page-main has-sidebar-option",
+    "settings":[
+       {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Section background color"
+       },
+       {
+          "type":"image_picker",
+          "id":"image",
+          "label":"Image"
+       },
+       {
+          "type":"textarea",
+          "id":"text",
+          "label":"Section text"
+       }
+    ],
+    "presets":[
+       {
+          "name":"Our Goal",
+          "category":"Pages"
+       }
+    ]
+ }
+{% endschema %}

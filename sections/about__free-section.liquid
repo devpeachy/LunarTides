@@ -1,0 +1,83 @@
+{% liquid
+    assign bg_color                = section.settings.bg_color
+    assign text                    = section.settings.text
+%}
+
+<style>
+
+</style>
+  
+<section class="free-section" style="background-color: {{ bg_color }}">
+    <div class="container">
+        <div class="free-content">
+            <div class="free-titles-wrapper">
+                {% for block in section.blocks %}
+                    {% 
+                        assign title                = block.settings.title
+                    %}
+                    
+                    <h2 class="free-title-item">{{ title }}</h2>
+                    <svg width="64" height="80" viewBox="0 0 64 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M30.8147 0V80C31.2053 45.7388 38.4168 36.5179 63.9191 37.5724C42.5073 36.6754 32.0349 33.6479 30.8147 0ZM30.8146 2.42188V77.5734C30.4519 45.3887 23.7556 36.7266 0.0752068 37.7171C19.9573 36.8745 29.6816 34.0305 30.8146 2.42188Z" fill="url(#paint0_radial_828_27285)"/>
+                        <defs>
+                        <radialGradient id="paint0_radial_828_27285" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(32 40) rotate(90) scale(40 32)">
+                        <stop offset="0.257934" stop-color="white"/>
+                        <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                        </radialGradient>
+                        </defs>
+                    </svg>
+                {% endfor %}
+            </div>
+            <div class="free-svg-wrapper">
+                <svg class="free-svg-first" width="945" height="123" viewBox="0 0 945 123" fill="none" xmlns="http://www.w3.org/2000/svg"  style="width: 100%; height: auto;">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0V48C0 65.9493 14.5507 80.5 32.5 80.5H457.625C456.325 80.5885 454.975 80.6578 453.575 80.7171C477.256 79.7266 483.952 88.3887 484.315 120.573L484.315 80.5V123C484.68 90.9294 491.022 80.7994 512.749 80.5H514.804C515.653 80.5111 516.525 80.5354 517.419 80.5724C516.879 80.5498 516.346 80.5258 515.82 80.5H912.5C930.449 80.5 945 65.9493 945 48V0.5H944V48C944 65.397 929.897 79.5 912.5 79.5H505.577C494.645 77.5818 488.103 72.3513 485.5 56.2079V0H484.5V46.8019C484.424 45.5801 484.362 44.3134 484.315 43V79.5L484.315 45.4219C483.441 69.7855 477.464 77.0596 465.665 79.5H32.5C15.103 79.5 1 65.397 1 48V0H0Z" fill="white"/>
+                </svg>
+                <svg class="free-svg-second" width="70" height="144" viewBox="0 0 70 144" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 144H15C32.9493 144 47.5 129.449 47.5 111.5L47.5 84.4096C47.8138 86.7521 47.9505 89.4089 48.0413 92.3906C47.5411 75.7403 51.9146 71.032 68.1646 70.777H47.5V70.7763H69.3919C52.0935 70.5017 47.4379 65.4312 47.9703 47.4999C47.8845 50.3493 47.7603 52.9231 47.5 55.2295V32.5C47.5 14.5507 32.9492 0 15 0H0.29375L0.29375 1H15C32.397 1 46.5 15.103 46.5 32.5V60.4743C45.0395 65.358 42.0821 68.4505 35.8719 69.8965H0.29375L0.29375 70.8965H32.0061C40.8424 71.6488 44.7261 74.553 46.5 79.8408L46.5 111.5C46.5 128.897 32.397 143 15 143H0L0 144Z" fill="white"/>
+                </svg>
+                <h1 class="free-title-item">{{ text }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+    "name":"Free",
+    "settings":[
+       {
+          "type":"color",
+          "id":"bg_color",
+          "label":"Section background color"
+       },
+       {
+            "type":"text",
+            "id":"text",
+            "label":"Title text"
+        }
+    ],
+    "blocks": [
+        {
+          "type": "title",
+          "name": "Title",
+          "settings": [
+            {
+                "type":"text",
+                "id":"title",
+                "label":"Title"
+            }
+          ]
+        }
+      ],
+    "presets":[
+       {
+          "name":"Free",
+          "category":"Pages"
+       }
+    ]
+ }
+{% endschema %}
+  
+  
+  
+  
