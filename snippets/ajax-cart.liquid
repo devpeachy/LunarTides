@@ -5,7 +5,11 @@
     {% if settings.cart_action == 'mini_cart' %}
       <div class="card has-shadow">
         <div class="ajax-cart__close-icon" data-ajax-cart-close>
-          {% include settings.icon, name: 'x' %}
+            <div class="icon">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41L12.59 0Z" fill="#BABABA"/>
+                </svg>
+            </div>
         </div>
         <div id="ajax-cart__content" data-ajax-cart-content></div>
       </div>
