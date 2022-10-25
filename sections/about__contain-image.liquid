@@ -1,0 +1,44 @@
+{% liquid
+    assign desktop_image               = section.settings.desktop_image
+    assign mobile_image                = section.settings.mobile_image
+%}
+  
+<section class="contain-image__section">
+    <div class="container">
+        <div class="contain-image__content">
+            <picture>
+                <source srcset="{{ desktop_image | img_url: 'master' }}" media="(min-width: 600px)">
+                <source srcset="{{ mobile_image | img_url: 'master' }}" media="(max-width: 600px)">
+                <img src="{{ desktop_image | img_url: 'master' }}" alt="{{ image.alt }}" class="contain-image">
+            </picture>
+        </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+    "name":"Contain Image",
+    "settings":[
+        {
+            "type":"image_picker",
+            "id":"desktop_image",
+            "label":"Desktop Image"
+        },
+        {
+            "type":"image_picker",
+            "id":"mobile_image",
+            "label":"Mobile Image"
+        }
+    ],
+    "presets":[
+       {
+          "name":"Contain Image",
+          "category":"Pages"
+       }
+    ]
+ }
+{% endschema %}
+  
+  
+  
+  
