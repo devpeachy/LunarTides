@@ -69,19 +69,13 @@
             <div class="hp-reviews-content__wrapper">
                 <h2 class="hp-reviews-content__title">{{ title }}</h2>
                 <p class="hp-reviews-content__text">{{ text }}</p>
-                <div class="hp-reviews-content__button-wrapper">
-                    <a href='{{ button_link }}' class="hp-reviews-content__button">
-                        <span class="hp-reviews-content__button-text">{{ button_text }}</span>
-                        <span class="hp-reviews-content__button-icon">
-                            <svg width="24" height="14" viewBox="0 0 24 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.0746 0.39202C13.0793 0.727218 13.3369 5.41068 24 6.99991C13.7911 8.49867 
-                                    13.0746 13.6268 13.0746 13.6268V7.53723L0 6.99991L13.0746 6.4626V0.39202C13.0745 
-                                    0.379501 13.0746 0.373047 13.0746 0.373047V0.39202Z" fill="black"
-                                />
-                            </svg>
-                        </span>
-                    </a> 
-                </div> 
+                <a href="{{ button_link }}" class="btn-d-2 content-block__btn">
+                    <span class="btn-text">{{ button_text }}</span>
+
+                    <span class="decor-arr">
+                    {% render 'custom-arrow' %}
+                </span>
+                </a>
             </div>
         </div>
     </div>
