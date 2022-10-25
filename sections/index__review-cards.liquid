@@ -35,15 +35,219 @@
                 {% for block in cards %}
                     {% liquid
                         assign img = block.settings.img
+                        assign card_product = block.settings.card_product
+                        assign card_rating = block.settings.card_rating
+                        assign card_title = block.settings.card_title
+                        assign card_subtitle = block.settings.card_subtitle
                     %}
+
                     <div class="card-item">
-                        <img src="{{ img | img_url: 'master' }}" alt="{{ img.alt | escape }}">
+                        <div class="card-item__inner">
+                            <img src="{{ img | img_url: 'master' }}" class="card-item__img" alt="{{ img.alt | escape }}">
+
+                            <div class="card-item__content">
+                                <div class="top-side">
+                                    <div class="star-rating">
+                                        {% for star in (1..card_rating) %}
+                                            {% render 'review-card-star' %}
+                                        {% endfor %}
+                                    </div>
+
+                                    {% if card_title != blank %}
+                                        <div class="title">{{ card_title | truncate: 75 }}</div>
+                                    {% endif %}
+
+                                    {% if card_subtitle != blank %}
+                                    <div class="subtitle">{{ card_subtitle | truncate: 265 }}</div>
+                                    {% endif %}
+                                </div>
+
+                                {% if card_product != blank %}
+                                <div class="bottom-side">
+                                    <div class="product-info">
+                                        <a href="{{ card_product.url | within: collection }}" class="product-info__title">{{ card_product.title }}</a>
+
+                                        <div class="product-info__price">
+                                            {% if card_product.available %}
+                                                <span class="capture">from</span>
+                                                <span class="money">{{ card_product.price_min | money }}</span>
+                                            {% else %}
+                                                <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="product-img">
+                                        <img src="{{ card_product.featured_media.preview_image | img_url: 'master' }}" alt="{{ card_product.title }}">
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
+            </div>
+
+            <div class="cards-block__inner-mob">
+                <div class="review-cards-slider swiper">
+                    <div class="swiper-wrapper review-cards-slider__wrapper">
+                        {% for block in cards %}
+                            {% liquid
+                                assign img = block.settings.img
+                                assign card_product = block.settings.card_product
+                                assign card_rating = block.settings.card_rating
+                                assign card_title = block.settings.card_title
+                                assign card_subtitle = block.settings.card_subtitle
+                            %}
+
+                            <div class="swiper-slide card-item">
+                                <div class="card-item__inner">
+                                    <img src="{{ img | img_url: 'master' }}" class="card-item__img" alt="{{ img.alt | escape }}">
+
+                                    <div class="card-item__content card-item__content-mob">
+                                        <div class="close-content-trigger">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.00008 6L10.9498 10.9497M6.00008 6L10.9498 1.05025M6.00008 6L1.05033 1.05025M6.00008 6L1.05033 10.9497" stroke="black"/>
+                                            </svg>
+                                        </div>
+
+                                        <div class="top-side">
+                                            <div class="star-rating">
+                                                {% for star in (1..card_rating) %}
+                                                    {% render 'review-card-star' %}
+                                                {% endfor %}
+                                            </div>
+
+                                            {% if card_title != blank %}
+                                                <div class="title">{{ card_title | truncate: 75 }}</div>
+                                            {% endif %}
+
+                                            {% if card_subtitle != blank %}
+                                                <div class="subtitle">{{ card_subtitle | truncate: 265 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        {% if card_product != blank %}
+                                            <div class="bottom-side">
+                                                <div class="product-info">
+                                                    <a href="{{ card_product.url | within: collection }}" class="product-info__title">{{ card_product.title }}</a>
+
+                                                    <div class="product-info__price">
+                                                        {% if card_product.available %}
+                                                            <span class="capture">from</span>
+                                                            <span class="money">{{ card_product.price_min | money }}</span>
+                                                        {% else %}
+                                                            <span class="sold-out">{{ 'products.product.sold_out' | t }}</span>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+
+                                                <div class="product-img">
+                                                    <img src="{{ card_product.featured_media.preview_image | img_url: 'master' }}" alt="{{ card_product.title }}">
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+
+                                    <div class="card-item__content-preview">
+                                        <div class="top-side">
+                                            <div class="star-rating">
+                                                {% for star in (1..card_rating) %}
+                                                    {% render 'review-card-star' %}
+                                                {% endfor %}
+                                            </div>
+
+                                            {% if card_title != blank %}
+                                                <div class="title">{{ card_title | truncate: 75 }}</div>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="decor-arrow">
+                                            {% render 'custom-arrow-black-rotate' %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="swiper-pagination review-cards-slider-dots-pag"></div>
+                    <div class="swiper-pagination review-cards-slider-progress-pag"></div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        var reviewCardsSlider = new Swiper(".review-cards-slider", {
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            centeredSlides: true,
+            autoHeight: true,
+            pagination: {
+                el: ".review-cards-slider-dots-pag",
+                clickable: true,
+            },
+            breakpoints: {
+                500: {
+                    centeredSlides: false,
+                    slidesPerView: 1.6,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".review-cards-slider-dots-pag",
+                        clickable: true,
+                    },
+                },
+                600: {
+                    centeredSlides: false,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".review-cards-slider-dots-pag",
+                        clickable: true,
+                    },
+                },
+                700: {
+                    centeredSlides: false,
+                    slidesPerView: 2.2,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".review-cards-slider-progress-pag",
+                        type: "progressbar",
+                    },
+                },
+                1023: {
+                    centeredSlides: false,
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                    pagination: {
+                        el: ".review-cards-slider-progress-pag",
+                        type: "progressbar",
+                    },
+                }
+            }
+        });
+
+        const cardPreviews = document.querySelectorAll('.card-item__content-preview');
+        const cardContentsClose = document.querySelectorAll('.card-item__content-mob .close-content-trigger');
+
+        cardPreviews.forEach(item => {
+            item.addEventListener('click', function () {
+                item.previousElementSibling.classList.add('content-show');
+                item.classList.add('preview-hide')
+            })
+        })
+
+        cardContentsClose.forEach(item => {
+            item.addEventListener('click', function () {
+                let cardContent = item.parentNode
+                cardContent.nextElementSibling.classList.remove('preview-hide');
+                cardContent.classList.remove('content-show')
+            })
+        })
+    })
+</script>
 
 {% schema %}
 {
@@ -86,6 +290,29 @@
                     "type": "image_picker",
                     "id": "img",
                     "label": "Image"
+                },
+                {
+                    "type": "product",
+                    "id": "card_product",
+                    "label": "Product"
+                },
+                {
+                    "type": "number",
+                    "id": "card_rating",
+                    "label": "Number of star",
+                    "default": 5
+                },
+                {
+                    "type": "text",
+                    "id": "card_title",
+                    "label": "Title",
+                    "info": "Max number of character is 70"
+                },
+                {
+                    "type": "textarea",
+                    "id": "card_subtitle",
+                    "label": "Text",
+                    "info": "Max number of character is 260"
                 }
             ]
         }
