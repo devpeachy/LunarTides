@@ -1038,11 +1038,24 @@ body.collection .header .header__brand img {
 
 /*PRODUCT-DETAIL PAGE START*/
 #template-product {
-    padding-top: 48px;
+    padding-top: 0;
+}
+
+@media (min-width: 600px) {
+    #template-product {
+        padding-top: 48px;
+    }
 }
 
 body.product {
    	position: static !important;
+    overflow: hidden;
+}
+
+@media (min-width: 900px) {
+    body.product {
+        overflow: unset;
+    }
 }
 
 .product_section .product__information.has-product-sticker {

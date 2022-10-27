@@ -1,0 +1,211 @@
+{% comment %}Assign object as block or section{% endcomment %}
+{% if type == 'block' %}
+  {% assign object = block %}
+{% else %}
+  {% assign object = section %}
+{% endif %}
+
+
+{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+
+<div class="product-gallery-grid" data-video-loop="{{ object.settings.video_looping }}">
+  <div class="product-gallery-grid__main" data-product-id="{{ product.id }}" data-media-count="{{ product.media.size }}">
+
+    {% for media in product.media %}
+
+      {% comment %} Check alt text for video iframe {% endcomment %}
+      <div class="product-gallery-grid__image "
+            data-product-id="{{ product.id }}"
+            data-title="{% if image_alt contains 'youtube' or image_alt contains 'vimeo' %}{{ product.title }}{% else %}{{ image_alt | escape }}{% endif %}"
+            data-image-height="{{ original_image_height | strip }}"
+            data-image-width="{{ original_image_width | strip }}"
+            data-media-type="{{ media.media_type }}">
+
+        {% case media.media_type %}
+          {% when 'image' %}
+
+            {% capture image_id %}{{ media.id }}{% endcapture %}
+            {% capture image_alt %}{{ media.alt | escape }}{% endcapture %}
+            {% capture image_100x %}{{ media | img_url: '100x' }}{% endcapture %}
+            {% capture image_200x %}{{ media | img_url: '200x' }}{% endcapture %}
+            {% capture image_400x %}{{ media | img_url: '400x' }}{% endcapture %}
+            {% capture image_600x %}{{ media | img_url: '600x' }}{% endcapture %}
+            {% capture image_800x %}{{ media | img_url: '800x' }}{% endcapture %}
+            {% capture image_1200x %}{{ media | img_url: '1200x' }}{% endcapture %}
+            {% capture image_2000x %}{{ media | img_url: '2000x' }}{% endcapture %}
+            {% capture image_5000x %}{{ media | img_url: '5000x' }}{% endcapture %}
+
+            {% if image_alt contains 'youtube' or image_alt contains 'vimeo' %}
+
+              {% assign alt_text = image_alt | split: ' ' %}
+              {% for property in alt_text %}
+                {% if property contains "src" %}
+                  {% assign cleanURL =  property | remove: 'src=' | remove: '&quot;' | remove: '"' %}
+                  <div class="product-gallery__video" data-youtube-video>
+                    <iframe src="{{ cleanURL }}" frameborder="0"></iframe>
+                  </div>
+                {% endif %}
+              {% endfor %}
+
+            {% else %}
+              {% if object.settings.enable_product_lightbox and product.media.size > 0 %}
+                <a href="{{ media | img_url: '2048x' }}" class="product-gallery__link" data-fancybox="{{ product.id }}" title="{{ media.alt | escape }}">
+              {% endif %}
+
+              <div class="image__container" style="max-width: {{ media.width }}px">
+                <img id="{{ media.id }}"
+                class="lazyload lazyload--fade-in"
+                src="{{ media | img_url: '50x' }}"
+                alt="{{ media.alt | escape }}"
+                data-image-id="{{ product.media[forloop.index0].id }}"
+                data-index="{{ forloop.index0 }}"
+                data-sizes="auto"
+                data-src="{{ image_2000x }}"
+                srcset=" {{ image_200x }} 200w,
+                        {{ image_400x }} 400w,
+                        {{ image_600x }} 600w,
+                        {{ image_800x }} 800w,
+                        {{ image_1200x }} 1200w,
+                        {{ image_2000x }} 2000w"
+                >
+              </div>
+
+              <noscript>
+                <img  src="{{ image_1200x }}"
+                      alt="{{ image_alt | escape }}"
+                      class="lazyloaded lazyload fallbackImage" />
+              </noscript>
+
+              {% if object.settings.enable_product_lightbox and product.media.size > 0 %}
+                </a>
+              {% endif %}
+            {% endif %}
+          {% when 'external_video' %}
+            <div class="product-gallery__video" data-youtube-video>
+              {{ media | external_video_tag }}
+            </div>
+          {% when 'video' %}
+            <div class="product-gallery__video" data-html5-video>
+              {{ media | video_tag: image_size: '300x300', controls: true }}
+            </div>
+          {% when 'model' %}
+            <div class="product-gallery__model is-relative">
+              {{ media | model_viewer_tag: reveal: 'interaction', toggleable: true, image_size: '800x800' }}
+            </div>
+          {% else %}
+            {{ media | media_tag }}
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="product-gallery-slider">
+    <div class="pdp-gallery-slider swiper">
+        <div class="swiper-wrapper pdp-gallery-slider__wrapper">
+            {% for media in product.media %}
+                <div class="product-gallery-grid__image swiper-slide"
+                     data-product-id="{{ product.id }}"
+                     data-media-id="{{ media.id }}"
+                     data-title="{% if image_alt contains 'youtube' or image_alt contains 'vimeo' %}{{ product.title }}{% else %}{{ image_alt | escape }}{% endif %}"
+                     data-image-height="{{ original_image_height | strip }}"
+                     data-image-width="{{ original_image_width | strip }}"
+                     data-media-type="{{ media.media_type }}">
+
+                    {% case media.media_type %}
+                        {% when 'image' %}
+
+                            {% capture image_id %}{{ media.id }}{% endcapture %}
+                            {% capture image_alt %}{{ media.alt | escape }}{% endcapture %}
+                            {% capture image_100x %}{{ media | img_url: '100x' }}{% endcapture %}
+                            {% capture image_200x %}{{ media | img_url: '200x' }}{% endcapture %}
+                            {% capture image_400x %}{{ media | img_url: '400x' }}{% endcapture %}
+                            {% capture image_600x %}{{ media | img_url: '600x' }}{% endcapture %}
+                            {% capture image_800x %}{{ media | img_url: '800x' }}{% endcapture %}
+                            {% capture image_1200x %}{{ media | img_url: '1200x' }}{% endcapture %}
+                            {% capture image_2000x %}{{ media | img_url: '2000x' }}{% endcapture %}
+                            {% capture image_5000x %}{{ media | img_url: '5000x' }}{% endcapture %}
+
+                            {% if image_alt contains 'youtube' or image_alt contains 'vimeo' %}
+
+                                {% assign alt_text = image_alt | split: ' ' %}
+                                {% for property in alt_text %}
+                                    {% if property contains "src" %}
+                                        {% assign cleanURL =  property | remove: 'src=' | remove: '&quot;' | remove: '"' %}
+                                        <div class="product-gallery__video" data-youtube-video>
+                                            <iframe src="{{ cleanURL }}" frameborder="0"></iframe>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            {% else %}
+                                {% if object.settings.enable_product_lightbox and product.media.size > 0 %}
+                                    <a href="{{ media | img_url: '2048x' }}" class="product-gallery__link" data-fancybox="{{ product.id }}" title="{{ media.alt | escape }}">
+                                {% endif %}
+
+                                <div class="image__container" style="max-width: {{ media.width }}px">
+                                    <img id="{{ media.id }}"
+                                         class="lazyload lazyload--fade-in"
+                                         src="{{ media | img_url: '50x' }}"
+                                         alt="{{ media.alt | escape }}"
+                                         data-image-id="{{ product.media[forloop.index0].id }}"
+                                         data-index="{{ forloop.index0 }}"
+                                         data-sizes="auto"
+                                         data-src="{{ image_2000x }}"
+                                         srcset=" {{ image_200x }} 200w,
+                        {{ image_400x }} 400w,
+                        {{ image_600x }} 600w,
+                        {{ image_800x }} 800w,
+                        {{ image_1200x }} 1200w,
+                        {{ image_2000x }} 2000w"
+                                    >
+                                </div>
+
+                                <noscript>
+                                    <img  src="{{ image_1200x }}"
+                                          alt="{{ image_alt | escape }}"
+                                          class="lazyloaded lazyload fallbackImage" />
+                                </noscript>
+
+                                {% if object.settings.enable_product_lightbox and product.media.size > 0 %}
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% when 'external_video' %}
+                            <div class="product-gallery__video" data-youtube-video>
+                                {{ media | external_video_tag }}
+                            </div>
+                        {% when 'video' %}
+                            <div class="product-gallery__video" data-html5-video>
+                                {{ media | video_tag: image_size: '300x300', controls: true }}
+                            </div>
+                        {% when 'model' %}
+                            <div class="product-gallery__model is-relative">
+                                {{ media | model_viewer_tag: reveal: 'interaction', toggleable: true, image_size: '800x800' }}
+                            </div>
+                        {% else %}
+                            {{ media | media_tag }}
+                    {% endcase %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination pdp-gallery-slider-dots-pag"></div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (document.querySelector('.pdp-gallery-slider')) {
+            window.pdpGalleryMobSlider = new Swiper(".pdp-gallery-slider", {
+                slidesPerView: 1,
+                spaceBetween: 16,
+                centeredSlides: true,
+                autoHeight: true,
+                pagination: {
+                    el: ".pdp-gallery-slider-dots-pag",
+                    clickable: true,
+                }
+            });
+        }
+    })
+</script>
