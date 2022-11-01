@@ -369,11 +369,15 @@ Shopify.theme.jsAjaxCart = {
         $('.ajax-cart__form').removeClass('is-hidden');
         $('[data-ajax-cart-trigger]').addClass('has-cart-count');
         $('[data-bind="itemCount"]').text(options.item_count);
+        $('.cart__empty-cart-message').hide();
+        $('.cart__heading-wrapper').removeClass('cart__heading-wrapper_empty');
       } else {
         $('.ajax-cart__empty-cart-message').removeClass('is-hidden');
         $('.ajax-cart__form').addClass('is-hidden');
         $('[data-ajax-cart-trigger]').removeClass('has-cart-count');
         $('[data-bind="itemCount"]').text('0');
+        $('.cart__empty-cart-message').show();
+        $('.cart__heading-wrapper').addClass('cart__heading-wrapper_empty');
       }
 
       jQuery.getJSON('/cart.js', function(cart) {
