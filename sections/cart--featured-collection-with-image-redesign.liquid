@@ -1,0 +1,341 @@
+{% comment %}
+  Snippet can be used in section
+  eg. {% include 'include-featured-collection' %}
+{% endcomment %}
+
+{% comment %}Assign object as block or section{% endcomment %}
+{% if type == 'block' %}
+  {% assign object = block %}
+{% else %}
+  {% assign object = section %}
+{% endif %}
+
+{% comment %}Logic and variables{% endcomment %}
+{% assign id = object.id %}
+{% assign limit = object.settings.products_limit %}
+{% assign col = object.settings.collection %}
+{% assign products = collections[col].products %}
+{% assign products_per_row  = object.settings.products_per %}
+{% assign align_height = object.settings.align_height %}
+{% assign height = object.settings.collection_height %}
+{% assign width = object.settings.width %}
+{% assign show_gutter = object.settings.show_gutter %}
+{% assign animation = object.settings.animation | default: 'none' %}
+{% comment %}Advanced{% endcomment %}
+{% assign css_class = object.settings.css_class %}
+{% assign custom_css = object.settings.custom_css %}
+
+{% comment %} Assign product length to be selected limit for onboarding {% endcomment %}
+{% if col != blank and products != blank %}
+  {%- assign section_onboarding = false -%}
+{% else %}
+  {%- assign section_onboarding = true -%}
+{% endif %}
+
+{% comment %} Check to see if enough products available to create slide {% endcomment %}
+{% if object.settings.collection_style == 'slider' %}
+  {% if object.settings.products_limit > products_per_row and collections[col].all_products_count > products_per_row %}
+    {% assign layout = 'slider' %}
+  {% else %}
+    {% assign layout = 'grid' %}
+  {% endif %}
+{% else %}
+  {% assign layout = 'grid' %}
+{% endif %}
+
+{% comment %} Section specific CSS {% endcomment %}
+{% style %}
+  #shopify-section-{{ id }} {
+    {% if width == 'wide' %}
+      width: 100%;
+    {% endif %}
+  }
+  {% include 'css-loop', css: custom_css, id: id %}
+{% endstyle %}
+
+{% comment %} HTML markup {% endcomment %}
+<section class="section
+                {{ css_class }}
+                is-width-{{ width }}
+                {% if show_gutter == false %}
+                  has-no-side-gutter
+                  has-background
+                {% else %}
+                  has-gutter-enabled
+                {% endif %}
+                featured-collection-redesign-with-image-section
+                "
+                {% if animation != "none" %}
+                  data-scroll-class="{{ animation }}"
+                {% endif %}>
+  <div class="featured-collection-redesign__container">
+    {% if object.settings.title != blank %}
+    <div class="section-header">
+      {% include 'heading', title: object.settings.title, heading_tag: 'h2', context: 'featured-collection', text_alignment: 'center', url: collections[col].url %}
+      {% if section.settings.sub_heading != blank %}
+        <p>{{ section.settings.sub_heading }}</p>  
+      {% endif %}
+    </div>
+    {% endif %}
+  
+    <div class="container has-column-padding-bottom featured-collection featured-collection-redesign-with-image layout--{{ layout }} masonry--{{ object.settings.enable_masonry_layout }} is-justify-center
+    {% if section.settings.pos_block == 'col_left' %}
+      featured-collection-reverse
+    {% endif %}
+    ">
+      
+      <div class="image-column product-feature-column">
+        {% assign product = all_products[section.settings.product] %}
+
+        {% include 'product-card--featured', product: product %}
+
+      </div>
+  
+      <div class="products-column product-column-redesign
+      ">
+        {% if section_onboarding == false %}
+          {% comment %} Loop through products {% endcomment %}
+          {% if layout == 'slider' %}
+            {% if collections[col].all_products_count > 0 %}
+              {% include 'product-slider-redesign', show_gutter: show_gutter %}
+            {% endif %}
+          {% else %}
+            {% if collections[col].all_products_count > 0 %}
+              {% include 'product-loop-redesign', align_height: align_height, height: height %}
+            {% endif %}
+          {% endif %}
+        {% else %}
+          {% comment %} Placeholder images {% endcomment %}
+          {% for i in (1..10) %} <!--@TODO make sure the section onboarding also shows slider styles -->
+            <div class="collection__item
+                one-fifth
+                medium-down--one-half
+                thumbnail column">
+              {% capture num %}{% cycle "1", "2", "3", "4", "5", "6" %}{% endcapture %}
+              {{ 'product-' | append: num | placeholder_svg_tag: 'placeholder-svg placeholder-svg--product' }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      
+    </div>
+
+  </div>
+</section>
+
+{% comment %} JavaScript {% endcomment %}
+<script
+  type="application/json"
+  data-section-id="{{ object.id }}"
+  data-section-data
+>
+  {
+    "enable_masonry_layout": {{ object.settings.enable_masonry_layout | json }},
+    "collection_style": {{ layout | json }},
+    "products_per": {{ object.settings.products_per_row | json}},
+    "products_available": {{ collections[col].all_products_count | json }},
+    "products_limit": {{ object.settings.products_limit | json }},
+    "align_height": {{ object.settings.align_height | json }}
+  }
+</script>
+<script data-theme-editor-load-script src="{{ 'z__jsFeaturedCollection.js' | asset_url }}"></script>
+
+
+{% schema %}
+{
+  "name": "Collection Redesign",
+  "class": "featured-collection-section jsFeaturedCollection",
+  "settings": [
+	  {
+      "type": "product",
+      "id": "product",
+      "label": "Featured product"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "textarea",
+      "id": "sub_heading",
+      "label": "Sub Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "select",
+      "id": "pos_block",
+      "label": "Position of collection",
+      "options": [
+          {
+            "value": "col_left",
+            "label": "Product right, collection left"
+          },
+          {
+            "value": "col_right",
+            "label": "Product left, collection right"
+          }
+      ],
+      "default": "col_right"
+    },
+    {
+      "type": "header",
+      "content": "Product"
+    },
+    {
+      "type": "range",
+      "id": "products_per",
+      "label": "Products per row",
+      "min": 2,
+      "max": 7,
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "mobile_products_per_row",
+      "label": "Products per row on mobile",
+      "info": "Applied only when 'Collection layout' is set to 'Grid'.",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ],
+      "default": "1"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Limit products",
+      "min": 3,
+      "max": 50,
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "align_height",
+      "label": "Align to height"
+    },
+    {
+      "type": "range",
+      "id": "collection_height",
+      "label": "Product image height",
+      "min": 150,
+      "max": 400,
+      "step": 10,
+      "default": 200,
+      "unit": "px",
+      "info": "Applied when 'Align to height' is enabled. [Learn more](https://help.outofthesandbox.com/hc/en-us/articles/360022543913)"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "radio",
+      "id": "collection_style",
+      "label": "Collection layout",
+      "default": "grid",
+      "options": [
+        {
+          "value": "slider",
+          "label": "Slider"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ],
+      "default": "grid"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "Width",
+      "default": "wide",
+      "options": [
+        {
+          "value": "standard",
+          "label": "Standard"
+        },
+        {
+          "value": "wide",
+          "label": "Wide"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gutter",
+      "label": "Show gutter",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "animation",
+      "label": "Animation",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "fadeIn",
+          "label": "Fade in"
+        },
+        {
+          "value": "fadeInDown",
+          "label": "Fade in down"
+        },
+        {
+          "value": "fadeInLeft",
+          "label": "Fade in left"
+        },
+        {
+          "value": "fadeInRight",
+          "label": "Fade in right"
+        },
+        {
+          "value": "slideInLeft",
+          "label": "Slide in left"
+        },
+        {
+          "value": "slideInRight",
+          "label": "Slide in right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Advanced"
+    },
+    {
+      "type": "text",
+      "id": "css_class",
+      "label": "CSS Class"
+    },
+    {
+      "type": "textarea",
+      "id": "custom_css",
+      "label": "Custom CSS"
+    }
+  ],
+  "presets": [{
+    "name": "Collection Redesign",
+    "category": "Collection",
+    "settings": {
+
+    }
+  }]
+}
+{% endschema %}
