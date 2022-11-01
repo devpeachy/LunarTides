@@ -91,9 +91,9 @@ Shopify.theme.jsCart = {
         } else {
           $('.cart__total-savings').replaceWith(savings);
         }
-
         $('[data-bind="itemCount"]').text(cart.item_count);
-        
+        $('.cart__heading-wrapper').removeClass('cart__heading-wrapper_empty')
+
         /* Update shipping indicator asynchronously js */
         var amount_for_fs = $('.spend-shipping').attr('data-amt');
         var total_price = cart.total_price;
@@ -116,6 +116,7 @@ Shopify.theme.jsCart = {
       $('.cart__empty-cart-message').removeClass('is-hidden');
       $('.cart__form').addClass('is-hidden');
       $('[data-ajax-cart-trigger]').removeClass('has-cart-count');
+      $('.cart__heading-wrapper').addClass('cart__heading-wrapper_empty')
       $('[data-bind="itemCount"]').text('0');
     }
 
