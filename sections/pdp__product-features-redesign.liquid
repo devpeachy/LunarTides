@@ -1,0 +1,120 @@
+{% liquid
+    assign bg_color                           = section.settings.bg_color
+    assign bg_image_desktop                   = section.settings.bg_image_desktop
+    assign bg_image_mobile                    = section.settings.bg_image_mobile
+    assign title                              = section.settings.title
+%}
+
+<style>
+
+@media (max-width: 767px) {
+    .product-features__content {
+        background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+@media (min-width: 767px) {
+    .product-features__content {
+        background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
+</style>
+  
+<section class="pdp_product-features-redesign" style="background-color: {{ bg_color }}">
+    <div class="container">
+      <div class="product-features__content">
+         <div class="product-features__title-wrapper">
+            <h2 class="product-features__title">
+               {% comment %} <span class="product-features__title-top"></span>
+               <span class="product-features__title-bottom"></span> {% endcomment %}
+               {{ title }}
+            </h2>
+         </div>
+         <ul class="product-features__list">        
+            {% for block in section.blocks %}
+               {% liquid
+                  assign image         = block.settings.image 
+                  assign item_title    = block.settings.item_title
+                  assign text          = block.settings.text
+               %}
+
+               <li class="product-features__item">
+                  <div class="product-features__item-image-wrapper">
+                     <img src="{{ image | img_url: 'master' }}" alt="">
+                  </div>
+                  <h3 class="product-features__item-title">{{ item_title }}</h3>
+                  <p class="product-features__item-text">{{ text }}</p>
+               </li>
+            {% endfor %}
+         </ul>
+      </div>
+    </div>
+</section>
+  
+{% schema %}
+{
+   "name": "Product Features Redesign",
+   "settings": [
+     {
+       "type": "color",
+       "id": "bg_color",
+       "label": "Section background color"
+     },
+     {
+       "type": "image_picker",
+       "id": "bg_image_desktop",
+       "label": "Desktop background image"
+     },
+     {
+       "type": "image_picker",
+       "id": "bg_image_mobile",
+       "label": "Mobile background image"
+     },
+     {
+       "type": "textarea",
+       "id": "title",
+       "label": "Section title"
+     }
+   ],
+   "blocks": [ 
+      {
+         "type": "block",
+         "name": "block",
+         "settings": [
+            {
+              "type": "image_picker",
+              "id": "image",
+              "label": "Image"
+            },
+            {
+              "type": "text",
+              "id": "item_title",
+              "label": "Title"
+            },
+            {
+              "type": "textarea",
+              "id": "text",
+              "label": "Text"
+            }
+         ]
+      }
+   ],
+   "presets": [
+     {
+       "name": "pdp Product Features Redesign",
+       "category": "Pages"
+     }
+   ]
+ }
+{% endschema %}
+  
+  
+  
+  

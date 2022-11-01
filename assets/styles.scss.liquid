@@ -4595,7 +4595,7 @@ $drop-down-menu-active-color: {{ settings.dropdown_link_color }} !default;
 #theme-ajax-cart.is-mini-cart {
   position: absolute;
   top: 100%;
-  width: 420px;
+  width: 425px;
   right: 0;
   visibility: hidden;
   opacity: 0;
@@ -4628,7 +4628,7 @@ $drop-down-menu-active-color: {{ settings.dropdown_link_color }} !default;
 }
 
 .ajax-cart--mini-cart .ajax-cart__close-icon {
-  display: none;
+  {% comment %}display: none;{% endcomment %}
 }
 
 // When touch events are enabled (tablet/mobile/touchscreens) on smaller screens, show close icon
@@ -6034,6 +6034,8 @@ $textarea-with-secondary-btn-style: {{ settings.button_secondary_border_radius |
 }
 
 .contact-form__form-errors {
+  color: #fff;
+  
   .form__error {
     margin-bottom: 15px;
     background: $yellow;
