@@ -2829,6 +2829,26 @@
           "id": "coll_bg_color",
           "label": "Background color",
           "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Cart page"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "cart_bg_img_mob",
+          "label": "Background image (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "cart_bg_color",
+          "label": "Background color",
+          "default": "#000000"
         }
       ]
     }

@@ -88,4 +88,25 @@
             }
         {% endif %}
     {% endif %}
+
+    {% if template contains 'cart' %}
+        body {
+            background-position: top center !important;
+        }
+
+        {% if settings.cart_bg_img != blank and settings.cart_bg_img_mob != blank %}
+            body {
+                background-image: url("{{ settings.cart_bg_img_mob | img_url: 'master' }}");
+            }
+            @media (min-width: 600px) {
+                body {
+                    background-image: url("{{ settings.cart_bg_img | img_url: 'master' }}");
+                }
+            }
+        {% elsif settings.cart_bg_color != blank %}
+            body {
+                background-color: {{ settings.cart_bg_color }};
+            }
+        {% endif %}
+    {% endif %}
 </style>

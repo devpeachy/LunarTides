@@ -1,0 +1,164 @@
+{% comment %}
+<div class="product-recommendations" data-product-id="{{ product.id }}" data-limit="15">
+  {%- if recommendations.products_count > 0 -%}
+    <h2>You may also like</h2>
+    <ul>
+      {%- for product in recommendations.products -%}
+        <li class="product">
+          <a href="{{ product.url }}">
+            <img class="product__img" src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.featured_image.alt }}" />
+            <p class="product__title">{{ product.title }}</p>
+            <p class="product__price">{{ product.price | money}}</p>
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</div>
+{% endcomment %}
+
+
+{% assign btn_link = section.settings.btn_link %}
+{% assign btn_text = section.settings.btn_text %}
+
+
+<section class="featured-collection-redesign-without-image" data-product-id="{{ product.id }}" data-limit="15">
+    {%- if recommendations.products_count > 0 -%}
+    <div class="featured-collection-redesign__container">
+        {% if section.settings.title != blank %}
+            <div class="heading-wrapper">
+                <h2 class="heading-title">{{ section.settings.title }}</h2>
+                {% if btn_link != blank %}
+                    <div class="heading_click-to-shop">
+                        <a class="heading-btn" href="{{ btn_link }}">{{ btn_text }}</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="container featured-collection-wrapper-redesign has-column-padding-bottom featured-collection layout--{{ layout }} masonry--{{ object.settings.enable_masonry_layout }} is-justify-center">
+            <div class="product-slider swiper">
+                <div class="swiper-wrapper">
+                    {%- for product in recommendations.products -%}
+                        <div class="swiper-slide">
+                            {% include 'product-thumbnail-redesign' %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination dots-pagination"></div>
+                <div class="swiper-pagination progress-pagination"></div>
+            </div>
+        </div>
+    </div>
+    {%- endif -%}
+</section>
+
+<script>
+    const initRecommendedProductsSlider = function () {
+        var recommendedProductsSlider = new Swiper(".product-slider", {
+            slidesPerView: 1.1,
+            spaceBetween: 10,
+            centeredSlides: true,
+            autoHeight: true,
+            pagination: {
+                el: ".dots-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                767: {
+                    centeredSlides: false,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                },
+                1023: {
+                    centeredSlides: false,
+                    slidesPerView: 3,
+                    spaceBetween: 24,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                },
+                1365: {
+                    centeredSlides: false,
+                    slidesPerView: 4,
+                    spaceBetween: 32,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                }
+            }
+        });
+    }
+
+    var loadProductRecommendationsIntoSection = function() {
+// Look for an element with class 'product-recommendations'
+        var productRecommendationsSection = document.querySelector(".featured-collection-redesign-without-image");
+        if (productRecommendationsSection === null) { return; }
+// Read product id from data attribute
+        var productId = productRecommendationsSection.dataset.productId;
+// Read limit from data attribute
+        var limit = productRecommendationsSection.dataset.limit;
+// Build request URL
+        var requestUrl = "/recommendations/products?section_id=pdp__recommended-product-redesign&limit=" + limit + "&product_id=" + productId;
+// Create request and submit it using Ajax
+        var request = new XMLHttpRequest();
+        request.open("GET", requestUrl);
+        request.onload = function() {
+            if (request.status >= 200 && request.status < 300) {
+                var container = document.createElement("div");
+                container.innerHTML = request.response;
+                productRecommendationsSection.parentElement.innerHTML = container.querySelector(".featured-collection-redesign-without-image").innerHTML;
+            }
+        };
+        request.send();
+
+        const RecommendedProductsSliderInterval = setInterval(() => {
+            if (document.querySelector('.product-slider')) {
+                initRecommendedProductsSlider();
+                clearInterval(RecommendedProductsSliderInterval);
+            }
+        }, 100);
+    };
+
+    loadProductRecommendationsIntoSection();
+</script>
+
+{% schema %}
+{
+    "name": "New Recommended products",
+    "class": "featured-collection-section pdp__recommended-products-redesign-section jsFeaturedCollection",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Featured collection"
+        },
+        {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+        },
+        {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "btn_link",
+            "label": "Button link"
+        }
+    ],
+    "presets": [{
+        "name": "New Recommended products",
+        "category": "PDP"
+    }]
+}
+{% endschema %}

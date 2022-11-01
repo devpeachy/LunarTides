@@ -37,22 +37,36 @@
                {{ title }}
             </h2>
          </div>
-         <ul class="product-features__list">        
-            {% for block in section.blocks %}
-               {% liquid
-                  assign image         = block.settings.image 
-                  assign item_title    = block.settings.item_title
-                  assign text          = block.settings.text
-               %}
+         <ul class="product-features__list">
+             {% assign product_features = product.metafields.custom.product_features %}
 
-               <li class="product-features__item">
-                  <div class="product-features__item-image-wrapper">
-                     <img src="{{ image | img_url: 'master' }}" alt="">
-                  </div>
-                  <h3 class="product-features__item-title">{{ item_title }}</h3>
-                  <p class="product-features__item-text">{{ text }}</p>
-               </li>
-            {% endfor %}
+             {% if product_features != blank  %}
+                {% for product_feature in product_features.value %}
+                   <li class="product-features__item">
+                      <div class="product-features__item-image-wrapper">
+                         <img src="{{ product_feature.img_cdn_link }}" alt="">
+                      </div>
+                      <h3 class="product-features__item-title">{{ product_feature.title }}</h3>
+                      <p class="product-features__item-text">{{ product_feature.subtitle }}</p>
+                   </li>
+                {% endfor %}
+             {% else %}
+                 {% for block in section.blocks %}
+                     {% liquid
+                         assign image         = block.settings.image
+                         assign item_title    = block.settings.item_title
+                         assign text          = block.settings.text
+                     %}
+
+                     <li class="product-features__item">
+                         <div class="product-features__item-image-wrapper">
+                             <img src="{{ image | img_url: 'master' }}" alt="">
+                         </div>
+                         <h3 class="product-features__item-title">{{ item_title }}</h3>
+                         <p class="product-features__item-text">{{ text }}</p>
+                     </li>
+                 {% endfor %}
+             {% endif %}
          </ul>
       </div>
     </div>
