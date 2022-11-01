@@ -381,7 +381,8 @@
       "or": "ou",
       "subtotal": "Subtotal",
       "update": "Atualizar subtotal",
-      "checkout": "Concluir Compra"
+      "checkout": "Concluir Compra",
+      "back": "De volta"
     },
     "shipping_calculator": {
       "title": "Calculadora de taxas de envio",
