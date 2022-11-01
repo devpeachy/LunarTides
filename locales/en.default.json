@@ -381,7 +381,8 @@
       "or": "or",
       "subtotal": "Subtotal",
       "update": "Update Subtotal",
-      "checkout": "Checkout"
+      "checkout": "Checkout",
+      "back": "Back"
     },
     "shipping_calculator": {
       "title": "Shipping rates calculator",

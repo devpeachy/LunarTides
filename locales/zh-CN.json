@@ -381,7 +381,8 @@
       "or": "或",
       "subtotal": "小计",
       "update": "更新金额",
-      "checkout": "结账"
+      "checkout": "结账",
+      "back": "背部"
     },
     "shipping_calculator": {
       "title": "运费计算器",

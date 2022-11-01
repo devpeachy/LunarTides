@@ -381,7 +381,8 @@
       "or": "ou",
       "subtotal": "Sous-total",
       "update": "Mettre à jour le sous-total",
-      "checkout": "Paiement"
+      "checkout": "Paiement",
+      "back": "Retour"
     },
     "shipping_calculator": {
       "title": "Calculateur de frais de livraison",
