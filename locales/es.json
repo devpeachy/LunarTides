@@ -381,7 +381,8 @@
       "or": "o",
       "subtotal": "Subtotal",
       "update": "Actualizar subtotal",
-      "checkout": "Terminar pedido"
+      "checkout": "Terminar pedido",
+      "back": "De volta"
     },
     "shipping_calculator": {
       "title": "Calculadora de tarifas de envío",

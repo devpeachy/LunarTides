@@ -381,7 +381,8 @@
       "or": "oder",
       "subtotal": "Zwischensumme",
       "update": "Aktualisierte Zwischensumme",
-      "checkout": "Kasse"
+      "checkout": "Kasse",
+      "back": "Der Rücken"
     },
     "shipping_calculator": {
       "title": "Versandkostenrechner",
