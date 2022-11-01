@@ -28,11 +28,11 @@ enable_divider: <boolean>
     {% endif %}
 
       {% if context == 'cart-page' %}
-        <div class="cart__heading-wrapper {% if cart.items.size < 1 %} cart__heading-wrapper_empty {% endif %}">
+        <div class="cart__heading-wrapper {% if cart.item_count < 1 %} cart__heading-wrapper_empty {% endif %}">
           <div>
             {{ title }}
-            {% if cart.items.size > 0 %}
-              <span>({{ cart.items.size }})</span>
+            {% if cart.item_count > 0 %}
+              <span>(<span data-bind="itemCount">{{ cart.item_count }}</span>)</span>
             {% endif %}
           </div>
           {% if cart.items.size > 0 %}
