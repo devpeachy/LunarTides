@@ -1,0 +1,437 @@
+#pdp--stamped-main-widget-section {
+  padding: 32px 0;
+
+  @media (min-width: 1023px) {
+    padding: 62px 0 56px;
+  }
+
+  #stamped-main-widget.stamped-main-widget--redesigned {
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+
+    @media (min-width: 767px) {
+      padding: 0 20px;
+    }
+
+    @media (min-width: 1023px) {
+      padding: 0 40px;
+    }
+
+    @media (min-width: 1366px) {
+      padding: 0 80px;
+    }
+
+    .stamped-container {
+      max-width: 100%;
+      margin: 0 !important;
+
+      .stamped-header-title {
+        display: block;
+        margin: 0 0 16px;
+        font-family: 'Druk Wide', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 32px;
+        text-align: start;
+        text-transform: uppercase;
+        color: #FFFFFF;
+
+        @media (min-width: 365px) {
+          font-size: 32px;
+          line-height: 40px;
+        }
+      }
+
+      .stamped-header {
+        margin: 0;
+
+        .stamped-summary {
+          padding: 0 0 40px;
+          border-bottom: 1px solid #FFFFFF;
+
+          .summary-overview {
+            width: 100% !important;
+            max-width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+
+            @media (min-width: 700px) {
+              max-width: 405px;
+              float: left !important;
+            }
+
+            .stamped-summary-caption.stamped-summary-caption-1 {
+              order: 2;
+
+              .stamped-summary-text-1 {
+                display: block;
+                margin: 3px 0 0 16px;
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+              }
+            }
+
+            .stamped-starrating.stamped-summary-starrating {
+              order: 1;
+              text-align: start;
+
+              i:before {
+                color: #EBED78;
+              }
+            }
+
+            .stamped-summary-caption.stamped-summary-caption-2 {
+              display: block !important;
+              order: 3;
+              width: 100%;
+
+              .stamped-summary-text {
+                display: block !important;
+                margin: 16px 0 0 !important;
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px !important;
+                line-height: 24px !important;
+                text-align: start;
+                color: #FFFFFF;
+
+                @media (min-width: 700px) {
+                  margin: 16px 0 0 !important;
+                  font-size: 16px;
+                  line-height: 24px;
+                }
+              }
+            }
+          }
+
+          .stamped-summary-actions {
+            width: 100%;
+
+            @media (min-width: 700px) {
+              width: fit-content;
+            }
+
+            .stamped-summary-actions-newreview {
+              padding: 16px 24px;
+              width: 100%;
+              margin: 16px 0 0;
+              border: 1px solid #FFFFFF;
+              border-radius: 3px;
+              font-family: 'Montserrat',sans-serif;
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 24px;
+              color: #fff;
+              transition: opacity .2s linear;
+
+              &:hover {
+                opacity: 0.8;
+              }
+
+              @media (min-width: 700px) {
+                margin: 0;
+                width: fit-content;
+              }
+
+              &:before {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      .stamped-content {
+        .stamped-tab-container {
+          display: none !important;
+        }
+
+        .new-review-form {
+          border: 1px solid #FFFFFF !important;
+          padding: 20px !important;
+
+          @media (min-width: 700px) {
+            padding: 40px !important;
+          }
+
+          .stamped-form-contact {
+            .stamped-form-contact-name, .stamped-form-contact-email, .stamped-form-contact-location {
+              .stamped-form-label {
+                display: block;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
+                margin-bottom: 8px;
+                color: #FFFFFF;
+              }
+
+              .stamped-form-input {
+                font-family: 'Montserrat', sans-serif;
+                background-color: transparent;
+                border: 1px solid #ffffff;
+                color: #fff;
+                padding: 10px 15px;
+                font-size: 16px;
+              }
+            }
+          }
+
+          .stamped-form-review {
+            .stamped-form-review-rating {
+              margin-top: 8px;
+
+              .stamped-form-label {
+                display: block;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
+                margin-bottom: 0;
+                color: #FFFFFF;
+              }
+
+              input {
+                background-color: transparent;
+              }
+            }
+
+            .stamped-form-review-title {
+              margin: 0 0 10px;
+
+              .stamped-form-label {
+                display: block;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
+                margin-bottom: 8px;
+                color: #FFFFFF;
+              }
+
+              .stamped-form-input {
+                font-family: 'Montserrat', sans-serif;
+                background-color: transparent;
+                border: 1px solid #ffffff;
+                color: #fff;
+                padding: 10px 15px;
+                font-size: 16px;
+              }
+            }
+
+            .stamped-form-review-body {
+              .stamped-form-label {
+                display: block;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 22px;
+                margin-bottom: 8px;
+                color: #FFFFFF;
+              }
+
+              .stamped-form-input {
+                .stamped-form-input-textarea {
+                  font-family: 'Montserrat', sans-serif;
+                  background-color: transparent;
+                  border: 1px solid #ffffff;
+                  color: #fff;
+                  padding: 10px 15px;
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+
+          .stamped-messages {
+            .stamped-thank-you {
+              padding: 30px 16px;
+            }
+
+            .stamped-empty-state {
+              color: #FFFFFF;
+
+              &:before {
+                color: #EBED78;
+              }
+
+              div {
+                color: #FFFFFF;
+              }
+            }
+          }
+
+          .stamped-form-actions {
+            margin: 0;
+
+            #stamped-button-submit {
+              margin: 0 10px 0 0;
+              padding: 16px 24px;
+              border: 1px solid #FFFFFF;
+              border-radius: 3px;
+              font-family: Montserrat,sans-serif;
+              font-style: normal;
+              font-weight: 700;
+              font-size: 16px;
+              line-height: 24px;
+              color: #fff;
+              transition: opacity .2s linear;
+
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+          }
+        }
+
+        .stamped-messages {
+          .stamped-thank-you {
+            padding: 30px 16px;
+          }
+
+          .stamped-empty-state {
+            color: #FFFFFF;
+
+            &:before {
+              color: #EBED78;
+            }
+
+            div {
+              color: #FFFFFF;
+            }
+          }
+        }
+
+        .stamped-reviews-filter {
+          display: none;
+        }
+
+        .stamped-reviews {
+          .stamped-review {
+            margin-bottom: 16px;
+            padding-top: 16px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            @media (min-width: 700px) {
+              flex-direction: row;
+            }
+
+            .stamped-review-header {
+              max-width: 100%;
+              width: 100%;
+              margin: 0 0 16px;
+              display: flex;
+              justify-content: space-between;
+              flex-direction: row;
+
+              @media (min-width: 700px) {
+                flex-direction: column;
+                margin: 0 15px 0 0;
+                max-width: 210px;
+              }
+
+              @media (min-width: 1025px) {
+                max-width: 300px;
+              }
+
+              .created {
+                margin: 0 0 0 10px;
+                order: 2;
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                color: #FFFFFF;
+
+                @media (min-width: 700px) {
+                  margin: 8px 0 0;
+                }
+              }
+
+              .author {
+                margin: 0;
+                background-color: transparent;
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 24px;
+                text-transform: uppercase;
+                text-align: start;
+                color: #FFFFFF;
+              }
+            }
+
+            .stamped-review-content {
+              flex-grow: 1;
+              margin: 0;
+
+              .stamped-review-body {
+                max-width: 790px;
+                width: 100%;
+
+                .stamped-review-header-title {
+                  margin: 8px 0;
+                  display: block;
+                  font-family: 'Druk Wide', sans-serif;
+                  font-style: normal;
+                  font-weight: 700;
+                  font-size: 16px;
+                  line-height: 24px;
+                  text-transform: uppercase;
+                  color: #FFFFFF;
+                }
+
+                .stamped-review-content-body {
+                  font-family: 'Montserrat', sans-serif;
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 24px;
+                  color: #FFFFFF;
+                }
+
+                .stamped-review-footer {
+                  margin: 0;
+                }
+              }
+            }
+          }
+
+          .stamped-pagination.stamped-reviews-ul {
+            li {
+              &.active, &.previous, &.next {
+                text-decoration: none !important;
+
+                a {
+                  color: #FFFFFF;
+                }
+              }
+
+              a {
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                color: rgba(255, 255, 255, 0.72);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

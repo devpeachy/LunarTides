@@ -96,7 +96,7 @@
               {% if item.product.media %}
                 {% if item.product.featured_media.preview_image %}
                   <a href="{{ item.url }}">
-                    <img src="{{ item.product.featured_media.preview_image | img_url: '320x' }}" alt="{{ item.title | escape }}" />
+                    <img src="{{ item.variant.featured_image | default: item.product.featured_media.preview_image | img_url: '320x' }}" alt="{{ item.title | escape }}" />
                   </a>
                 {% endif %}
               {% else %}
@@ -172,16 +172,16 @@
               <div class="bottom">
 
                 <div class="qty-wrapper">
-                  <svg class="qty-btn-plus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="10" viewBox="0 0 10 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5.66683 5.66732V9.66732H4.3335V5.66732H0.333496V4.33398H4.3335V0.333984H5.66683V4.33398H9.66683V5.66732H5.66683Z"/>
+                  <svg class="qty-btn-minus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="2" viewBox="0 0 10 2" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.333496 1.66732V0.333984H9.66683V1.66732H0.333496Z"/>
                   </svg>
 
                   <span>
                     {{ item.quantity }}
                   </span>
 
-                  <svg class="qty-btn-minus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="2" viewBox="0 0 10 2" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.333496 1.66732V0.333984H9.66683V1.66732H0.333496Z"/>
+                  <svg class="qty-btn-plus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="10" viewBox="0 0 10 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.66683 5.66732V9.66732H4.3335V5.66732H0.333496V4.33398H4.3335V0.333984H5.66683V4.33398H9.66683V5.66732H5.66683Z"/>
                   </svg>
                 </div>
 

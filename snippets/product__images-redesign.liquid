@@ -14,8 +14,9 @@
     {% for media in product.media %}
 
       {% comment %} Check alt text for video iframe {% endcomment %}
-      <div class="product-gallery-grid__image "
+      <div class="product-gallery-grid__image"
             data-product-id="{{ product.id }}"
+            data-media-id="{{ media.id }}"
             data-title="{% if image_alt contains 'youtube' or image_alt contains 'vimeo' %}{{ product.title }}{% else %}{{ image_alt | escape }}{% endif %}"
             data-image-height="{{ original_image_height | strip }}"
             data-image-width="{{ original_image_width | strip }}"

@@ -11,39 +11,43 @@
         }
 
         {% if settings.bg_img != blank or settings.bg_img_mob != blank or settings.bg_color != blank %}
-            {% if settings.bg_img != blank %}
-                body {
+            body {
+                {% if settings.bg_img != blank and settings.bg_img_mob != blank %}
                     background-image: url("{{ settings.bg_img_mob | img_url: 'master' }}");
-                }
-                @media (min-width: 600px) {
-                    body {
-                        background-image: url("{{ settings.bg_img | img_url: 'master' }}");
-                    }
-                }
-            {% else %}
+                {% endif %}
+
+                background-color: {{ settings.bg_color }};
+            }
+            @media (min-width: 600px) {
                 body {
+                    {% if settings.bg_img != blank and settings.bg_img_mob != blank %}
+                        background-image: url("{{ settings.bg_img | img_url: 'master' }}");
+                    {% endif %}
+
                     background-color: {{ settings.bg_color }};
                 }
-            {% endif %}
+            }
         {% endif %}
     {% endif %}
 
     {% if template contains 'page' %}
         {% if page.metafields.custom.bg_image != blank or page.metafields.custom.bg_image_mob != blank or page.metafields.custom.bg_color != blank %}
-            {% if page.metafields.custom.bg_image != blank or page.metafields.custom.bg_image_mob != blank %}
                 body {
-                    background-image: url("{{ page.metafields.custom.bg_image_mob | img_url: 'master' }}");
+                    {% if page.metafields.custom.bg_image != blank and page.metafields.custom.bg_image_mob != blank %}
+                        background-image: url("{{ page.metafields.custom.bg_image_mob | img_url: 'master' }}");
+                    {% endif %}
+
+                    background-color: {{ settings.bg_color }};
                 }
                 @media (min-width: 600px) {
                     body {
-                        background-image: url("{{ page.metafields.custom.bg_image | img_url: 'master' }}");
+                        {% if page.metafields.custom.bg_image != blank and page.metafields.custom.bg_image_mob != blank %}
+                            background-image: url("{{ page.metafields.custom.bg_image | img_url: 'master' }}");
+                        {% endif %}
+
+                        background-color: {{ settings.bg_color }};
                     }
                 }
-            {% else %}
-                body {
-                    background-color: {{ page.metafields.custom.bg_color }};
-                }
-            {% endif %}
         {% endif %}
     {% endif %}
 
@@ -52,18 +56,22 @@
             background-position: center !important;
         }
 
-        {% if settings.prd_bg_img != blank and settings.prd_bg_img_mob != blank %}
+        {% if settings.prd_bg_img != blank and settings.prd_bg_img_mob != blank or settings.prd_bg_color != blank %}
             body {
-                background-image: url("{{ settings.prd_bg_img_mob | img_url: 'master' }}");
+                {% if settings.prd_bg_img != blank and settings.prd_bg_img_mob %}
+                    background-image: url("{{ settings.prd_bg_img_mob | img_url: 'master' }}");
+                {% endif %}
+
+                background-color: {{ settings.prd_bg_color }};
             }
             @media (min-width: 600px) {
                 body {
-                    background-image: url("{{ settings.prd_bg_img | img_url: 'master' }}");
+                    {% if settings.prd_bg_img != blank and settings.prd_bg_img_mob %}
+                        background-image: url("{{ settings.prd_bg_img | img_url: 'master' }}");
+                    {% endif %}
+
+                    background-color: {{ settings.prd_bg_color }};
                 }
-            }
-        {% elsif settings.prd_bg_color != blank %}
-            body {
-                background-color: {{ settings.prd_bg_color }};
             }
         {% endif %}
     {% endif %}
@@ -73,18 +81,22 @@
             background-position: top center !important;
         }
 
-        {% if settings.coll_bg_img != blank and settings.coll_bg_img_mob != blank %}
+        {% if settings.coll_bg_img != blank and settings.coll_bg_img_mob != blank or settings.coll_bg_color != blank %}
             body {
-                background-image: url("{{ settings.coll_bg_img_mob | img_url: 'master' }}");
+                {% if settings.coll_bg_img != blank and settings.coll_bg_img_mob != blank %}
+                    background-image: url("{{ settings.coll_bg_img_mob | img_url: 'master' }}");
+                {% endif %}
+
+                background-color: {{ settings.coll_bg_color }};
             }
             @media (min-width: 600px) {
                 body {
-                    background-image: url("{{ settings.coll_bg_img | img_url: 'master' }}");
+                    {% if settings.coll_bg_img != blank and settings.coll_bg_img_mob != blank %}
+                        background-image: url("{{ settings.coll_bg_img | img_url: 'master' }}");
+                    {% endif %}
+
+                    background-color: {{ settings.coll_bg_color }};
                 }
-            }
-        {% elsif settings.coll_bg_color != blank %}
-            body {
-                background-color: {{ settings.coll_bg_color }};
             }
         {% endif %}
     {% endif %}
@@ -94,18 +106,47 @@
             background-position: top center !important;
         }
 
-        {% if settings.cart_bg_img != blank and settings.cart_bg_img_mob != blank %}
+        {% if settings.cart_bg_img != blank and settings.cart_bg_img_mob != blank or settings.cart_bg_color != blank %}
             body {
-                background-image: url("{{ settings.cart_bg_img_mob | img_url: 'master' }}");
+                {% if settings.cart_bg_img != blank and settings.cart_bg_img_mob != blank %}
+                    background-image: url("{{ settings.cart_bg_img_mob | img_url: 'master' }}");
+                {% endif %}
+
+                background-color: {{ settings.cart_bg_color }};
             }
             @media (min-width: 600px) {
                 body {
-                    background-image: url("{{ settings.cart_bg_img | img_url: 'master' }}");
+                    {% if settings.cart_bg_img != blank and settings.cart_bg_img_mob != blank %}
+                        background-image: url("{{ settings.cart_bg_img | img_url: 'master' }}");
+                    {% endif %}
+
+                    background-color: {{ settings.cart_bg_color }};
                 }
             }
-        {% elsif settings.cart_bg_color != blank %}
+        {% endif %}
+    {% endif %}
+
+    {% if template contains 'login' or template contains 'register' %}
+        body {
+            background-position: top center !important;
+        }
+
+        {% if settings.account_bg_img != blank and settings.account_bg_img_mob != blank or settings.account_bg_color != blank %}
             body {
-                background-color: {{ settings.cart_bg_color }};
+                {% if settings.account_bg_img != blank and settings.account_bg_img_mob != blank %}
+                    background-image: url("{{ settings.account_bg_img_mob | img_url: 'master' }}");
+                {% endif %}
+
+                background-color: {{ settings.account_bg_color }};
+            }
+            @media (min-width: 600px) {
+                body {
+                    {% if settings.account_bg_img != blank and settings.account_bg_img_mob != blank %}
+                        background-image: url("{{ settings.account_bg_img | img_url: 'master' }}");
+                    {% endif %}
+
+                    background-color: {{ settings.account_bg_color }};
+                }
             }
         {% endif %}
     {% endif %}

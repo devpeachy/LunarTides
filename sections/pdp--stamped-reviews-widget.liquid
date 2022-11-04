@@ -1,0 +1,35 @@
+<section id="pdp--stamped-main-widget-section">
+    <!--Stamped - Begin Main Widget -->
+    <div
+            id="stamped-main-widget"
+            class="stamped-main-widget--redesigned"
+            data-product-id="{{ product.id }}"
+            data-name="{{ product.title | escape }}"
+            data-url="{{ shop.url }}{{ product.url }}"
+            data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+            data-description="{{ product.description | escape }}"
+            data-product-sku="{{product.handle}}"
+            data-product-title="{{product.title}}"
+            data-product-type="{{product.type}}">
+        {{product.metafields.stamped.reviews}}
+    </div>
+    <!-- Stamped - End Main Widget -->
+</section>
+
+<script>
+    window.addEventListener("load", function () {
+        const reviewWidgetSubtitle = document.querySelector('.stamped-summary-caption-2 .stamped-summary-text');
+
+        if (reviewWidgetSubtitle) {
+            const reviewWidgetSubtitleText = reviewWidgetSubtitle.textContent.split(" ");
+            const reviewWidgetSubtitleSplitted = reviewWidgetSubtitleText.splice(reviewWidgetSubtitleText.length - 2);
+            const newWidgetTitle = reviewWidgetSubtitleSplitted[0] + " " + reviewWidgetSubtitleSplitted[1];
+            const reviewWidgetTitle = document.querySelector('.stamped-header-title');
+
+            if (newWidgetTitle !== '0 Reviews') {
+                reviewWidgetTitle.innerHTML = newWidgetTitle;
+                reviewWidgetSubtitle.innerHTML = "100% of reviewers would recommend this product"
+            }
+        }
+    });
+</script>

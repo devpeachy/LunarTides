@@ -87,7 +87,7 @@
             <li class="cart__card container is-align-center" data-cart-item="{{ item.key }}" data-line-item="{{ forloop.index }}">
               <div class="cart__image">
                 <a href="{{ item.url }}" title="{{ item.title | escape }}" class="cart_page_image">
-                  {% include 'image-element', image: item.product.featured_media.preview_image, alt: item.title, object_fit: true, max_height: 108 %}
+                  {% include 'image-element', image: item.variant.featured_image, alt: item.title, object_fit: true, max_height: 108 %}
                 </a>
               </div>
               <div class="cart__info">

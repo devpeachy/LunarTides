@@ -36,6 +36,7 @@
   {{ 'custom-style.scss.css' | asset_url | stylesheet_tag }}
   {{ 'cart-redesign.scss.css' | asset_url | stylesheet_tag }}
   {{ 'ajax-cart-redesign.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'stamped-reviews-widget.scss.css' | asset_url | stylesheet_tag }}
   {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
 
 
@@ -332,8 +333,9 @@ var event_name="add_to_cart"
 
 
 
-
-  
+  <!-- Stamped - Begin Script-->
+  <script async type="text/javascript" data-api-key="pubkey-9qI584TMI75lhs32p9btRbbHEhC22S" id="stamped-script-widget" src="https://cdn1.stamped.io/files/widget.min.js"></script>
+  <!-- Stamped - End Script -->
 </body>
 </html>
 {% endcapture %}

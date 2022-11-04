@@ -5,9 +5,11 @@
 <main id="template-{{ template | replace: '.', '-' | handle }}" class="shopify-section contact-page" data-check-for-order="true">
 
   <section class="section__wrapper">
-    {% section 'page-wholesale__sections' %}
-	{% section 'page-wholesale__main' %}
+    {% comment %}
+      {% section 'page-wholesale__sections' %}
+    {% endcomment %}
 
+	{% section 'page-wholesale__main-redesign' %}
   </section>
 </main>
     

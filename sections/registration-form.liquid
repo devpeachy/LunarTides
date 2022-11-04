@@ -21,7 +21,7 @@
   {% include 'css-loop', css: custom_css, id: id %}
 {% endstyle %}
 
-<section class="section section__wrapper is-width-{{ width }} {{ css_class }}">
+<section class="section account-section--redesign section__wrapper is-width-{{ width }} {{ css_class }}">
   <header class="container">
     {%- capture title -%}{{ 'customer.register.title' | t }}{%- endcapture -%}
     {% include 'heading', title: title, heading_tag: 'h1', context: 'register', text_alignment: 'center' %}

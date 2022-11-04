@@ -88,6 +88,19 @@
           {% comment %} Name {% endcomment %}
           <h1 class="product_name title">{{ product.title }}</h1>
 
+          <div class="stamped-product-reviews-badge-block">
+            <span
+              class="stamped-product-reviews-badge stamped-main-badge hero-stamped-product-reviews-badge"
+              data-id="{{ product.id }}"
+              data-product-sku="{{ product.handle }}"
+              data-product-title="{{product.title}}"
+              data-product-type="{{product.type}}"
+              data-lang="{{shop.locale}}"
+              style="display: block;">
+              {{product.metafields.stamped.badge}}
+            </span>
+          </div>
+
           <div class="as-wishlist-btn as-wishlist-btn-pdp-redesign">
             {% include 'swym-product-view', product: product %}
             <button class="swym-button swym-add-to-wishlist-view-product product_{{product.id}}" data-swaction="addToWishlist" data-product-id="{{product.id | json}}"></button>
@@ -346,6 +359,7 @@
             return;
           } else {
             getIndex($(this), $(this).val());
+            $("html, body").animate({ scrollTop: 0 }, 400);
           }
         });
 
@@ -353,12 +367,23 @@
           var $parentForm = $selector.parents('.product_form');
           var $option = $parentForm.find("select option[value=".concat(variantID, "]"));
           var imageID = $option.attr('data-image-id');
+          var imagesGridDesk = $('.product-gallery-grid__image');
 
           if (!imageID) {
             // If there is no image, no scrolling occurs
             return false;
           } else {
             console.log(imageID)
+
+            imagesGridDesk.each(function () {
+              console.log($(this).attr('data-media-id'));
+
+              if ($(this).attr('data-media-id') === imageID) {
+                $(this).addClass('current-variant')
+              } else {
+                $(this).removeClass('current-variant')
+              }
+            })
           }
 
           var index = $("[data-image-id=".concat(imageID, "]")).data('index');

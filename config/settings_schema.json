@@ -2849,6 +2849,26 @@
           "id": "cart_bg_color",
           "label": "Background color",
           "default": "#000000"
+        },
+        {
+          "type": "header",
+          "content": "Account page"
+        },
+        {
+          "type": "image_picker",
+          "id": "account_bg_img",
+          "label": "Background image"
+        },
+        {
+          "type": "image_picker",
+          "id": "account_bg_img_mob",
+          "label": "Background image (mobile)"
+        },
+        {
+          "type": "color",
+          "id": "account_bg_color",
+          "label": "Background color",
+          "default": "#000000"
         }
       ]
     }

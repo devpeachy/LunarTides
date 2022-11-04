@@ -14,10 +14,10 @@
 
 <label class="label" for="quantity">{{ 'products.product.quantity' | t }}</label>
 <div class="quantity-wrapper quantity-wrapper-redesign field has-addons quantity-style--{{ settings.qty_box_style }} {{ size }}">
-  <div class="control plus-control">
-    <span class="quantity-plus quantity-element button is-inverse" data-update-quantity="plus" {% if settings.limit_quantity and variant.inventory_management != blank and variant.inventory_policy == "deny" %}{% if variant.inventory_quantity == value %}disabled{% endif %}{% endif %}>
-      <svg class="qty-btn-plus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="10" viewBox="0 0 10 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5.66683 5.66732V9.66732H4.3335V5.66732H0.333496V4.33398H4.3335V0.333984H5.66683V4.33398H9.66683V5.66732H5.66683Z"/>
+  <div class="control minus-control">
+    <span class="quantity-minus quantity-element button is-inverse" data-update-quantity="minus" {% if value == 1 %}disabled{% endif %}>
+      <svg class="qty-btn-minus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="2" viewBox="0 0 10 2" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0.333496 1.66732V0.333984H9.66683V1.66732H0.333496Z"/>
       </svg>
     </span>
   </div>
@@ -26,10 +26,10 @@
     <input class="quantity-input quantity-element input" type="number" min="1" size="2" name="quantity" value="{{ value }}" {% if settings.limit_quantity and variant.inventory_management != blank and variant.inventory_policy == "deny" %}max="{{ variant.inventory_quantity }}" data-max-inventory-management {% endif %} data-line-id="{{ forloop.index }}"/>
   </div>
 
-  <div class="control minus-control">
-    <span class="quantity-minus quantity-element button is-inverse" data-update-quantity="minus" {% if value == 1 %}disabled{% endif %}>
-      <svg class="qty-btn-minus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="2" viewBox="0 0 10 2" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.333496 1.66732V0.333984H9.66683V1.66732H0.333496Z"/>
+  <div class="control plus-control">
+    <span class="quantity-plus quantity-element button is-inverse" data-update-quantity="plus" {% if settings.limit_quantity and variant.inventory_management != blank and variant.inventory_policy == "deny" %}{% if variant.inventory_quantity == value %}disabled{% endif %}{% endif %}>
+      <svg class="qty-btn-plus" data-id="{{ item.id }}" data-qty="{{ item.quantity }}" width="10" height="10" viewBox="0 0 10 10" fill="#FFFFFF" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.66683 5.66732V9.66732H4.3335V5.66732H0.333496V4.33398H4.3335V0.333984H5.66683V4.33398H9.66683V5.66732H5.66683Z"/>
       </svg>
     </span>
   </div>
