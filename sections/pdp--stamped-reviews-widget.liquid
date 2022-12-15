@@ -1,3 +1,24 @@
+{% liquid
+    assign sec_bg_mob = section.settings.sec_bg_mob
+    assign sec_bg     = section.settings.sec_bg
+%}
+
+{% if sec_bg_mob != blank and sec_bg != blank %}
+    <style>
+        #pdp--stamped-main-widget-section {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            #pdp--stamped-main-widget-section {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    </style>
+{% endif %}
+
 <section id="pdp--stamped-main-widget-section">
     <!--Stamped - Begin Main Widget -->
     <div
@@ -33,3 +54,27 @@
         }
     });
 </script>
+
+{% schema %}
+{
+    "name":"Custom Stamped Review",
+    "settings":[
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
+        }
+    ],
+    "presets":[
+        {
+            "name": "Custom Stamped Review",
+            "category": "PDP"
+        }
+    ]
+}
+{% endschema %}

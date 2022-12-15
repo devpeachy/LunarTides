@@ -9,6 +9,13 @@
     assign font_size_desk   = section.settings.font_size_desk
     assign font_size_tablet = section.settings.font_size_tablet
     assign font_size_mob    = section.settings.font_size_mob
+
+    assign title_font       = section.settings.heading_font
+    assign subtitle_font    = section.settings.subheading_font
+    assign btn_font         = section.settings.btn_font
+
+    assign sec_bg_mob       = section.settings.sec_bg_mob
+    assign sec_bg           = section.settings.sec_bg
 %}
 
 {% if bg_decor != blank %}
@@ -21,6 +28,40 @@
     }
 </style>
 {% endif %}
+
+<style>
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+    #hp-hero-2 {
+        background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    @media (min-width: 767px) {
+        #hp-hero-2 {
+            background-image: url("{{ sec_bg | img_url: 'master' }}");
+        }
+    }
+    {% endif %}
+</style>
+
+{% unless img != blank and img_mob != blank %}
+    <style>
+        #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner {
+            background-image: url("{{ bg_decor | img_url: 'master' }}");
+            background-repeat: no-repeat;
+            background-position: initial;
+            background-size: cover;
+        }
+
+        #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block {
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: initial;
+            background-size: cover;
+        }
+    </style>
+{% endunless %}
 
 <style>
     #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .title {
@@ -39,6 +80,53 @@
         }
     }
 </style>
+
+{% capture section_css -%}
+    #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .title {
+        {% unless title_font.family contains 'Waza' %}font-family: {{ title_font.family }}, {{ title_font.fallback_families }};{% endunless %}
+    }
+
+    #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .subtitle {
+    {% unless subtitle_font.family contains 'Waza' %}font-family: {{ subtitle_font.family }}, {{ subtitle_font.fallback_families }};{% endunless %}
+    }
+
+    #hp-hero-2 .hp-hero-2__container .hp-hero-2__inner .content-block .content-block__inner .content-block__btn .btn-text {
+        {% unless btn_font.family contains 'Waza' %}font-family: {{ btn_font.family }}, {{ btn_font.fallback_families }};{% endunless %}
+    }
+
+    {%- capture font_settings_list -%}
+        {% unless title_font.family contains 'Waza' %}
+            {{ title_font | font_face: font_display: 'block' }}~
+            {{ title_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+            {{ title_font | font_modify: 'style', 'italic' | font_face: font_display: 'block' }}~
+            {{ title_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+        {% endunless %}
+        {% unless subtitle_font.family contains 'Waza' %}
+            {{ subtitle_font | font_face: font_display: 'block' }}~
+            {{ subtitle_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+            {{ subtitle_font | font_modify: 'style', 'italic' | font_face: font_display: 'block' }}~
+            {{ subtitle_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+        {% endunless %}
+        {% unless btn_font.family contains 'Waza' %}
+            {{ btn_font | font_face: font_display: 'block' }}~
+            {{ btn_font | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+            {{ btn_font | font_modify: 'style', 'italic' | font_face: font_display: 'block' }}~
+            {{ btn_font | font_modify: 'style', 'italic' | font_modify: 'weight', 'bolder' | font_face: font_display: 'block' }}~
+        {% endunless %}
+    {%- endcapture -%}
+
+    {%- assign font_array = font_settings_list | split: '~' -%}
+
+    {%- for name in font_array -%}
+        {%- unless name contains 'error' -%}
+            {{ name }}
+        {%- endunless -%}
+    {%- endfor -%}
+{%- endcapture -%}
+
+{% style %}
+    {{ section_css }}
+{% endstyle %}
 
 <section id="hp-hero-2">
     <div class="hp-hero-2__container">
@@ -66,7 +154,7 @@
             </div>
 
             <div class="img-block">
-                {% if img_mob != blank and img_mob != blank %}
+                {% if img != blank and img_mob != blank %}
                     <picture>
                         <source srcset="{{ img | img_url: 'master' }}" media="(min-width: 850px)">
                         <source srcset="{{ img_mob | img_url: 'master' }}" media="(max-width: 850px)">
@@ -134,6 +222,41 @@
             "type": "image_picker",
             "id": "bg_decor",
             "label": "BG image for content block"
+        },
+        {
+            "type": "header",
+            "content": "Fonts"
+        },
+        {
+            "type": "font_picker",
+            "id": "heading_font",
+            "label": "Heading Font",
+            "info": "Diabled if set to Waza Font",
+            "default": "waza_n4"
+        },
+        {
+            "type": "font_picker",
+            "id": "subheading_font",
+            "label": "subheading Font",
+            "info": "Diabled if set to Waza Font",
+            "default": "waza_n4"
+        },
+        {
+            "type": "font_picker",
+            "id": "btn_font",
+            "label": "Button Font",
+            "info": "Diabled if set to Waza Font",
+            "default": "waza_n4"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
         }
     ],
     "presets": [

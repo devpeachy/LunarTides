@@ -5,7 +5,25 @@
   assign text                             = section.settings.text
   assign button_text                      = section.settings.button_text
   assign button_url                       = section.settings.button_url
+  assign sec_bg_mob                       = section.settings.sec_bg_mob
+  assign sec_bg                           = section.settings.sec_bg
 %}
+
+{% if sec_bg_mob != blank and sec_bg != blank %}
+  <style>
+    #content-with-products-{{ section.id }} {
+      background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    @media (min-width: 767px) {
+      #content-with-products-{{ section.id }} {
+        background-image: url("{{ sec_bg | img_url: 'master' }}");
+      }
+    }
+  </style>
+{% endif %}
 
 <section class='content-with-products' id="content-with-products-{{ section.id }}">
   <div class="content-with-products__container">
@@ -86,6 +104,16 @@
       "type": "url",
       "id": "button_url",
       "label": "Button url"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg_mob",
+      "label": "Section background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg",
+      "label": "Section background image"
     }
   ],
   "blocks": [

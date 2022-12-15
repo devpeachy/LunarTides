@@ -39,6 +39,8 @@
 {% comment %} Advanced {% endcomment %}
 {% assign css_class = object.settings.css_class %}
 {% assign custom_css = object.settings.custom_css %}
+{% assign sec_bg_mob = section.settings.sec_bg_mob %}
+{% assign sec_bg     = section.settings.sec_bg %}
 
 {% comment %} Is the color set to transparent? {% endcomment %}
 {% assign text_alpha = text_color | color_extract: 'alpha' %}
@@ -51,6 +53,22 @@
   {% assign field_input_style = 'secondary-btn-style' %}
 {% else %}
   {% assign field_input_size = settings.button_link_padding %}
+{% endif %}
+
+{% if sec_bg_mob != blank and sec_bg != blank %}
+    <style>
+        .contact-section {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            .contact-section {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    </style>
 {% endif %}
 
 {% comment %} Section specific CSS {% endcomment %}

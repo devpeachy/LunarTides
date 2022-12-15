@@ -4,92 +4,124 @@
     assign bg_image_mobile                    = section.settings.bg_image_mobile
     assign content_image_mobile               = section.settings.content_image_mobile
     assign content_image_desktop              = section.settings.content_image_desktop
-    assign title                              = section.settings.title
+    assign title_first                         = section.settings.title_first
+    assign title_second                       = section.settings.title_second
+    assign hide_decor_arrow                   = section.settings.hide_decor_arrow
+    assign hide_decor_stars                   = section.settings.hide_decor_stars
     assign text                               = section.settings.text
     assign button_text                        = section.settings.button_text
     assign button_link                        = section.settings.button_link
     assign alignment_desktop_text_content     = section.settings.alignment_desktop_text_content
     assign alignment_mobile_text_content      = section.settings.alignment_mobile_text_content
+    assign sec_bg_mob                         = section.settings.sec_bg_mob
+    assign sec_bg                             = section.settings.sec_bg
 %}
 
 <style>
-
-@media (max-width: 767px) {
-    .new-color-content {
-        background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
+    @media (max-width: 767px) {
+        .new-color-content {
+            background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
-}
 
-@media (min-width: 767px) {
-    .new-color-content {
-        background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
+    @media (min-width: 767px) {
+        .new-color-content {
+            background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
     }
-}
 
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+        .hp-new-color {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            .hp-new-color {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    {% endif %}
 </style>
   
 <section class="hp-new-color" style="background-color: {{ bg_color }}">
     <div class="container">
         <div class="new-color-content">
-            <div class="new-color-image__wrapper">
-                <picture>
-                    <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
-                    <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
-                    <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
-                </picture>
-            </div>
+            {% if content_image_desktop != blank and content_image_mobile != blank %}
+                <div class="new-color-image__wrapper">
+                    <picture>
+                        <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
+                        <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
+                        <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
+                    </picture>
+                </div>
+            {% endif %}
+
             <div class="new-color-content__wrapper">
                 <div class="new-color-content__title-wrapper">
                     <div class="new-color-content__title">
-                        <svg width="88" height="56" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M47.8609 14.0401C47.8779 14.7482 48.8031 24.6426 87.1113 28C50.4349 31.1663
-                            47.8609 42 47.8609 42V29.1351L0.889107 28L47.8609 26.8649V14.0401C47.8603 14.0136 
-                            47.8609 14 47.8609 14V14.0401Z" fill="white"
-                            />
-                        </svg>
-                        {{ title }}
+                        {% unless hide_decor_arrow %}
+                            <svg class="new-color-content__title-decor-arrow" width="88" height="56" viewBox="0 0 88 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M47.8609 14.0401C47.8779 14.7482 48.8031 24.6426 87.1113 28C50.4349 31.1663
+                                47.8609 42 47.8609 42V29.1351L0.889107 28L47.8609 26.8649V14.0401C47.8603 14.0136
+                                47.8609 14 47.8609 14V14.0401Z" fill="white"
+                                />
+                            </svg>
+                        {% endunless %}
+
+                        {% if title_first != blank %}
+                            <span class="new-color-content__title-word-top">{{ title_first }}</span>
+                        {% endif %}
+
+                        {% if title_second != blank %}
+                            <span class="new-color-content__title-word-bottom">{{ title_second }}</span>
+                        {% endif %}
                     </div>
-                    <ul class="new-color_stars-list">
-                        <li class="new-color_stars-item">
-                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
-                                <defs>
-                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
-                                <stop stop-color="white"/>
-                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
-                                </radialGradient>
-                                </defs>
-                            </svg>
-                        </li>
-                        <li class="new-color_stars-item">
-                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
-                                <defs>
-                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
-                                <stop stop-color="white"/>
-                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
-                                </radialGradient>
-                                </defs>
-                            </svg>
-                        </li>
-                        <li class="new-color_stars-item">
-                            <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
-                                <defs>
-                                <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
-                                <stop stop-color="white"/>
-                                <stop offset="1" stop-color="white" stop-opacity="0.29"/>
-                                </radialGradient>
-                                </defs>
-                            </svg>
-                        </li>
-                    </ul>
+
+                    {% unless hide_decor_stars %}
+                        <ul class="new-color_stars-list">
+                            <li class="new-color_stars-item">
+                                <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                    <defs>
+                                    <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                    <stop stop-color="white"/>
+                                    <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                    </radialGradient>
+                                    </defs>
+                                </svg>
+                            </li>
+                            <li class="new-color_stars-item">
+                                <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                    <defs>
+                                    <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                    <stop stop-color="white"/>
+                                    <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                    </radialGradient>
+                                    </defs>
+                                </svg>
+                            </li>
+                            <li class="new-color_stars-item">
+                                <svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4478 38.7874V40C15.6431 22.8694 19.2488 18.259 32 18.7862C21.2941 18.3377 16.0579 16.8239 15.4478 0V1.21223C14.8813 17.0164 10.0192 18.4384 0.078125 18.8597C11.9182 18.3645 15.2664 22.6954 15.4478 38.7874Z" fill="url(#paint0_radial_776_7935)"/>
+                                    <defs>
+                                    <radialGradient id="paint0_radial_776_7935" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(16.039 20) rotate(90) scale(20 15.9609)">
+                                    <stop stop-color="white"/>
+                                    <stop offset="1" stop-color="white" stop-opacity="0.29"/>
+                                    </radialGradient>
+                                    </defs>
+                                </svg>
+                            </li>
+                        </ul>
+                    {% endunless %}
                 </div>
                 <p class="new-color-content__text">{{ text }}</p>
                 <a href="{{ button_link }}" class="btn-d-2 content-block__btn new-color-content__button">
@@ -135,10 +167,27 @@
           "label":"Image desktop"
        },
        {
-          "type":"textarea",
-          "id":"title",
-          "label":"Section title"
+          "type":"text",
+          "id":"title_first",
+          "label":"Section title (the first line)"
        },
+        {
+            "type":"text",
+            "id":"title_second",
+            "label":"Section title (the second line)"
+        },
+        {
+            "type":"checkbox",
+            "id":"hide_decor_arrow",
+            "label":"Hide decor arrow?",
+            "default": false
+        },
+        {
+            "type":"checkbox",
+            "id":"hide_decor_stars",
+            "label":"Hide decor stars?",
+            "default": false
+        },
        {
           "type":"textarea",
           "id":"text",
@@ -150,10 +199,20 @@
           "label":"Button text"
        },
        {
-          "type":"text",
+          "type":"url",
           "id":"button_link",
           "label":"Button link"
-       }
+       },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
+        }
     ],
     "presets":[
        {

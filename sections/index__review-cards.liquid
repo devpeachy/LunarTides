@@ -1,9 +1,43 @@
 {% liquid
-    assign title_first_line = section.settings.title_first_line
+    assign title_first_line   = section.settings.title_first_line
     assign title_second_line = section.settings.title_second_line
-    assign benefits    = section.blocks | where: 'type', 'benefit'
-    assign cards    = section.blocks | where: 'type', 'card'
+    assign benefits           = section.blocks | where: 'type', 'benefit'
+    assign cards             = section.blocks | where: 'type', 'card'
+    assign sec_bg_mob        = section.settings.sec_bg_mob
+    assign sec_bg            = section.settings.sec_bg
 %}
+
+<style>
+    {% for block in cards %}
+        {% assign card_bg_color = block.settings.card_bg_color %}
+
+        #hp-review-cards .hp-review-cards__container .cards-block .cards-block__inner-desk .card-item .card-item__inner #card-item__content--{{ block.id }} {
+            background-color: {{ card_bg_color }};
+        }
+
+        #hp-review-cards .hp-review-cards__container .cards-block .cards-block__inner-mob .review-cards-slider .review-cards-slider__wrapper .card-item .card-item__inner #card-item__content-mob--{{ block.id }} {
+            background-color: {{ card_bg_color }};
+        }
+
+        #hp-review-cards .hp-review-cards__container .cards-block .cards-block__inner-mob .review-cards-slider .review-cards-slider__wrapper .card-item .card-item__inner #card-item__content-preview--{{ block.id }} {
+            background-color: {{ card_bg_color }};
+        }
+    {% endfor %}
+
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+        #hp-review-cards {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            #hp-review-cards {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    {% endif %}
+</style>
 
 <section id="hp-review-cards">
     <div class="hp-review-cards__container">
@@ -31,7 +65,8 @@
         </div>
 
         <div class="cards-block">
-            <div class="cards-block__inner-desk">
+            {{ cards.size }}
+            <div class="cards-block__inner-desk {% if cards.size < 8 and cards.size > 6 %}cards-7{% endif %} {% if cards.size < 7 and cards.size > 5 %}cards-6{% endif %} {% if cards.size < 6 and cards.size > 4 %}cards-5{% endif %} {% if cards.size < 5 and cards.size > 3 %}cards-4{% endif %} {% if cards.size <= 3 and cards.size > 2 %}cards-5{% endif %} {% if cards.size <= 2 %}cards-2{% endif %}">
                 {% for block in cards %}
                     {% liquid
                         assign img = block.settings.img
@@ -45,7 +80,7 @@
                         <div class="card-item__inner">
                             <img src="{{ img | img_url: 'master' }}" class="card-item__img" alt="{{ img.alt | escape }}">
 
-                            <div class="card-item__content">
+                            <div id="card-item__content--{{ block.id }}" class="card-item__content">
                                 <div class="top-side">
                                     <div class="star-rating">
                                         {% for star in (1..card_rating) %}
@@ -104,7 +139,7 @@
                                 <div class="card-item__inner">
                                     <img src="{{ img | img_url: 'master' }}" class="card-item__img" alt="{{ img.alt | escape }}">
 
-                                    <div class="card-item__content card-item__content-mob">
+                                    <div id="card-item__content-mob--{{ block.id }}" class="card-item__content card-item__content-mob">
                                         <div class="close-content-trigger">
                                             <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M6.00008 6L10.9498 10.9497M6.00008 6L10.9498 1.05025M6.00008 6L1.05033 1.05025M6.00008 6L1.05033 10.9497" stroke="black"/>
@@ -149,7 +184,7 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="card-item__content-preview">
+                                    <div id="card-item__content-preview--{{ block.id }}" class="card-item__content-preview">
                                         <div class="top-side">
                                             <div class="star-rating">
                                                 {% for star in (1..card_rating) %}
@@ -266,6 +301,16 @@
             "type": "text",
             "id": "title_second_line",
             "label": "The second line of title"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
         }
     ],
     "blocks": [
@@ -290,6 +335,12 @@
                     "type": "image_picker",
                     "id": "img",
                     "label": "Image"
+                },
+                {
+                    "type": "color",
+                    "id": "card_bg_color",
+                    "label": "Background color on hover",
+                    "default": "#e5b0e0"
                 },
                 {
                     "type": "product",

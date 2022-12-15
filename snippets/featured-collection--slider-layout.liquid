@@ -1,0 +1,80 @@
+{% assign collection_group = products | map: 'id' %}
+
+{% assign for_limit = limit %}
+
+{% comment %} loop through product list {% endcomment %}
+{% for product in products limit: limit %}
+
+    {% comment %} if product display is in the loop of products increase limit by one {% endcomment %}
+    {% if product.id == skip_product.id  %}
+        {% assign for_limit = limit | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+<div class="featured-collection__product-slider swiper">
+    <div class="swiper-wrapper">
+        {% for product in products limit: limit %}
+
+            {% comment %} if product display is in the loop of products increase limit by one {% endcomment %}
+            {% if product.id == skip_product.id  %}
+                {% assign for_limit = limit | plus: 1 %}
+            {% endif %}
+        {% endfor %}
+
+        {% for product in products limit: for_limit %}
+
+            {% comment %} Skip product if we're on its product page {% endcomment %}
+            {% if product.id != skip_product.id %}
+                <div class="swiper-slide">
+                    {% include 'product-thumbnail-redesign' %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="swiper-pagination dots-pagination"></div>
+    <div class="swiper-pagination progress-pagination"></div>
+</div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        var swiper = new Swiper(".featured-collection__product-slider", {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            centeredSlides: true,
+            autoHeight: true,
+            pagination: {
+                el: ".dots-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                600: {
+                    centeredSlides: false,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                },
+                1025: {
+                    centeredSlides: false,
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                },
+                1200: {
+                    centeredSlides: false,
+                    slidesPerView: 2,
+                    spaceBetween: 40,
+                    pagination: {
+                        el: ".progress-pagination",
+                        type: "progressbar",
+                    },
+                }
+            }
+        });
+    })
+</script>

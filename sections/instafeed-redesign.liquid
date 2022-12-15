@@ -1,11 +1,12 @@
-{% liquid  
-  assign bg_image    = section.settings.bg_image
+{% liquid
   assign text_color  = section.settings.text_color
   assign title       = section.settings.title
   assign title_url   = section.settings.title_url
   assign header_text = section.settings.header_text
   assign insta_text  = section.settings.insta_text
   assign insta_link  = section.settings.insta_link
+  assign sec_bg_mob  = section.settings.sec_bg_mob
+  assign sec_bg      = section.settings.sec_bg
 %}
 
 <style>
@@ -15,19 +16,23 @@
   #insta-feed h2 {
     font-size: {{section.settings.heading_size}}px;
   }
-</style>
 
-<div class="insta-feed-redesign" 
-  style="
-    {% if bg_image != blank %}
-      background-image: url('{{ bg_image | img_url: 'master' }}');
+  {% if sec_bg_mob != blank and sec_bg != blank %}
+    .insta-feed-redesign {
+      background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+      background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
-      background-position: center;
-    {% endif %}
-    color: {{ text_color }};"
-  >
+    }
+    @media (min-width: 767px) {
+      .insta-feed-redesign {
+        background-image: url("{{ sec_bg | img_url: 'master' }}");
+      }
+    }
+  {% endif %}
+</style>
 
+<div class="insta-feed-redesign" style="color: {{ text_color }};">
   <div class="insta-feed-redesign__header">
     {% if title_url != blank %}
       <div class="insta-feed-redesign__title">
@@ -55,17 +60,6 @@
     "settings":
     [
       {
-        "type": "image_picker",
-        "id": "bg_image",
-        "label": "Background image for section"
-      },
-      {
-        "type": "color",
-        "id": "text_color",
-        "label": "Color text on section",
-        "default": "#000000"
-      },
-      {
         "type": "text",
         "id": "title",
         "label": "Title"
@@ -89,6 +83,22 @@
         "type": "url",
         "id": "insta_link",
         "label": "Insta url"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Color text on section",
+        "default": "#000000"
+      },
+      {
+        "type": "image_picker",
+        "id": "sec_bg_mob",
+        "label": "Section background image (mobile)"
+      },
+      {
+        "type": "image_picker",
+        "id": "sec_bg",
+        "label": "Section background image"
       }
     ],
     "presets": [

@@ -1,7 +1,25 @@
 {% liquid
     assign desktop_image               = section.settings.desktop_image
     assign mobile_image                = section.settings.mobile_image
+    assign sec_bg_mob                  = section.settings.sec_bg_mob
+    assign sec_bg                      = section.settings.sec_bg
 %}
+
+{% if sec_bg_mob != blank and sec_bg != blank %}
+    <style>
+        .contain-image__section {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            .contain-image__section {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    </style>
+{% endif %}
   
 <section class="contain-image__section">
     <div class="container">
@@ -28,6 +46,16 @@
             "type":"image_picker",
             "id":"mobile_image",
             "label":"Mobile Image"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
         }
     ],
     "presets":[

@@ -1,11 +1,25 @@
 {% liquid
-    assign bg_color                = section.settings.bg_color
-    assign text                    = section.settings.text
+    assign bg_color   = section.settings.bg_color
+    assign text       = section.settings.text
+    assign sec_bg_mob = section.settings.sec_bg_mob
+    assign sec_bg     = section.settings.sec_bg
 %}
 
-<style>
-
-</style>
+{% if sec_bg_mob != blank and sec_bg != blank %}
+    <style>
+        .free-section {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            .free-section {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    </style>
+{% endif %}
   
 <section class="free-section" style="background-color: {{ bg_color }}">
     <div class="container">
@@ -54,6 +68,16 @@
             "type":"text",
             "id":"text",
             "label":"Title text"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
         }
     ],
     "blocks": [

@@ -1,0 +1,41 @@
+<div class="product-thumbnail">
+  {% if settings.display_vendor %}
+    <span class="product-thumbnail__vendor">{{ product.vendor }}</span>
+  {% endif %}
+
+  <div class="product-thumbnail__top">
+    <a href="{{ variant.url | within: collection }}" class="product-thumbnail__title">{{ product.title }} - {{ variant.title }}</a>
+  
+    <span class="icons-star">
+      {% for i in (1..5) %}
+        {% render 'icon-star' %}
+      {% endfor %}
+    </span>
+  </div>
+
+  {% if collection_handles contains 'coming-soon' %}
+    {% if settings.stickers_enabled == false %}
+      {{ 'collections.general.coming_soon' | t }}
+    {% endif %}
+  {% else %}
+    <span class="product-thumbnail__price price {% if variant.compare_at_price_max > variant.price %}sale{% endif %}">
+      {% if variant.available %}
+        {% if variant.compare_at_price > variant.price %}
+          <span class="product-thumbnail__was-price was-price">
+            <span class="money-was money">{{ variant.compare_at_price | money }}</span>
+          </span>
+        {% endif %}
+        {% if variant.price > 0 %}
+          {% unless variant.compare_at_price > variant.price %}
+            <p class="product-thumbnail__price-from">from</p>
+          {% endunless %}
+          <span class="money">{{ variant.price | money }}</span>
+        {% else %}
+          {{ settings.free_price_text }}
+        {% endif %}
+      {% else %}
+        <span class="product-thumbnail__sold-out sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {% endif %}
+    </span>
+  {% endif %}
+</div>

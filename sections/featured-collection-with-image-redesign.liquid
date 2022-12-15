@@ -32,6 +32,27 @@
   {%- assign section_onboarding = true -%}
 {% endif %}
 
+{% liquid
+  assign sec_bg_mob       = section.settings.sec_bg_mob
+  assign sec_bg           = section.settings.sec_bg
+%}
+
+<style>
+  {% if sec_bg_mob != blank and sec_bg != blank %}
+  .featured-collection-redesign-with-image-section {
+    background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  @media (min-width: 767px) {
+    .featured-collection-redesign-with-image-section {
+      background-image: url("{{ sec_bg | img_url: 'master' }}");
+    }
+  }
+  {% endif %}
+</style>
+
 {% comment %} Check to see if enough products available to create slide {% endcomment %}
 {% if object.settings.collection_style == 'slider' %}
   {% if object.settings.products_limit > products_per_row and collections[col].all_products_count > products_per_row %}
@@ -73,7 +94,7 @@
     <div class="section-header">
       {% include 'heading', title: object.settings.title, heading_tag: 'h2', context: 'featured-collection', text_alignment: 'center', url: collections[col].url %}
       {% if section.settings.sub_heading != blank %}
-        <p>{{ section.settings.sub_heading }}</p>  
+        <p class="featured-collection__subtitle">{{ section.settings.sub_heading }}</p>
       {% endif %}
     </div>
     {% endif %}
@@ -84,20 +105,21 @@
     {% endif %}
     ">
       
-      <div class="image-column product-feature-column">
+      <div class="image-column product-feature-column {% if layout == 'slider' %}image-column-redesign__slider{% endif %}">
         {% assign product = all_products[section.settings.product] %}
 
         {% include 'product-card--featured', product: product %}
 
       </div>
   
-      <div class="products-column product-column-redesign
-      ">
+      <div class="products-column product-column-redesign {% if layout == 'slider' %}product-column-redesign__slider{% endif %}">
         {% if section_onboarding == false %}
           {% comment %} Loop through products {% endcomment %}
           {% if layout == 'slider' %}
             {% if collections[col].all_products_count > 0 %}
-              {% include 'product-slider-redesign', show_gutter: show_gutter %}
+              {% comment %}{% include 'product-slider-redesign', show_gutter: show_gutter %}{% endcomment %}
+              {% include 'featured-collection--slider-layout' %}
+
             {% endif %}
           {% else %}
             {% if collections[col].all_products_count > 0 %}
@@ -274,12 +296,6 @@
       ]
     },
     {
-      "type": "checkbox",
-      "id": "show_gutter",
-      "label": "Show gutter",
-      "default": true
-    },
-    {
       "type": "select",
       "id": "animation",
       "label": "Animation",
@@ -314,6 +330,16 @@
           "label": "Slide in right"
         }
       ]
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg_mob",
+      "label": "Section background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg",
+      "label": "Section background image"
     },
     {
       "type": "header",

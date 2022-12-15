@@ -4,7 +4,27 @@
   assign description              = collection.metafields.collection.description
   assign image                    = collection.metafields.collection.image
   assign image_mob                = collection.metafields.collection.image_mob
+  assign hide_image_banner        = collection.metafields.custom.hide_image_banner
+  assign sec_bg_mob               = section.settings.sec_bg_mob
+  assign sec_bg                   = section.settings.sec_bg
+  assign prd_with_variants        = false
 %}
+
+<style>
+  {% if sec_bg_mob != blank and sec_bg != blank %}
+    .collection__main-redesign {
+      background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    @media (min-width: 767px) {
+      .collection__main-redesign {
+        background-image: url("{{ sec_bg | img_url: 'master' }}");
+      }
+    }
+  {% endif %}
+</style>
 
 {% paginate collection.products by section.settings.pagination_limit %}
 
@@ -21,14 +41,17 @@
         <h2 class="collection-title">{{ collection.title }}</h2>
         <div class="collection-description">{{ description | default: collection.description }}</div>
       </div>
+
       {% if image != blank and image_mob != blank %}
-        <div class="collection__header-image">
-          <picture>
-            <source srcset="{{ image | img_url: 'master' }}" media="(min-width: 767px)">
-            <source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 767px)">
-            <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
-          </picture>
-        </div>
+        {% unless hide_image_banner == true %}
+          <div class="collection__header-image">
+            <picture>
+              <source srcset="{{ image | img_url: 'master' }}" media="(min-width: 767px)">
+              <source srcset="{{ image_mob | img_url: 'master' }}" media="(max-width: 767px)">
+              <img src="{{ image | img_url: 'master' }}" alt="{{ image.alt }}">
+            </picture>
+          </div>
+        {% endunless %}
       {% endif %}
     </div>
   
@@ -52,7 +75,22 @@
   
         {% for product in collection.products %}
           {% unless product == featured_product.value %}
-            {% include 'product-thumbnail-redesign' %}
+
+             {% for variant in product.variants %}
+               {% if variant.title == 'Default Title' %}
+                 {% assign prd_with_variants = false %}
+               {% else %}
+                 {% assign prd_with_variants = true %}
+               {% endif %}
+             {% endfor %}
+
+            {% if prd_with_variants %}
+              {% for variant in product.variants %}
+                {% include 'product-variant-thumbnail-redesign' %}
+              {% endfor %}
+            {% else %}
+              {% include 'product-thumbnail-redesign' %}
+            {% endif %}
           {% endunless %}
         {% endfor %}
       </div>
@@ -95,6 +133,16 @@
       "max": 30,
       "step": 1,
       "default": 20
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg_mob",
+      "label": "Section background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg",
+      "label": "Section background image"
     }
   ]
 }

@@ -8,64 +8,81 @@
     assign button_link                        = section.settings.button_link
     assign alignment_desktop_text_content     = section.settings.alignment_desktop_text_content
     assign alignment_mobile_text_content      = section.settings.alignment_mobile_text_content
+    assign sec_bg_mob                         = section.settings.sec_bg_mob
+    assign sec_bg                             = section.settings.sec_bg
 %}
 
 <style>
-
-.hp-reviews-content {
-    {%- if alignment_mobile_text_content == "top" -%}
-        flex-direction: column-reverse !important;
-    {%- else -%}
-        flex-direction: column !important;
-    {%- endif -%}
-}
-
-.hp-reviews-content__wrapper {
-    {%- if alignment_mobile_text_content == "top" -%}
-        margin-bottom: 32px;
-    {%- else -%}
-        margin-bottom: 0;
-    {%- endif -%}
-}
-
-.hp-reviews-image__wrapper {
-    {%- if alignment_mobile_text_content == "top" -%}
-        margin-bottom: 0;
-    {%- else -%}
-        margin-bottom: 32px;
-    {%- endif -%}
-}
-
-@media (min-width: 767px) {
-    .hp-reviews-image__wrapper {
-        margin-bottom: 0;
-    }
-    
-    .hp-reviews-content__wrapper {
-        margin-bottom: 0;
-    }
-
     .hp-reviews-content {
-        {%- if alignment_desktop_text_content == "start" -%}
-            flex-direction: row-reverse !important;
+        {%- if alignment_mobile_text_content == "top" -%}
+            flex-direction: column-reverse !important;
         {%- else -%}
-            flex-direction: row !important;
+            flex-direction: column !important;
         {%- endif -%}
     }
-}
 
+    .hp-reviews-content__wrapper {
+        {%- if alignment_mobile_text_content == "top" -%}
+            margin-bottom: 32px;
+        {%- else -%}
+            margin-bottom: 0;
+        {%- endif -%}
+    }
+
+    .hp-reviews-image__wrapper {
+        {%- if alignment_mobile_text_content == "top" -%}
+            margin-bottom: 0;
+        {%- else -%}
+            margin-bottom: 32px;
+        {%- endif -%}
+    }
+
+    @media (min-width: 767px) {
+        .hp-reviews-image__wrapper {
+            margin-bottom: 0;
+        }
+
+        .hp-reviews-content__wrapper {
+            margin-bottom: 0;
+        }
+
+        .hp-reviews-content {
+            {%- if alignment_desktop_text_content == "start" -%}
+                flex-direction: row-reverse !important;
+            {%- else -%}
+                flex-direction: row !important;
+            {%- endif -%}
+        }
+    }
+
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+        .hp-reviews {
+            background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        @media (min-width: 767px) {
+            .hp-reviews {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    {% endif %}
 </style>
   
 <section class="hp-reviews" style="background-color: {{ bg_color }}">
     <div class="container">
         <div class="hp-reviews-content">
-            <div class="hp-reviews-image__wrapper">
-                <picture>
-                    <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
-                    <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
-                    <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
-                </picture>
-            </div>
+            {% if content_image_desktop != blank and content_image_mobile != blank %}
+                <div class="hp-reviews-image__wrapper">
+                    <picture>
+                        <source srcset="{{ content_image_desktop | img_url: 'master' }}" media="(min-width: 767px)">
+                        <source srcset="{{ content_image_mobile | img_url: 'master' }}" media="(max-width: 767px)">
+                        <img src="{{ content_image_desktop | img_url: 'master' }}" alt="{{ image.alt }}">
+                    </picture>
+                </div>
+            {% endif %}
+
             <div class="hp-reviews-content__wrapper">
                 <h2 class="hp-reviews-content__title">{{ title }}</h2>
                 <p class="hp-reviews-content__text">{{ text }}</p>
@@ -117,7 +134,7 @@
           "label":"Button text"
        },
        {
-          "type":"text",
+          "type":"url",
           "id":"button_link",
           "label":"Button link"
        },
@@ -152,7 +169,17 @@
           }
         ],
         "default": "top"
-      }
+      },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
+        }
     ],
     "presets":[
        {

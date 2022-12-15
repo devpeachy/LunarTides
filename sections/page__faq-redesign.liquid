@@ -10,21 +10,35 @@
   assign third_accordion_img                = section.settings.third_accordion_img
   assign accordion_bg_color                 = section.settings.accordion_bg_color
   assign accordion_tilte_color              = section.settings.accordion_tilte_color
+    assign sec_bg_mob                       = section.settings.sec_bg_mob
+    assign sec_bg                           = section.settings.sec_bg
 %}
 
 <style>
+    #template-page-faqnew-redesign {
+      background-color: {{ bg_color }};
+      padding: 80px 0 56px;
+    }
 
-#template-page-faqnew-redesign {
-  background-color: {{ bg_color }};
-  padding: 80px 0 56px;
-}
+    @media (max-width: 768px) {
+      #template-page-faqnew-redesign {
+        padding: 32px 0 20px;
+      }
+    }
 
-@media (max-width: 768px) {
-  #template-page-faqnew-redesign {
-    padding: 32px 0 20px;
-  }
-}
-
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+         #template-page-faqnew-redesign {
+             background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+             background-position: center;
+             background-repeat: no-repeat;
+             background-size: cover;
+         }
+        @media (min-width: 767px) {
+            #template-page-faqnew-redesign {
+                background-image: url("{{ sec_bg | img_url: 'master' }}");
+            }
+        }
+    {% endif %}
 </style>
 
 <section class="faq-redesign">
@@ -194,7 +208,17 @@
         "type":"image_picker",
         "id":"third_accordion_img",
         "label":"Third accordion image"
-     }
+     },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
+        }
   ],
   "blocks":[
      {

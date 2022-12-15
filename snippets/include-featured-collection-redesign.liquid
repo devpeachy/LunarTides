@@ -1,6 +1,23 @@
-{% assign btn_link = section.settings.btn_link %}
-{% assign btn_text = section.settings.btn_text %}
+{% assign btn_link   = section.settings.btn_link %}
+{% assign btn_text   = section.settings.btn_text %}
+{% assign sec_bg_mob = section.settings.sec_bg_mob %}
+{% assign sec_bg     = section.settings.sec_bg %}
 
+<style>
+  {% if sec_bg_mob != blank and sec_bg != blank %}
+    .featured-collection-redesign-without-image {
+      background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    @media (min-width: 767px) {
+      .featured-collection-redesign-without-image {
+        background-image: url("{{ sec_bg | img_url: 'master' }}");
+      }
+    }
+  {% endif %}
+</style>
 
 <section class="featured-collection-redesign-without-image">
   <div class="featured-collection-redesign__container">

@@ -3,28 +3,42 @@
     assign bg_image_desktop                   = section.settings.bg_image_desktop
     assign bg_image_mobile                    = section.settings.bg_image_mobile
     assign title                              = section.settings.title
+    assign sec_bg_mob                         = section.settings.sec_bg_mob
+    assign sec_bg                             = section.settings.sec_bg
 %}
 
 <style>
+    @media (max-width: 767px) {
+        .product-features__content {
+            background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
 
-@media (max-width: 767px) {
-    .product-features__content {
-        background-image: url("{{ bg_image_mobile | img_url: 'master' }}");
-        background-position: 50% 50%;
+    @media (min-width: 767px) {
+        .product-features__content {
+            background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
+            background-position: 50% 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    }
+
+    {% if sec_bg_mob != blank and sec_bg != blank %}
+    .pdp_product-features-redesign {
+        background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
     }
-}
-
-@media (min-width: 767px) {
-    .product-features__content {
-        background-image: url("{{ bg_image_desktop | img_url: 'master' }}");
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
+    @media (min-width: 767px) {
+        .pdp_product-features-redesign {
+            background-image: url("{{ sec_bg | img_url: 'master' }}");
+        }
     }
-}
-
+    {% endif %}
 </style>
   
 <section class="pdp_product-features-redesign" style="background-color: {{ bg_color }}">
@@ -95,7 +109,17 @@
        "type": "textarea",
        "id": "title",
        "label": "Section title"
-     }
+     },
+        {
+            "type": "image_picker",
+            "id": "sec_bg_mob",
+            "label": "Section background image (mobile)"
+        },
+        {
+            "type": "image_picker",
+            "id": "sec_bg",
+            "label": "Section background image"
+        }
    ],
    "blocks": [ 
       {

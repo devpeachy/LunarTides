@@ -10,6 +10,24 @@
 {% comment %} Advanced {% endcomment %}
 {% assign css_class = section.settings.css_class %}
 {% assign custom_css = section.settings.custom_css %}
+{% assign sec_bg_mob = section.settings.sec_bg_mob %}
+{% assign sec_bg     = section.settings.sec_bg %}
+
+<style>
+  {% if sec_bg_mob != blank and sec_bg != blank %}
+    .product-main {
+      background-image: url("{{ sec_bg_mob | img_url: 'master' }}");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    @media (min-width: 767px) {
+      .product-main {
+        background-image: url("{{ sec_bg | img_url: 'master' }}");
+      }
+    }
+  {% endif %}
+</style>
 
 {% comment %} Section specific CSS {% endcomment %}
 {% style %}
@@ -406,6 +424,16 @@
   "max_blocks": 10,
   "class": "product-template product-main has-sidebar-option jsProduct",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "sec_bg_mob",
+      "label": "Section background image (mobile)"
+    },
+    {
+      "type": "image_picker",
+      "id": "sec_bg",
+      "label": "Section background image"
+    },
     {
       "type": "checkbox",
       "id": "product_breadcrumb",
