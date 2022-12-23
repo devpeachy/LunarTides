@@ -702,6 +702,7 @@ Shopify.each = function (t, e) {
 
   return a.replace(n, r);
 }, Shopify.OptionSelectors = function (t, e) {
+  console.log('ttttt', t)
   return this.selectorDivClass = "selector-wrapper", this.selectorClass = "single-option-selector", this.variantIdFieldIdSuffix = "-variant-id", this.variantIdField = null, this.historyState = null, this.selectors = [], this.domIdPrefix = t, this.product = new Shopify.Product(e.product), this.onVariantSelected = Shopify.isDefined(e.onVariantSelected) ? e.onVariantSelected : function () {}, this.replaceSelector(t), this.initDropdown(), e.enableHistoryState && (this.historyState = new Shopify.OptionSelectors.HistoryState(this)), !0;
 }, Shopify.OptionSelectors.prototype.initDropdown = function () {
   var t = {
@@ -1445,6 +1446,8 @@ Shopify.theme.thumbnail = {
       var $notifyForm = $(this).next('.js-quickshop-forms__container').find('.notify_form');
       var $productForm = $(this).next('.js-quickshop-forms__container').find('.product_form');
 
+      console.log('fisrt', $productForm)
+
       if (!$('.fancybox-active').length) {
         $.fancybox.open($('.js-quick-shop'), {
           baseClass: 'quick-shop__lightbox product-' + productData.product_id,
@@ -1503,9 +1506,9 @@ Shopify.theme.thumbnail = {
     var $insertedNotifyForm = $('.quick-shop__lightbox .notify_form');
     var $insertedProductForm = $('.quick-shop__lightbox .product_form'); // Copy form data back to product loop and add .viewed
 
-    $(".js-quickshop-forms--".concat(productData.product_id)).append($insertedProductForm);
+    $(".js-quickshop-forms--".concat(productData.product_id)).empty().append($insertedProductForm);
     $(".js-quickshop-forms--".concat(productData.product_id)).append($insertedNotifyForm);
-    $(".js-quickshop-forms--".concat(productData.product_id, " .product_form")).addClass('viewed');
+    // $(".js-quickshop-forms--".concat(productData.product_id, " .product_form")).addClass('viewed');
     $(".js-quickshop-forms--".concat(productData.product_id, " .notify_form")).addClass('viewed'); // Clear stickers
 
     $('.quick-shop .thumbnail-sticker span').empty().parent().addClass('is-hidden'); // Find gallery and carousel
@@ -1550,6 +1553,9 @@ Shopify.theme.thumbnail = {
     $('.quick-shop__lightbox .js-product-form').append($productForm); //Initiate selectCallback
 
     if ($productForm.hasClass("product_form_options") && !$productForm.hasClass("viewed")) {
+
+      console.log('dddddd', $productForm);
+
       //If form hasn't been viewed previously, run OptionSelectors function
       new Shopify.OptionSelectors($productForm.data("select-id"), {
         product: $productForm.data("product"),
@@ -1781,9 +1787,10 @@ Shopify.theme.thumbnail = {
       if (product.single_variant == 'true') {
         getQuickShopInfo(product);
       } else {
-        for (var i = 0; i < product.variants.length; i++) {
-          getQuickShopInfo(product.variants[i]);
-        }
+        getQuickShopInfo(product.variants[0]);
+        // for (var i = 0; i < product.variants.length; i++) {
+        //   getQuickShopInfo(product.variants[0]);
+        // }
       }
     }
   }
