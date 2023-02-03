@@ -10,6 +10,7 @@
     },
     "16642066398d28ab38": {
       "type": "about-us-hero",
+      "disabled": true,
       "settings": {
         "bg_section": "#ffffff",
         "title": "<div>\nCRUELTY - \n<span class=\"transparent-title\"> FREE.<\/span>\n<\/div>\n<div>\n DAMAGE - \n<span class=\"transparent-title\"> \nFREE.<\/span>\n<\/div>\n<div>\nHASSLE - \n<span class=\"transparent-title\"> FREE.<\/span>\n<\/div>",
@@ -20,6 +21,7 @@
     },
     "1664206658e903cdac": {
       "type": "about-us-who-we-are",
+      "disabled": true,
       "settings": {
         "bg_section": "#ffffff",
         "title": "<span class=\"title-small\">WHO WE ARE<\/span>Lunar Tides is a <span class=\"title-transparent\">true indie brand , <\/span>\nfemale owned and operated since 2013. We strive to make the best quality hair colors in every unique shade imaginable!",
@@ -29,18 +31,16 @@
     },
     "1664206690d655e3f2": {
       "type": "reviews-banner",
+      "disabled": true,
       "blocks": {
         "94d711e0-95d6-4c14-9203-02587078b95b": {
           "type": "block",
-          "settings": {
-            "block_img": "shopify:\/\/shop_images\/Frame_55.png"
-          }
+          "disabled": true,
+          "settings": {}
         },
         "c78d6031-edd6-4f04-974c-8aa681c91467": {
           "type": "block",
-          "settings": {
-            "block_img": "shopify:\/\/shop_images\/Frame_54.png"
-          }
+          "settings": {}
         }
       },
       "block_order": [
@@ -68,6 +68,7 @@
     },
     "166419254965111210": {
       "type": "favorite-section",
+      "disabled": true,
       "blocks": {
         "9a198b19-61b6-44f8-b9e7-dc3109a6274d": {
           "type": "product",
@@ -108,14 +109,118 @@
     },
     "16642066103907d30c": {
       "type": "instafeed-redesign",
+      "disabled": true,
       "settings": {
-        "bg_color": "#ffffff",
-        "text_color": "#000000",
         "title": "Show Us Your<br> Colors on Instagram!",
         "title_url": "",
         "header_text": "Subscribe",
         "insta_text": "@lunartideshair",
-        "insta_link": "https:\/\/www.instagram.com\/lunartideshair\/"
+        "insta_link": "https:\/\/www.instagram.com\/lunartideshair\/",
+        "text_color": "#000000"
+      }
+    },
+    "04d3ae72-cd77-485d-8548-74edb68924fa": {
+      "type": "about__free-section",
+      "disabled": true,
+      "blocks": {
+        "f94e6a49-4f53-4f48-8220-ce200e9d2785": {
+          "type": "title",
+          "settings": {
+            "title": "CRUELTY"
+          }
+        },
+        "905ae597-264a-43f2-a390-dcebf7a3aeb0": {
+          "type": "title",
+          "settings": {
+            "title": "DAMAGE"
+          }
+        },
+        "e33f0acd-828e-4924-b531-5b9ebb838f4f": {
+          "type": "title",
+          "settings": {
+            "title": "HASSLE"
+          }
+        }
+      },
+      "block_order": [
+        "f94e6a49-4f53-4f48-8220-ce200e9d2785",
+        "905ae597-264a-43f2-a390-dcebf7a3aeb0",
+        "e33f0acd-828e-4924-b531-5b9ebb838f4f"
+      ],
+      "settings": {
+        "bg_color": "",
+        "text": "free"
+      }
+    },
+    "8e55578a-78a3-4ce5-87a2-2cc2e5973973": {
+      "type": "about__goal-section",
+      "settings": {
+        "bg_color": "",
+        "image": "shopify:\/\/shop_images\/about_us_page_photo_1010eb1e-246c-4f30-a012-e9f1d94e22c5.png",
+        "text": "Lunar Tides is a true indie brand, woman owned and operated since 2013. We strive to make the best quality hair colors in every unique shade imaginable!"
+      }
+    },
+    "93f16d96-adf4-4d36-81b3-e73060ef80b6": {
+      "type": "hp__reviews",
+      "disabled": true,
+      "settings": {
+        "bg_color": "",
+        "content_image_mobile": "shopify:\/\/shop_images\/1_1_-min.png",
+        "content_image_desktop": "shopify:\/\/shop_images\/Frame_315_1_-min.png",
+        "title": "“I want to be with this fiery color all my life”",
+        "text": "I would never have imagined that you can look so cool with this color. It looks even better in real life than in the photo. My girlfriend wanted to buy this dye as soon as they saw me with a new hair color. It's not just paint, it's some kind of magic!",
+        "button_text": "CLICK TO SHOP",
+        "button_link": "",
+        "alignment_desktop_text_content": "end",
+        "alignment_mobile_text_content": "top"
+      }
+    },
+    "3040935e-87c9-404b-9b59-7e43925adea9": {
+      "type": "about__contain-image",
+      "disabled": true,
+      "settings": {
+        "desktop_image": "shopify:\/\/shop_images\/Frame_452-min.png",
+        "mobile_image": "shopify:\/\/shop_images\/Frame_452_1_-min.png"
+      }
+    },
+    "86805bfc-35ba-473b-ad4d-d1168e3d9945": {
+      "type": "content-with-products",
+      "blocks": {
+        "036e04c3-6efa-4123-bb7c-e9b479a1f5b0": {
+          "type": "product",
+          "settings": {
+            "product": "dark-forest-green-hair-dye-cruelty-free-semi-permanent"
+          }
+        },
+        "f5c0ef6d-7d89-4e8a-9d87-d794b60e140b": {
+          "type": "product",
+          "settings": {
+            "product": "red-hair-dye-cruelty-free-semi-permanent"
+          }
+        }
+      },
+      "block_order": [
+        "036e04c3-6efa-4123-bb7c-e9b479a1f5b0",
+        "f5c0ef6d-7d89-4e8a-9d87-d794b60e140b"
+      ],
+      "settings": {
+        "content_position": "right-side",
+        "title": "CRUELTY-FREE. DAMAGE-FREE. HASSLE-FREE.",
+        "text": "We've carefully formulated over 40 shades to give you the exact color you're after without any need for blending or diluting. Just pick the color you want, and it's ready to go right out of the jar! No need for harsh developers, pastelizers, or other add-ons.\n<br><br>\nWe are hair color enthusiasts and animal lovers - all of our products are ALWAYS 100% vegan and cruelty-free!",
+        "subtitle": "TURN UP THE BRIGHTNESS!",
+        "button_text": "CLICK TO SHOP",
+        "button_url": "shopify:\/\/collections\/all"
+      }
+    },
+    "528f13af-6c4b-484d-b2df-4658e050240e": {
+      "type": "instafeed-redesign",
+      "settings": {
+        "title": "Show Us Your Colors on Instagram!",
+        "title_url": "",
+        "header_text": "Subscribe",
+        "insta_text": "@lunartideshair",
+        "insta_link": "https:\/\/www.instagram.com\/lunartideshair\/",
+        "text_color": "#ffffff"
       }
     }
   },
@@ -125,6 +230,12 @@
     "1664206658e903cdac",
     "1664206690d655e3f2",
     "166419254965111210",
-    "16642066103907d30c"
+    "16642066103907d30c",
+    "04d3ae72-cd77-485d-8548-74edb68924fa",
+    "8e55578a-78a3-4ce5-87a2-2cc2e5973973",
+    "93f16d96-adf4-4d36-81b3-e73060ef80b6",
+    "3040935e-87c9-404b-9b59-7e43925adea9",
+    "86805bfc-35ba-473b-ad4d-d1168e3d9945",
+    "528f13af-6c4b-484d-b2df-4658e050240e"
   ]
 }

@@ -44,6 +44,31 @@
 <section class="faq-redesign">
   <div class="faq-container">
     <h1 class="faq-redesign-title" style="color: {{ section_title_color }}">{{ section_title }}</h1>
+<div class="order accordion-section-redesign">
+      <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
+        {% if accordion_title_third != blank %}
+          <img src="{{ third_accordion_img | img_url: 'master' }}" alt="" class="accordion-img">
+          <h2 class="accordion-title" style="color: {{ accordion_tilte_color }};">{{ accordion_title_third }}</h2>
+        {% endif %}
+      </div>
+      {% for block in section.blocks %}
+        {% if block.type == 'order' %}
+          {% if block.settings.order_question != blank %}
+            <div class="question-content-wrapper third-content">
+              <div class="accordion-redesign">
+                <h3 class="accordion-question">{{ block.settings.order_question  }}</span>
+              </div>
+              <div class="accordion-panel">
+                <p>
+                  {{ block.settings.order_description }}
+                </p>
+              </div>
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </div>
+    
     <div class="hair accordion-section-redesign">
       <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
         {% if accordion_title_first != blank %}
@@ -68,6 +93,7 @@
         {% endif %}
       {% endfor %}
     </div>
+   
     <div class="nails accordion-section-redesign">
       <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
         {% if accordion_title_second != blank %}
@@ -92,30 +118,8 @@
         {% endif %}
       {% endfor %}
     </div>
-    <div class="order accordion-section-redesign">
-      <div class="accordion-title-wrapper" style="background-color: {{ accordion_bg_color }};">
-        {% if accordion_title_third != blank %}
-          <img src="{{ third_accordion_img | img_url: 'master' }}" alt="" class="accordion-img">
-          <h2 class="accordion-title" style="color: {{ accordion_tilte_color }};">{{ accordion_title_third }}</h2>
-        {% endif %}
-      </div>
-      {% for block in section.blocks %}
-        {% if block.type == 'order' %}
-          {% if block.settings.order_question != blank %}
-            <div class="question-content-wrapper third-content">
-              <div class="accordion-redesign">
-                <h3 class="accordion-question">{{ block.settings.order_question  }}</span>
-              </div>
-              <div class="accordion-panel">
-                <p>
-                  {{ block.settings.order_description }}
-                </p>
-              </div>
-            </div>
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </div>
+   
+    
   </div>
 </section>
 

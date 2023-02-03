@@ -12,12 +12,7 @@
   {% capture shop_name %}{{ shop.name | url_param_escape }}{% endcapture %}
   {% capture twitter_name %}{{ settings.twitter_link | split: 'twitter.com/' | last }}{% endcapture %}
 
-  {% comment %} Twitter {% endcomment %}
-  <div class="share-btn share-btn--twitter control">
-    <a target="_blank" rel="noopener" class="button" title="{{ 'layout.social_sharing.twitter_title' | t }}" href="https://twitter.com/intent/tweet?text={{ title }}&url={{ current_url }}{%- if twitter_name != blank -%}&via={{ twitter_name }}{%- endif -%}">
-      {% include settings.icon, name: 'twitter' %}
-    </a>
-  </div>
+
 
   {% comment %} Facebook {% endcomment %}
   <div class="share-btn share-btn--facebook control">
@@ -38,6 +33,13 @@
       </a>
     {% endif %}
    </div>
+
+    {% comment %} Twitter {% endcomment %}
+  <div class="share-btn share-btn--twitter control">
+    <a target="_blank" rel="noopener" class="button" title="{{ 'layout.social_sharing.twitter_title' | t }}" href="https://twitter.com/intent/tweet?text={{ title }}&url={{ current_url }}{%- if twitter_name != blank -%}&via={{ twitter_name }}{%- endif -%}">
+      {% include settings.icon, name: 'twitter' %}
+    </a>
+  </div>
 
    <div class="share-btn share-btn--mail control"><!--Email-->
      <a href="mailto:?subject={{ 'layout.social_sharing.email_subject' | t: title: title }}&amp;body={{ 'layout.social_sharing.email_message' | t: title: title, name: shop_name }}%0D%0A%0D%0A{{ current_url }}" target="_blank"  rel="noopener" class="button" title="{{ 'layout.social_sharing.email_title' | t }}">

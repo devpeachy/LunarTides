@@ -2512,76 +2512,76 @@
         "id": "freeshipping_indicator_minicart",
         "label": "Show indicator on minicart"
       },
-        {
-          "type": "text",
-          "id": "upsell_ajax_title",
-          "label": "Title for upsell in ajax cart"
-        },
-        {
-          "type": "collection",
-          "id": "upsell_ajax_collection",
-          "label": "Upsell collection in ajax cart"
-        },
-        {
-          "type": "image_picker",
-          "id": "first_empty_cart_prd_image",
-          "label": "First custom image"
-        },
-        {
-          "type": "text",
-          "id": "first_empty_cart_prd_text",
-          "label": "First custom text"
-        },
-        {
-          "type": "url",
-          "id": "first_empty_cart_link",
-          "label": "First link"
-        },
-        {
-          "type": "image_picker",
-          "id": "second_empty_cart_prd_image",
-          "label": "Second custom image"
-        },
-        {
-          "type": "text",
-          "id": "second_empty_cart_prd_text",
-          "label": "Second custom text"
-        },
-        {
-          "type": "url",
-          "id": "second_empty_cart_link",
-          "label": "Second link"
-        },
-        {
-          "type": "image_picker",
-          "id": "third_empty_cart_prd_image",
-          "label": "Third custom image"
-        },
-        {
-          "type": "text",
-          "id": "third_empty_cart_prd_text",
-          "label": "Third custom text"
-        },
-        {
-          "type": "url",
-          "id": "third_empty_cart_link",
-          "label": "Third link"
-        },
-        {
-          "type": "image_picker",
-          "id": "fourth_empty_cart_prd_image",
-          "label": "Fourth custom image"
-        },
-        {
-          "type": "text",
-          "id": "fourth_empty_cart_prd_text",
-          "label": "Fourth custom text"
-        },
-        {
-          "type": "url",
-          "id": "fourth_empty_cart_link",
-          "label": "Fourth link"
-        }
+      {
+        "type": "text",
+        "id": "upsell_ajax_title",
+        "label": "Title for upsell in ajax cart"
+      },
+      {
+        "type": "collection",
+        "id": "upsell_ajax_collection",
+        "label": "Upsell collection in ajax cart"
+      },
+      {
+        "type": "image_picker",
+        "id": "first_empty_cart_prd_image",
+        "label": "First custom image"
+      },
+      {
+        "type": "text",
+        "id": "first_empty_cart_prd_text",
+        "label": "First custom text"
+      },
+      {
+        "type": "url",
+        "id": "first_empty_cart_link",
+        "label": "First link"
+      },
+      {
+        "type": "image_picker",
+        "id": "second_empty_cart_prd_image",
+        "label": "Second custom image"
+      },
+      {
+        "type": "text",
+        "id": "second_empty_cart_prd_text",
+        "label": "Second custom text"
+      },
+      {
+        "type": "url",
+        "id": "second_empty_cart_link",
+        "label": "Second link"
+      },
+      {
+        "type": "image_picker",
+        "id": "third_empty_cart_prd_image",
+        "label": "Third custom image"
+      },
+      {
+        "type": "text",
+        "id": "third_empty_cart_prd_text",
+        "label": "Third custom text"
+      },
+      {
+        "type": "url",
+        "id": "third_empty_cart_link",
+        "label": "Third link"
+      },
+      {
+        "type": "image_picker",
+        "id": "fourth_empty_cart_prd_image",
+        "label": "Fourth custom image"
+      },
+      {
+        "type": "text",
+        "id": "fourth_empty_cart_prd_text",
+        "label": "Fourth custom text"
+      },
+      {
+        "type": "url",
+        "id": "fourth_empty_cart_link",
+        "label": "Fourth link"
+      }
     ]
   },
   {
@@ -2767,109 +2767,109 @@
       }
     ]
   },
-    {
-      "name": "Background of Pages",
-      "settings": [
-        {
-          "type": "header",
-          "content": "Home page"
-        },
-        {
-          "type": "image_picker",
-          "id": "bg_img",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "bg_img_mob",
-          "label": "Background image (mobile)"
-        },
-        {
-          "type": "color",
-          "id": "bg_color",
-          "label": "Background color",
-          "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Product page"
-        },
-        {
-          "type": "image_picker",
-          "id": "prd_bg_img",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "prd_bg_img_mob",
-          "label": "Background image (mobile)"
-        },
-        {
-          "type": "color",
-          "id": "prd_bg_color",
-          "label": "Background color",
-          "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Collection page"
-        },
-        {
-          "type": "image_picker",
-          "id": "coll_bg_img",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "coll_bg_img_mob",
-          "label": "Background image (mobile)"
-        },
-        {
-          "type": "color",
-          "id": "coll_bg_color",
-          "label": "Background color",
-          "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Cart page"
-        },
-        {
-          "type": "image_picker",
-          "id": "cart_bg_img",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "cart_bg_img_mob",
-          "label": "Background image (mobile)"
-        },
-        {
-          "type": "color",
-          "id": "cart_bg_color",
-          "label": "Background color",
-          "default": "#000000"
-        },
-        {
-          "type": "header",
-          "content": "Account page"
-        },
-        {
-          "type": "image_picker",
-          "id": "account_bg_img",
-          "label": "Background image"
-        },
-        {
-          "type": "image_picker",
-          "id": "account_bg_img_mob",
-          "label": "Background image (mobile)"
-        },
-        {
-          "type": "color",
-          "id": "account_bg_color",
-          "label": "Background color",
-          "default": "#000000"
-        }
-      ]
-    }
+  {
+    "name": "Background of Pages",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Home page"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "bg_img_mob",
+        "label": "Background image (mobile)"
+      },
+      {
+        "type": "color",
+        "id": "bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Product page"
+      },
+      {
+        "type": "image_picker",
+        "id": "prd_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "prd_bg_img_mob",
+        "label": "Background image (mobile)"
+      },
+      {
+        "type": "color",
+        "id": "prd_bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Collection page"
+      },
+      {
+        "type": "image_picker",
+        "id": "coll_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "coll_bg_img_mob",
+        "label": "Background image (mobile)"
+      },
+      {
+        "type": "color",
+        "id": "coll_bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Cart page"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_bg_img_mob",
+        "label": "Background image (mobile)"
+      },
+      {
+        "type": "color",
+        "id": "cart_bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Account page"
+      },
+      {
+        "type": "image_picker",
+        "id": "account_bg_img",
+        "label": "Background image"
+      },
+      {
+        "type": "image_picker",
+        "id": "account_bg_img_mob",
+        "label": "Background image (mobile)"
+      },
+      {
+        "type": "color",
+        "id": "account_bg_color",
+        "label": "Background color",
+        "default": "#000000"
+      }
+    ]
+  }
 ]
